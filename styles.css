@@ -136,7 +136,7 @@ ul {
 }
 
 .hero__content {
-  max-width: 75ch;
+  max-width: none;
 }
 
 .hero__title {
@@ -146,7 +146,6 @@ ul {
   color: var(--text-primary);
   margin-bottom: clamp(1rem, 3vh, 1.5rem);
   letter-spacing: -0.02em;
-  overflow-wrap: break-word;
 }
 
 .hero__subtitle {
