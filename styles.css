@@ -141,17 +141,18 @@ ul {
 
 .hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 9vw, 6.5rem);
+  font-size: clamp(2.5rem, min(9vw, 13vh), 6.5rem);
   line-height: 1.05;
   color: var(--text-primary);
   margin-bottom: clamp(1rem, 3vh, 1.5rem);
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
 }
 
 .hero__subtitle {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-size: clamp(1rem, min(2.5vw, 3vh), 1.35rem);
   line-height: 1.6;
   color: var(--text-primary);
   opacity: 0.9;
@@ -235,14 +236,32 @@ ul {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    row-gap: 0.35rem;
+  }
+
   .site-main {
     justify-content: space-between;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    max-width: 100%;
+    gap: 1.25rem;
   }
 
   .hero {
     justify-content: center;
+    min-width: 0;
+  }
+
+  .hero__title {
+    font-size: clamp(1.75rem, 8vw, 2.75rem);
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .contact__actions {
