@@ -1,37 +1,39 @@
 ---
+import { Zap, Sparkles, Building, UtensilsCrossed, Briefcase, ShoppingCart } from '@lucide/astro';
+
 const services = [
   {
-    icon: '⚡',
+    icon: Zap,
     slug: 'migracion-wordpress',
     title: 'Migración desde WordPress',
     text: 'Tu web tarda 6 segundos, se rompe con cada actualización y te cuesta $ en plugins. La paso a un sitio moderno: rápido, seguro y sin mantenimiento.',
   },
   {
-    icon: '🤖',
+    icon: Sparkles,
     slug: 'optimizacion-ia',
     title: 'Optimización para IA (AEO)',
     text: 'Que ChatGPT, Gemini y Google AI recomienden tu negocio cuando alguien pregunta. Optimizo tu sitio para los motores de respuesta.',
   },
   {
-    icon: '🏠',
+    icon: Building,
     slug: 'webs-para-inmobiliarias',
     title: 'Web + sistema para inmobiliarias',
     text: 'Catálogo de propiedades con buscador y filtros, fichas con WhatsApp directo y panel para cargar propiedades sin depender de los portales.',
   },
   {
-    icon: '🍽️',
+    icon: UtensilsCrossed,
     slug: 'webs-para-restaurantes',
     title: 'Webs para restaurantes',
     text: 'Menú digital siempre actualizado, reservas, ubicación con Google Maps y pedidos por WhatsApp. Sin comisiones de apps.',
   },
   {
-    icon: '💼',
+    icon: Briefcase,
     slug: 'webs-para-profesionales',
     title: 'Webs para profesionales',
     text: 'Abogados, dentistas, psicólogos, arquitectos: una presencia que genera confianza y convierte visitas en consultas.',
   },
   {
-    icon: '🛒',
+    icon: ShoppingCart,
     slug: 'tiendas-online',
     title: 'Tiendas online',
     text: 'Tu tienda propia con pagos y envíos, sin depender de Instagram ni de las comisiones de MercadoLibre.',
@@ -52,20 +54,25 @@ const services = [
 
     <div class="grid">
       {
-        services.map((service) => (
-          <article class="card reveal">
-            <span class="card__icon" aria-hidden="true">{service.icon}</span>
-            <h3 class="card__title">{service.title}</h3>
-            <p class="card__text">{service.text}</p>
-            <a
-              class="card__link"
-              href={`/servicios/${service.slug}`}
-              aria-label={`Ver el servicio de ${service.title}`}
-            >
-              Ver servicio
-            </a>
-          </article>
-        ))
+        services.map((service) => {
+          const Icon = service.icon;
+          return (
+            <article class="card reveal">
+              <span class="card__icon" aria-hidden="true">
+                <Icon size={20} stroke-width={1.75} />
+              </span>
+              <h3 class="card__title">{service.title}</h3>
+              <p class="card__text">{service.text}</p>
+              <a
+                class="card__link"
+                href={`/servicios/${service.slug}`}
+                aria-label={`Ver el servicio de ${service.title}`}
+              >
+                Ver servicio
+              </a>
+            </article>
+          );
+        })
       }
     </div>
   </div>
