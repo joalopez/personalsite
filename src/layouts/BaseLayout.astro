@@ -1,0 +1,122 @@
+---
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+import Analytics from '../components/Analytics.astro';
+import { SITE_URL, SITE_NAME } from '../consts';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${SITE_URL}/#person`,
+  name: SITE_NAME,
+  jobTitle: 'Desarrollador web y especialista en AEO',
+  description:
+    'Desarrollador web especializado en sitios rápidos, migraciones desde WordPress y optimización para buscadores y motores de IA (AEO).',
+  url: SITE_URL,
+  email: `mailto:joaquinlopez15@gmail.com`,
+  sameAs: [
+    'https://www.linkedin.com/in/joaquin-lopez-22186369/',
+    'https://instagram.com/joalopez',
+  ],
+  knowsAbout: [
+    'Desarrollo web',
+    'Astro',
+    'Migración desde WordPress',
+    'SEO',
+    'AEO (Answer Engine Optimization)',
+    'Performance web',
+    'Diseño UX/UI',
+  ],
+};
+
+const { jsonLd, ...seoProps } = Astro.props;
+const mergedJsonLd = jsonLd
+  ? [personJsonLd, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])]
+  : personJsonLd;
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <Seo {...seoProps} jsonLd={mergedJsonLd} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <Header />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppFab />
+    <Analytics />
+
+    <script>
+      // Eventos de conversión para analytics (Umami). No-op si no está instalado.
+      type UmamiWindow = Window & { umami?: { track: (event: string, data?: object) => void } };
+      const trackConversion = (event: string, data?: object) => {
+        (window as UmamiWindow).umami?.track(event, data);
+      };
+
+      document.addEventListener('click', (e) => {
+        const target = (e.target as HTMLElement).closest('a');
+        if (!target) return;
+        const href = target.getAttribute('href') ?? '';
+        if (href.includes('wa.me')) trackConversion('whatsapp', { location: target.className });
+        if (href.startsWith('mailto:')) trackConversion('email');
+      });
+
+      document.addEventListener('contacto:enviado', () => trackConversion('contacto_form'));
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealEls = document.querySelectorAll<HTMLElement>('.reveal');
+
+      if (prefersReduced || !('IntersectionObserver' in window)) {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+        );
+        revealEls.forEach((el) => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>

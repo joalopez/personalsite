@@ -1,0 +1,59 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import type { ServicePage } from '../../data/services';
+
+const page: ServicePage = {
+  slug: 'webs-para-restaurantes',
+  eyebrow: 'Restaurantes',
+  title: 'La web de tu restaurante, sin comisiones',
+  metaTitle: 'Webs para restaurantes con menú digital y pedidos',
+  description:
+    'Webs para restaurantes con menú digital que actualizás vos, pedidos y reservas por WhatsApp, y ubicación con Google Maps. Recibí pedidos sin pagar comisión a las apps.',
+  lead: 'Menú digital siempre al día, pedidos y reservas por WhatsApp, y tu local bien posicionado en Google. Recibí encargos directo, sin comisiones de las apps de delivery.',
+  problems: [
+    'Dependés de apps de delivery que te cobran comisión.',
+    'Tu menú de fotos en Instagram está desactualizado.',
+    'La gente no encuentra horarios ni dirección fácilmente.',
+    'Los clientes te escriben para preguntar "¿cuánto sale?" y perdés tiempo.',
+    'No tenés un lugar propio que sea "tu casa" online.',
+  ],
+  includes: [
+    'Web con tu identidad: colores, fotos y estilo del local.',
+    'Menú digital organizado por categorías, que editás vos mismo.',
+    'Pedidos por WhatsApp con el carrito ya armado.',
+    'Sistema de reservas de mesa.',
+    'Ubicación integrada con Google Maps y horarios.',
+    'Galería de fotos y reseñas destacadas.',
+    'Optimización para aparecer en Google y en la IA por tu rubro y zona.',
+    'Diseño rápido y perfecto en celulares.',
+  ],
+  priceNote:
+    'Presupuesto fijo según cantidad de platos y funciones (solo menú, con pedidos, con reservas). Sin comisiones por venta.',
+  faqs: [
+    {
+      pregunta: '¿Puedo actualizar el menú y los precios yo solo?',
+      respuesta:
+        'Sí. Te dejo la forma de editar platos, precios y disponibilidad en pocos minutos, sin depender de nadie ni de una app de terceros.',
+    },
+    {
+      pregunta: '¿Cómo funcionan los pedidos?',
+      respuesta:
+        'El cliente arma su pedido en la web y se envía por WhatsApp ya escrito. Vos confirmás pago y entrega por el mismo canal. Cero comisiones para la web.',
+    },
+    {
+      pregunta: '¿Y si ya uso una app de delivery?',
+      respuesta:
+        'No hay conflicto: sumás tu propio canal directo, donde no pagás comisión y donde el cliente es tuyo. Muchos locales usan las dos cosas y ganan margen con la web.',
+    },
+    {
+      pregunta: '¿Sirve para locales chicos?',
+      respuesta:
+        'Especialmente. Un local chico puede tener una presencia profesional y recibir pedidos directos a una fracción de lo que cobra una app de delivery.',
+    },
+  ],
+};
+
+const waMessage = 'Hola Joaquín, quiero una web para mi restaurante.';
+---
+
+<ServiceLayout page={page} waMessage={waMessage} />

@@ -1,0 +1,65 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import type { ServicePage } from '../../data/services';
+
+const page: ServicePage = {
+  slug: 'webs-para-inmobiliarias',
+  eyebrow: 'Inmobiliarias',
+  title: 'Web y sistema para tu inmobiliaria',
+  metaTitle: 'Web con sistema de propiedades para inmobiliarias',
+  description:
+    'Web con buscador y sistema de propiedades para inmobiliarias: cargá tus propiedades, filtrá por zona y precio, y recibí consultas por WhatsApp. Menos comisiones a los portales.',
+  lead: 'Dejá de depender de los portales que te cobran por cada consulta. Tu web con sistema propio de propiedades: cargala vos, mostrala mejor y recibí los contactos directo en tu WhatsApp.',
+  problems: [
+    'Dependés de Zonaprop o Argenprop y pagás por publicar.',
+    'Los contactos se van a los portales, no a vos.',
+    'No tenés una forma clara de mostrar tu stock actualizado.',
+    'Tus competidores tienen webs con buscador y vos no.',
+    'Cargar o cambiar una propiedad es lento y complicado.',
+  ],
+  includes: [
+    'Web profesional con tu marca e identidad.',
+    'Buscador y filtros por zona, precio, tipo y ambientes.',
+    'Fichas de propiedad con galería, mapa y botón de WhatsApp.',
+    'Panel de administración para cargar y editar propiedades.',
+    'Destacados, propiedades vendidas y novedades.',
+    'Formulario de tasación y contacto.',
+    'SEO local para aparecer cuando buscan inmobiliarias en tu zona.',
+    'Optimización completa de velocidad y accesibilidad.',
+  ],
+  priceNote:
+    'El sistema de propiedades es parte del proyecto, sin licencias mensuales de terceros. Te paso un presupuesto fijo según la cantidad de inmuebles.',
+  faqs: [
+    {
+      pregunta: '¿Puedo cargar las propiedades yo mismo?',
+      respuesta:
+        'Sí. Te dejo un panel simple para cargar, editar y dar de baja propiedades, subir fotos y marcarlas como vendidas o destacadas. Sin depender de nadie.',
+    },
+    {
+      pregunta: '¿Se pueden importar mis propiedades de los portales?',
+      respuesta:
+        'Sí, se puede importar tu stock actual para no cargarlo a mano. Lo evaluamos según el portal. Los datos son tuyos y quedan en tu web.',
+    },
+    {
+      pregunta: '¿Los contactos me llegan a mí?',
+      respuesta:
+        'Directo a vos. Cada ficha tiene un botón de WhatsApp con el dato de la propiedad ya escrito, así el interesado te escribe en un clic. Sin intermediarios.',
+    },
+    {
+      pregunta: '¿Sirve para una sola persona o solo para inmobiliarias grandes?',
+      respuesta:
+        'Sirve para ambos. Un agente independiente puede mostrar sus propiedades con la misma calidad que una gran inmobiliaria, sin pagar comisiones por consulta.',
+    },
+    {
+      pregunta: '¿Cuánto tarda?',
+      respuesta:
+        'Entre 3 y 5 semanas, según la cantidad de propiedades y las funciones que necesites. La importación de stock puede sumar algunos días.',
+    },
+  ],
+};
+
+const waMessage =
+  'Hola Joaquín, quiero una web con sistema de propiedades para mi inmobiliaria.';
+---
+
+<ServiceLayout page={page} waMessage={waMessage} />

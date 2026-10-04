@@ -1,0 +1,20 @@
+---
+import { EMAIL, LINKEDIN_URL, INSTAGRAM_URL, SITE_NAME } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <a href="/" class="brand" aria-label={`${SITE_NAME} — inicio`}>Joaquin</a>
+
+    <nav class="site-footer__links" aria-label="Enlaces de contacto">
+      <a href={`mailto:${EMAIL}`}>Email</a>
+      <a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>
+      <a href={INSTAGRAM_URL} target="_blank" rel="noopener">Instagram</a>
+      <a href="/blog">Blog</a>
+    </nav>
+
+    <p class="site-footer__legal">© {year} {SITE_NAME}. Todos los derechos reservados.</p>
+  </div>
+</footer>

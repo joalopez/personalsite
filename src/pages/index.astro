@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import WordPressBanner from '../components/WordPressBanner.astro';
+import Process from '../components/Process.astro';
+import Projects from '../components/Projects.astro';
+import About from '../components/About.astro';
+import Faq from '../components/Faq.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { faqs } from '../data/faq';
+import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION, WHATSAPP_URL } from '../consts';
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.pregunta,
+    acceptedAnswer: { '@type': 'Answer', text: faq.respuesta },
+  })),
+};
+
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Diseño y desarrollo web optimizado para buscadores y motores de IA',
+  provider: { '@id': `${SITE_URL}/#person` },
+  areaServed: { '@type': 'Country', name: 'Argentina' },
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Joaquín López',
+  url: SITE_URL,
+  inLanguage: 'es-AR',
+  potentialAction: {
+    '@type': 'ContactAction',
+    target: WHATSAPP_URL,
+  },
+};
+---
+
+<BaseLayout
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  jsonLd={[websiteJsonLd, serviceJsonLd, faqJsonLd]}
+>
+  <Hero />
+
+  <section class="section" aria-label="Propuesta de valor">
+    <div class="container">
+      <div class="value-banner reveal">
+        <div>
+          <h2 class="value-banner__title">No es solo una web linda. Es una web que vende.</h2>
+          <p class="value-banner__text">
+            Carga instantánea, diseño claro y optimización para que te encuentren en Google y en las
+            respuestas de la IA. Todo pensado para convertir visitas en consultas.
+          </p>
+        </div>
+        <a class="btn btn--primary" href={WHATSAPP_URL} target="_blank" rel="noopener">
+          Quiero que venda
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Services />
+  <WordPressBanner />
+  <Process />
+  <Projects />
+  <About />
+  <Faq />
+  <ContactSection />
+</BaseLayout>

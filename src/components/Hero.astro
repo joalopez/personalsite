@@ -1,0 +1,28 @@
+---
+import { WHATSAPP_URL } from '../consts';
+
+const tags = ['Frontend', 'UX/UI', 'Performance', 'SEO', 'AEO', 'WordPress → moderno'];
+---
+
+<section class="hero">
+  <div class="container">
+    <h1 class="hero__title">
+      Webs rápidas que aparecen en <em>Google</em> y en la <em>IA</em>
+    </h1>
+    <p class="hero__subtitle">
+      Diseño y desarrollo sitios que cargan en un parpadeo, se posicionan en buscadores y son
+      citados por ChatGPT, Gemini y Google AI. ¿Tu WordPress quedó lento? Te lo migro.
+    </p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary" href={WHATSAPP_URL} target="_blank" rel="noopener">
+        Pedir presupuesto sin cargo
+      </a>
+      <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
+    </div>
+
+    <ul class="hero__tags" aria-label="Especialidades">
+      {tags.map((tag) => <li class="tag">{tag}</li>)}
+    </ul>
+  </div>
+</section>

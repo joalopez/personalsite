@@ -1,0 +1,30 @@
+---
+import { INSTAGRAM_URL, LINKEDIN_URL } from '../consts';
+---
+
+<section class="section" id="sobre-mi" aria-labelledby="sobre-title">
+  <div class="container">
+    <div class="about reveal">
+      <div class="about__portrait" aria-hidden="true">JL</div>
+      <div>
+        <span class="section__eyebrow">Quién está detrás</span>
+        <h2 class="section__title" id="sobre-title">Hola, soy Joaquín</h2>
+        <p class="section__lead" style="margin-bottom: 1rem;">
+          Soy desarrollador web y trabajo con negocios que quieren dejar de perder tiempo y clientes
+          por culpa de una web vieja. Me especializo en sitios rápidos, seguros y optimizados para
+          buscadores y motores de IA.
+        </p>
+        <p class="section__lead">
+          Además de programar, entiendo de negocios: mi objetivo no es solo que tu web se vea linda,
+          sino que te traiga consultas reales. Trabajo de forma directa, sin intermediarios ni
+          agencias.
+        </p>
+
+        <div class="hero__actions" style="margin-top: 1.5rem; margin-bottom: 0;">
+          <a class="btn btn--ghost" href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn--ghost" href={INSTAGRAM_URL} target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

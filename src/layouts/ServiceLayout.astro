@@ -1,0 +1,103 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { WHATSAPP_NUMBER, SITE_NAME } from '../consts';
+import type { ServicePage } from '../data/services';
+import { buildServiceJsonLd, buildBreadcrumbJsonLd } from '../data/services';
+
+export interface Props {
+  page: ServicePage;
+  waMessage: string;
+}
+
+const { page, waMessage } = Astro.props;
+const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
+const jsonLd = [...buildServiceJsonLd(page), buildBreadcrumbJsonLd(page)];
+---
+
+<BaseLayout
+  title={`${page.metaTitle} | ${SITE_NAME}`}
+  description={page.description}
+  jsonLd={jsonLd}
+>
+  <section class="section">
+    <div class="container">
+      <p class="post-card__meta"><a href="/#servicios">← Servicios</a></p>
+      <div style="max-width: 50rem; margin-top: 0.75rem;">
+        <span class="section__eyebrow">{page.eyebrow}</span>
+        <h1 class="hero__title" style="font-size: clamp(2rem, min(6vw, 10vh), 3.5rem);">
+          {page.title}
+        </h1>
+        <p class="hero__subtitle">{page.lead}</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href={wa} target="_blank" rel="noopener">
+            Pedir presupuesto sin cargo
+          </a>
+          <a class="btn btn--ghost" href="#faq-servicio">Ver preguntas frecuentes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--elevated" aria-labelledby="problemas-title">
+    <div class="container">
+      <div class="section__head reveal">
+        <h2 class="section__title" id="problemas-title">¿Te pasa esto?</h2>
+      </div>
+      <ul class="wp__list reveal">
+        {page.problems.map((problem) => <li class="wp__item">{problem}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="incluye-title">
+    <div class="container">
+      <div class="section__head reveal">
+        <h2 class="section__title" id="incluye-title">Qué incluye</h2>
+      </div>
+      <div class="grid">
+        {
+          page.includes.map((item, index) => (
+            <article class="card reveal">
+              <span class="card__icon" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <p class="card__text" style="color: var(--text-primary);">{item}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="section__lead" style="margin-top: 1.75rem;">{page.priceNote}</p>
+    </div>
+  </section>
+
+  <section class="section section--elevated" id="faq-servicio" aria-labelledby="faq-servicio-title">
+    <div class="container">
+      <div class="section__head reveal">
+        <h2 class="section__title" id="faq-servicio-title">Preguntas frecuentes</h2>
+      </div>
+      <div class="faq reveal">
+        {
+          page.faqs.map((faq) => (
+            <details name="faq-servicio">
+              <summary>{faq.pregunta}</summary>
+              <p>{faq.respuesta}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="value-banner reveal">
+        <div>
+          <h2 class="value-banner__title">Demos el primer paso</h2>
+          <p class="value-banner__text">
+            Contame tu caso por WhatsApp y te digo, sin compromiso, si este servicio es para vos y
+            cuánto costaría.
+          </p>
+        </div>
+        <a class="btn btn--primary" href={wa} target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

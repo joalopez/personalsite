@@ -1,0 +1,65 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import type { ServicePage } from '../../data/services';
+
+const page: ServicePage = {
+  slug: 'optimizacion-ia',
+  eyebrow: 'AEO',
+  title: 'Que la IA recomiende tu negocio',
+  metaTitle: 'Optimización para IA / AEO',
+  description:
+    'Optimizo tu web para que aparezca en las respuestas de ChatGPT, Gemini y Google AI (AEO). Tus clientes preguntan a la IA; asegurate de estar en la respuesta.',
+  lead: 'Cada vez más gente no busca en Google: le pregunta directo a ChatGPT o Gemini. Optimizo tu web para que esos sistemas entiendan tu negocio y te recomienden.',
+  problems: [
+    'Buscás tu negocio en ChatGPT y no aparecés.',
+    'Tu competencia sí es recomendada por la IA.',
+    'Tu web no está preparada: la IA no puede leerla bien.',
+    'No sabés cómo medir si la IA te menciona.',
+    'Tu web fue hecha hace años, antes de que existiera la IA.',
+  ],
+  includes: [
+    'Diagnóstico de cómo te ve (o no) la IA hoy.',
+    'Datos estructurados (schema) para que las máquinas entiendan tu negocio.',
+    'Contenido en formato "respuesta directa", ideal para ser citado.',
+    'Optimización para Google AI Overviews, ChatGPT, Gemini y Perplexity.',
+    'Archivo llms.txt para guiar a los asistentes de IA.',
+    'Páginas de preguntas frecuentes optimizadas para motores de respuesta.',
+    'FAQ y artículos que responden lo que tu cliente le pregunta a la IA.',
+    'Reporte de seguimiento y recomendaciones mensuales.',
+  ],
+  priceNote:
+    'Se puede aplicar sobre una web existente o incluirse desde cero en tu sitio nuevo. Te cotizo según el caso.',
+  faqs: [
+    {
+      pregunta: '¿Qué es AEO exactamente?',
+      respuesta:
+        'AEO (Answer Engine Optimization) es optimizar tu sitio para los motores de respuesta: ChatGPT, Gemini, Perplexity y Google AI Overviews. Mientras el SEO busca aparecer en una lista de links, el AEO busca que la IA use tu información para armar su respuesta.',
+    },
+    {
+      pregunta: '¿Esto reemplaza al SEO tradicional?',
+      respuesta:
+        'No, lo complementa. Un buen SEO es la base del AEO. Trabajo ambos: primero dejo el sitio técnicamente sólido y luego lo estructuro para que la IA lo pueda citar.',
+    },
+    {
+      pregunta: '¿Puedo saber si funciona?',
+      respuesta:
+        'Sí. Hacemos un diagnóstico inicial de cómo te ve la IA y luego medimos menciones y citas en distintos motores. No es magia: es trabajar el contenido y la estructura, con seguimiento.',
+    },
+    {
+      pregunta: '¿Sirve si mi negocio es local?',
+      respuesta:
+        'Sirve muchísimo. Cada vez más gente pregunta "mejor [rubro] en [ciudad]" a la IA. Si tu web está optimizada, tenés chances reales de ser la recomendación.',
+    },
+    {
+      pregunta: '¿Necesito una web nueva para esto?',
+      respuesta:
+        'No siempre. Si tu web actual lo permite, optimizo sobre lo que tenés. Si es un WordPress viejo y lento, muchas veces conviene combinar con una migración.',
+    },
+  ],
+};
+
+const waMessage =
+  'Hola Joaquín, quiero que mi negocio aparezca en las respuestas de la IA (ChatGPT, Gemini, Google AI).';
+---
+
+<ServiceLayout page={page} waMessage={waMessage} />

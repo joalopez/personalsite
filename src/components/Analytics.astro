@@ -1,0 +1,20 @@
+---
+// Analytics privacy-friendly (Umami). Configurá PUBLIC_UMAMI_SRC y PUBLIC_UMAMI_ID
+// en tu hosting (Cloudflare Pages / Netlify) o en un .env local.
+// Mientras no estén definidas, no se carga nada (0 impacto en performance).
+const src = import.meta.env.PUBLIC_UMAMI_SRC;
+const websiteId = import.meta.env.PUBLIC_UMAMI_ID;
+const enabled = Boolean(src && websiteId);
+---
+
+{
+  enabled && (
+    <script
+      is:inline
+      defer
+      src={src}
+      data-website-id={websiteId}
+      data-do-not-track="true"
+    />
+  )
+}

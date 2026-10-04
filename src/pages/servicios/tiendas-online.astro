@@ -1,0 +1,59 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import type { ServicePage } from '../../data/services';
+
+const page: ServicePage = {
+  slug: 'tiendas-online',
+  eyebrow: 'E-commerce',
+  title: 'Tu tienda online, sin comisiones de terceros',
+  metaTitle: 'Tiendas online sin depender de marketplaces',
+  description:
+    'Tiendas online propias con pagos, envíos y catálogo. Vendé sin depender de Instagram ni pagar comisiones de MercadoLibre. Presupuesto sin cargo.',
+  lead: 'Vendé en tu propia tienda, con tu marca y tus reglas. Sin cerrar una venta manual por DM ni entregar tus márgenes a los marketplaces.',
+  problems: [
+    'Vendés por Instagram y cerrás cada venta a mano por chat.',
+    'MercadoLibre te cobra comisión por cada venta.',
+    'No tenés un catálogo ordenado ni stock visible.',
+    'No podés cobrar online automáticamente.',
+    'Los clientes no confían en comprar por redes.',
+  ],
+  includes: [
+    'Tienda con catálogo, categorías y buscador.',
+    'Carrito de compras y checkout.',
+    'Integración con cobros online (Mercado Pago y otros).',
+    'Gestión de stock y variantes (talle, color, etc.).',
+    'Cálculo de envíos y datos del negocio.',
+    'Panel para administrar productos y pedidos.',
+    'SEO y AEO para que tus productos aparezcan en Google y en la IA.',
+    'Diseño rápido y optimizado para celulares.',
+  ],
+  priceNote:
+    'Presupuesto según cantidad de productos y funciones (cobros, variantes, envíos). Las pasarelas de pago cobran su comisión, como en cualquier tienda.',
+  faqs: [
+    {
+      pregunta: '¿En qué se diferencia de vender por Instagram?',
+      respuesta:
+        'En que no dependés de un chat ni del algoritmo. El cliente ve el catálogo, elige, paga y compra sin que vos cierres cada venta a mano. Y la tienda es tuya.',
+    },
+    {
+      pregunta: '¿Cómo se cobra?',
+      respuesta:
+        'Se integran pasarelas como Mercado Pago. El cliente paga con tarjeta o transferencia y la plata entra en tu cuenta. La comisión de la pasarela es la estándar del mercado.',
+    },
+    {
+      pregunta: '¿Puedo gestionar el stock yo?',
+      respuesta:
+        'Sí. Tenés un panel para cargar productos, precios, fotos, stock y ver los pedidos. Te capacito para usarlo.',
+    },
+    {
+      pregunta: '¿Y si vendo también por MercadoLibre?',
+      respuesta:
+        'Perfecto: la tienda propia suma, no reemplaza. Muchos negocios usan marketplaces para captar y su tienda para fidelizar, con mejor margen.',
+    },
+  ],
+};
+
+const waMessage = 'Hola Joaquín, quiero una tienda online para mi negocio.';
+---
+
+<ServiceLayout page={page} waMessage={waMessage} />

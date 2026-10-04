@@ -1,0 +1,65 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import type { ServicePage } from '../../data/services';
+
+const page: ServicePage = {
+  slug: 'migracion-wordpress',
+  eyebrow: 'Migración',
+  title: 'Migrá tu WordPress a un sitio moderno',
+  metaTitle: 'Migración de WordPress a web moderna',
+  description:
+    'Migramos tu web de WordPress a un sitio rápido, seguro y sin mantenimiento, sin perder tu contenido ni tu posicionamiento en Google. Presupuesto sin cargo.',
+  lead: 'Tu WordPress carga lento, se rompe con cada actualización y te cuesta plata todos los meses. Lo paso a un sitio moderno que vuela, no se hackea y no necesita mantenimiento.',
+  problems: [
+    'Tu web tarda 5 segundos o más en cargar y Google te penaliza.',
+    'Actualizás plugins y algo se rompe cada vez.',
+    'Pagás hosting, plugins premium y soporte todos los meses.',
+    'Vivís con miedo de que te hackeen.',
+    'Cambiar un texto requiere pelear con el editor.',
+  ],
+  includes: [
+    'Auditoría de tu WordPress actual: contenido que sirve y URLs que ya rankean.',
+    'Diseño moderno, responsive y adaptado a tu marca.',
+    'Migración completa de textos, imágenes y páginas.',
+    'Redirecciones 301 para no perder tu posicionamiento en Google.',
+    'Optimización de performance (Core Web Vitals en verde).',
+    'SEO básico y datos estructurados para buscadores y motores de IA.',
+    'Capacitación para que puedas editar tus contenidos.',
+    '30 días de soporte post-lanzamiento sin costo.',
+  ],
+  priceNote:
+    'Cada web es distinta, pero el presupuesto es fijo y por escrito antes de empezar. Sin costos ocultos.',
+  faqs: [
+    {
+      pregunta: '¿Voy a perder el posicionamiento que ya tengo en Google?',
+      respuesta:
+        'No. Parte del trabajo es redirigir cada URL vieja a la nueva (redirecciones 301) para que Google entienda el cambio. Lo normal es mantener o mejorar la posición, porque la web carga mucho más rápido.',
+    },
+    {
+      pregunta: '¿Puedo seguir actualizando textos e imágenes yo mismo?',
+      respuesta:
+        'Sí. El sitio mantiene una forma simple de editar contenido, sin la complejidad ni el riesgo de WordPress. Te dejo capacitado para hacer cambios del día a día.',
+    },
+    {
+      pregunta: '¿Y si mi web tiene una tienda o un blog con muchos artículos?',
+      respuesta:
+        'Se puede migrar igual: traslado productos y artículos, con sus imágenes y URLs. Es parte de la auditoría inicial definir el plan para que no se pierda nada.',
+    },
+    {
+      pregunta: '¿Cuánto cuesta mantener el sitio nuevo?',
+      respuesta:
+        'Prácticamente nada. Al ser un sitio estático no necesita servidor potente ni actualizaciones de plugins. El hosting es económico y la seguridad es altísima.',
+    },
+    {
+      pregunta: '¿Cuánto tarda la migración?',
+      respuesta:
+        'Una web de negocio típica tarda entre 1 y 3 semanas, según la cantidad de contenido. El plazo exacto queda en la propuesta.',
+    },
+  ],
+};
+
+const waMessage =
+  'Hola Joaquín, quiero migrar mi web de WordPress a un sitio moderno.';
+---
+
+<ServiceLayout page={page} waMessage={waMessage} />

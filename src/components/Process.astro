@@ -1,0 +1,42 @@
+---
+const pasos = [
+  {
+    title: 'Charla inicial',
+    text: 'Hablamos por WhatsApp. Entiendo tu negocio, tus objetivos y qué necesita realmente tu web. Sin tecnicismos.',
+  },
+  {
+    title: 'Propuesta clara',
+    text: 'Te paso precio fijo, plazo y alcance por escrito. Nada de sorpresas ni horas «que aparecen».',
+  },
+  {
+    title: 'Diseño y desarrollo',
+    text: 'Creamos la web juntos. Ves avances reales durante el proceso y pedís cambios sin costo.',
+  },
+  {
+    title: 'Lanzamiento y soporte',
+    text: 'Publicamos, la conectamos a Google y a los motores de IA, y te enseño a usarla. Queda funcionando.',
+  },
+];
+---
+
+<section class="section" id="proceso" aria-labelledby="proceso-title">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__eyebrow">Cómo trabajamos</span>
+      <h2 class="section__title" id="proceso-title">Simple, claro y sin sorpresas</h2>
+      <p class="section__lead">Cuatro pasos desde tu primer mensaje hasta tu web publicada.</p>
+    </div>
+
+    <ol class="steps">
+      {
+        pasos.map((paso) => (
+          <li class="step reveal">
+            <p class="step__num" aria-hidden="true" />
+            <h3 class="step__title">{paso.title}</h3>
+            <p class="step__text">{paso.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

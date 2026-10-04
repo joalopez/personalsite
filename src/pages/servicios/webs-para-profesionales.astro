@@ -1,0 +1,60 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import type { ServicePage } from '../../data/services';
+
+const page: ServicePage = {
+  slug: 'webs-para-profesionales',
+  eyebrow: 'Profesionales',
+  title: 'La web que genera confianza en tu profesión',
+  metaTitle: 'Webs para profesionales y consultas',
+  description:
+    'Webs profesionales para abogados, dentistas, psicólogos, arquitectos y más: una presencia que transmite confianza y convierte visitas en consultas.',
+  lead: 'Tus clientes te googlean antes de contactarte. Una web profesional transmite confianza, responde sus dudas y convierte esa búsqueda en una consulta real.',
+  problems: [
+    'Solo tenés Instagram o LinkedIn y no transmiten seriedad.',
+    'Cuando te buscan en Google, no encontrás nada o aparece algo viejo.',
+    'No tenés dónde mostrar tu experiencia, casos o credenciales.',
+    'Perdés tiempo respondiendo siempre las mismas preguntas.',
+    'Tus colegas con mejor presencia se llevan los clientes.',
+  ],
+  includes: [
+    'Diseño sobrio y profesional, alineado a tu rubro.',
+    'Páginas de servicios o áreas de práctica claras.',
+    'Sección de sobre mí / el equipo, con credenciales.',
+    'Formulario de consulta y turnos por WhatsApp.',
+    'Preguntas frecuentes que resuelven objeciones.',
+    'Reseñas y prueba social.',
+    'SEO local para tu ciudad y especialidad.',
+    'Optimización para motores de IA y velocidad.',
+  ],
+  priceNote:
+    'Presupuesto fijo según las secciones que necesites. Pensado para profesionales que quieren una presencia seria sin complicaciones.',
+  faqs: [
+    {
+      pregunta: 'No tengo fotos ni contenido, ¿pueden ayudarme?',
+      respuesta:
+        'Sí. Armamos juntos los textos y te guío sobre qué fotos necesitás. La mayoría de los profesionales no tiene material listo: es parte del trabajo.',
+    },
+    {
+      pregunta: '¿Puedo gestionar mis turnos desde la web?',
+      respuesta:
+        'Se puede integrar un sistema de turnos o derivar las consultas a WhatsApp, según prefieras. Lo definimos en la propuesta.',
+    },
+    {
+      pregunta: '¿Cómo me ayuda el SEO y el AEO en mi profesión?',
+      respuesta:
+        'Cuando alguien busca "mejor [tu especialidad] en [ciudad]" en Google o le pregunta a la IA, tu web optimizada tiene chances de aparecer. Es la diferencia entre que te encuentren o no.',
+    },
+    {
+      pregunta: '¿Es muy caro?',
+      respuesta:
+        'No. Una web profesional para una consulta es una inversión que se paga con el primer cliente que te llega por internet. Te paso un presupuesto claro y sin sorpresas.',
+    },
+  ],
+};
+
+const waMessage =
+  'Hola Joaquín, quiero una web profesional para mi consulta/servicio.';
+---
+
+<ServiceLayout page={page} waMessage={waMessage} />

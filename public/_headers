@@ -1,0 +1,15 @@
+# Configuración de redirecciones y headers para Cloudflare Pages.
+# Astro sirve las URLs sin barra final (trailingSlash: 'never'); Cloudflare
+# las resuelve igual. Si usás Netlify, usá netlify.toml en su lugar.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  X-Frame-Options: DENY
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/og-default.png
+  Cache-Control: public, max-age=604800

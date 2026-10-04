@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_URL } from '../../consts';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const blogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Blog de Joaquín López',
+  url: `${SITE_URL}/blog`,
+  inLanguage: 'es-AR',
+  description:
+    'Artículos sobre webs, migración desde WordPress, SEO y optimización para motores de IA.',
+};
+---
+
+<BaseLayout
+  title="Blog | Webs, WordPress, SEO y AEO — Joaquín López"
+  description="Guías y consejos para que tu negocio tenga una web que aparezca en Google y en la IA: migración desde WordPress, SEO, AEO y más."
+  jsonLd={blogJsonLd}
+>
+  <section class="section">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__eyebrow">Blog</span>
+        <h1 class="section__title">Webs que traen clientes</h1>
+        <p class="section__lead">
+          Todo lo que necesitás saber para decidir mejor sobre la web de tu negocio: sin
+          tecnicismos y con precios reales.
+        </p>
+      </div>
+
+      {
+        posts.length === 0 ? (
+          <p class="section__lead">Muy pronto voy a publicar los primeros artículos.</p>
+        ) : (
+          <div class="post-list">
+            {posts.map((post) => (
+              <article class="post-card reveal">
+                <p class="post-card__meta">{formatDate(post.data.pubDate)}</p>
+                <h2 class="post-card__title">
+                  <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                </h2>
+                <p class="post-card__text">{post.data.description}</p>
+                <a class="card__link" href={`/blog/${post.id}`}>
+                  Leer artículo
+                </a>
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

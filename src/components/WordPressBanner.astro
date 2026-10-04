@@ -1,0 +1,41 @@
+---
+import { WHATSAPP_NUMBER } from '../consts';
+
+const problemas = [
+  'Tarda 5+ segundos en cargar (y Google te penaliza por eso).',
+  'Se rompe con cada actualización de plugin o de tema.',
+  'Pagás hosting, plugins premium y horas de soporte todos los meses.',
+  'Es el sitio favorito de los bots: los hackeos entran por plugins viejos.',
+  'Los motores de IA no pueden leerla bien, así que no te recomiendan.',
+];
+
+const mensaje =
+  'Hola Joaquín, quiero un diagnóstico gratis de mi web WordPress.';
+const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+---
+
+<section class="section section--elevated" aria-labelledby="wp-title">
+  <div class="container">
+    <div class="wp reveal">
+      <div>
+        <span class="section__eyebrow">¿Tu web es WordPress?</span>
+        <h2 class="section__title" id="wp-title">Tu WordPress te está costando clientes</h2>
+        <p class="section__lead">
+          WordPress fue una gran herramienta, pero hoy es mantenimiento eterno, lentitud y riesgo de
+          seguridad. Te migro a un sitio moderno que carga al instante, no se hackea y no necesita
+          actualizaciones: <strong>te olvidás del tema</strong>.
+        </p>
+        <div class="hero__actions" style="margin-top: 1.75rem; margin-bottom: 0;">
+          <a class="btn btn--primary" href={wa} target="_blank" rel="noopener">
+            Pedir diagnóstico gratis
+          </a>
+          <a class="btn btn--ghost" href="/servicios/migracion-wordpress">Ver cómo funciona</a>
+        </div>
+      </div>
+
+      <ul class="wp__list" aria-label="Problemas típicos de WordPress">
+        {problemas.map((p) => <li class="wp__item">{p}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>

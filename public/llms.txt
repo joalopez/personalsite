@@ -1,0 +1,26 @@
+# Joaquín López — Desarrollo web y AEO
+
+> Joaquín López es desarrollador web en Argentina especializado en sitios rápidos,
+> migraciones desde WordPress y optimización para buscadores y motores de respuesta
+> de IA (AEO — Answer Engine Optimization). Crea webs para negocios, inmobiliarias,
+> restaurantes, profesionales y tiendas online.
+
+## Servicios
+
+- [Migración desde WordPress](https://joalopez.com.ar/servicios/migracion-wordpress): Paso sitios WordPress lentos y con mantenimiento a sitios modernos, rápidos y seguros.
+- [Optimización para IA (AEO)](https://joalopez.com.ar/servicios/optimizacion-ia): Hago que negocios aparezcan en las respuestas de ChatGPT, Gemini y Google AI.
+- [Webs para inmobiliarias](https://joalopez.com.ar/servicios/webs-para-inmobiliarias): Web con sistema de propiedades, buscador y panel de gestión.
+- [Webs para restaurantes](https://joalopez.com.ar/servicios/webs-para-restaurantes): Menú digital, pedidos por WhatsApp y reservas.
+- [Webs para profesionales](https://joalopez.com.ar/servicios/webs-para-profesionales): Sitios de confianza para abogados, dentistas, psicólogos y más.
+- [Tiendas online](https://joalopez.com.ar/servicios/tiendas-online): Comercio electrónico sin depender de marketplaces.
+
+## Contacto
+
+- WhatsApp: https://wa.me/5492974047802
+- Email: joaquinlopez15@gmail.com
+- LinkedIn: https://www.linkedin.com/in/joaquin-lopez-22186369/
+- Instagram: https://instagram.com/joalopez
+
+## Blog
+
+- [Artículos sobre webs, WordPress, SEO y AEO](https://joalopez.com.ar/blog)

@@ -1,0 +1,56 @@
+---
+const proyectos = [
+  {
+    nombre: 'joalopez.com.ar',
+    tipo: 'Sitio propio · Desarrollo web',
+    texto:
+      'Este sitio: 100/100 en performance, accesible, sin WordPress y optimizado para que los motores de IA lo lean y lo citen.',
+    metric: '0 plugins · carga instantánea',
+    href: 'https://joalopez.com.ar',
+  },
+  {
+    nombre: 'Demo · Inmobiliaria',
+    tipo: 'Web + sistema de propiedades',
+    texto:
+      'Catálogo con buscador, filtros por zona y precio, fichas con contacto directo y panel para cargar propiedades.',
+    metric: 'Proyecto demostración',
+    href: '#contacto',
+  },
+  {
+    nombre: 'Demo · Restaurante',
+    tipo: 'Web con menú digital y pedidos',
+    texto:
+      'Menú que actualizás vos mismo, pedidos por WhatsApp, reservas y ubicación integrada con Google Maps.',
+    metric: 'Proyecto demostración',
+    href: '#contacto',
+  },
+];
+---
+
+<section class="section section--elevated" id="proyectos" aria-labelledby="proyectos-title">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__eyebrow">Proyectos</span>
+      <h2 class="section__title" id="proyectos-title">Trabajo, no promesas</h2>
+      <p class="section__lead">
+        Mi mejor carta de presentación es mi propio sitio. Y estoy armando demos de los rubros que
+        más trabajo para que veas el potencial antes de contratarme.
+      </p>
+    </div>
+
+    <div class="grid">
+      {
+        proyectos.map((p) => (
+          <a class="project reveal" href={p.href} target={p.href.startsWith('http') ? '_blank' : undefined} rel={p.href.startsWith('http') ? 'noopener' : undefined}>
+            <div class="project__thumb" aria-hidden="true">{p.nombre}</div>
+            <div class="project__body">
+              <p class="project__metric">{p.tipo}</p>
+              <h3 class="project__title">{p.nombre}</h3>
+              <p class="project__text">{p.texto}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import { EMAIL, WHATSAPP_URL } from '../consts';
+import ContactForm from './ContactForm.astro';
+---
+
+<section class="section section--elevated" id="contacto" aria-labelledby="contacto-title">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__eyebrow">Contacto</span>
+      <h2 class="section__title" id="contacto-title">Contame qué querés lograr</h2>
+      <p class="section__lead">
+        Respondo en el día. Si preferís algo más directo, escribime por WhatsApp y arrancamos.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-aside reveal">
+        <a class="contact-aside__item" href={WHATSAPP_URL} target="_blank" rel="noopener">
+          <p class="contact-aside__label">La vía más rápida</p>
+          <p>WhatsApp →</p>
+        </a>
+        <a class="contact-aside__item" href={`mailto:${EMAIL}`}>
+          <p class="contact-aside__label">Email</p>
+          <p>{EMAIL}</p>
+        </a>
+        <div class="contact-aside__item">
+          <p class="contact-aside__label">Qué sigue</p>
+          <p>
+            Te hago un par de preguntas, te paso una propuesta con precio y plazo, y si te cierra
+            arrancamos.
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <ContactForm />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,178 @@
+---
+import { FORM_ENDPOINT, FORM_ACCESS_KEY, WHATSAPP_NUMBER } from '../consts';
+
+const hasEndpoint = Boolean(FORM_ACCESS_KEY);
+const action = hasEndpoint ? FORM_ENDPOINT : undefined;
+---
+
+<form
+  class="form"
+  id="contacto-form"
+  action={action}
+  method="POST"
+  novalidate
+  data-has-endpoint={hasEndpoint}
+  data-whatsapp={WHATSAPP_NUMBER}
+>
+  {hasEndpoint && <input type="hidden" name="access_key" value={FORM_ACCESS_KEY} />}
+  <input type="hidden" name="subject" value="Nuevo contacto desde joalopez.com.ar" />
+  <input type="hidden" name="from_name" value="Sitio joalopez.com.ar" />
+
+  <!-- Honeypot anti-spam: oculto para humanos -->
+  <input
+    class="form__honey"
+    type="checkbox"
+    name="botcheck"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+  />
+
+  <div class="field">
+    <label for="nombre">Nombre</label>
+    <input
+      type="text"
+      id="nombre"
+      name="nombre"
+      autocomplete="name"
+      required
+      maxlength="80"
+      aria-errormessage="nombre-error"
+    />
+    <p class="error-msg" id="nombre-error">Contame tu nombre para poder saludarte.</p>
+  </div>
+
+  <div class="field">
+    <label for="email">Email</label>
+    <span class="hint" id="email-hint">Formato: nombre@ejemplo.com</span>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      autocomplete="email"
+      inputmode="email"
+      required
+      aria-describedby="email-hint"
+      aria-errormessage="email-error"
+    />
+    <p class="error-msg" id="email-error">Revisá el email, parece que falta algo.</p>
+  </div>
+
+  <div class="field">
+    <label for="tipo">¿Qué necesitás?</label>
+    <select id="tipo" name="tipo" required>
+      <option value="">Elegí una opción…</option>
+      <option value="Nueva web">Nueva web</option>
+      <option value="Migración desde WordPress">Migración desde WordPress</option>
+      <option value="Optimización para IA (AEO)">Optimización para IA (AEO)</option>
+      <option value="Web + sistema para inmobiliaria">Web + sistema para inmobiliaria</option>
+      <option value="Tienda online">Tienda online</option>
+      <option value="Otro">Otro</option>
+    </select>
+    <p class="error-msg" id="tipo-error">Elegí una opción así entiendo qué necesitás.</p>
+  </div>
+
+  <div class="field">
+    <label for="mensaje">Contame sobre tu proyecto</label>
+    <textarea
+      id="mensaje"
+      name="mensaje"
+      required
+      minlength="10"
+      maxlength="1200"
+      rows="5"
+      aria-errormessage="mensaje-error"
+    ></textarea>
+    <p class="error-msg" id="mensaje-error">Contame un poco más (al menos unas palabras).</p>
+  </div>
+
+  <button class="btn btn--primary btn--block" type="submit" id="contacto-submit">
+    Enviar consulta
+  </button>
+
+  <p class="form__status" id="contacto-status" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  const form = document.getElementById('contacto-form') as HTMLFormElement | null;
+  if (form) {
+    const status = document.getElementById('contacto-status') as HTMLParagraphElement;
+    const submitBtn = document.getElementById('contacto-submit') as HTMLButtonElement;
+    const hasEndpoint = form.dataset.hasEndpoint === 'true';
+    const whatsapp = form.dataset.whatsapp ?? '';
+
+    const setStatus = (message: string, state: 'success' | 'error') => {
+      status.textContent = message;
+      status.dataset.state = state;
+    };
+
+    // Sincroniza aria-invalid con el estado visual nativo :user-invalid
+    const syncAria = (el: EventTarget | null) => {
+      const input = el as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null;
+      if (input && 'checkValidity' in input) {
+        input.setAttribute('aria-invalid', input.matches(':user-invalid') ? 'true' : 'false');
+      }
+    };
+    form.addEventListener('blur', (e) => syncAria(e.target), true);
+    form.addEventListener('input', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.hasAttribute('aria-invalid')) syncAria(e.target);
+    });
+
+    const buildWhatsAppUrl = () => {
+      const data = new FormData(form);
+      const texto =
+        `Hola Joaquín, soy ${data.get('nombre')}.\n` +
+        `Necesito: ${data.get('tipo')}.\n` +
+        `${data.get('mensaje')}\n` +
+        `Mi email: ${data.get('email')}`;
+      return `https://wa.me/${whatsapp}?text=${encodeURIComponent(texto)}`;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      if (!form.reportValidity()) {
+        setStatus('Revisá los campos marcados en rojo.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+
+      if (!hasEndpoint) {
+        window.open(buildWhatsAppUrl(), '_blank', 'noopener');
+        setStatus('Te abrí WhatsApp para completar el mensaje. ¡Gracias!', 'success');
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar consulta';
+        return;
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          setStatus('¡Listo! Recibí tu consulta y te respondo a la brevedad.', 'success');
+          form.reset();
+          document.dispatchEvent(new CustomEvent('contacto:enviado'));
+        } else {
+          throw new Error(result.message || 'Error al enviar');
+        }
+      } catch {
+        setStatus(
+          'Algo falló al enviar. Escribime directo por WhatsApp y lo resolvemos.',
+          'error'
+        );
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar consulta';
+      }
+    });
+  }
+</script>
