@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plantilla Carrusel Instagram — Inmobiliarias @joalopez</title>
+<!--
+  CARRUSEL · SEMANA 3 · FOCO INMOBILIARIAS ("Web para inmobiliarias")
+  Artículo de la semana: /blog/web-para-inmobiliarias
+
+  Cómo usar:
+  1. Abrí este archivo en el navegador.
+  2. Editá los textos de cada slide directo en el HTML.
+  3. Sacá una captura de cada slide (1080x1350) o usá "Imprimir > Guardar como PDF"
+     para exportar. Cada .ig-slide mide 1080x1350 px.
+  4. Subí los slides a Instagram como carrusel.
+  Paleta oficial: fondo #131314, verde #4aff41, magenta #ce1ccb.
+
+  REEL DE LA SEMANA · "Antes/después de ficha de propiedad"
+  Guion:
+  - 0-2s: pantalla dividida. Izquierda: una ficha de portal fría, llena de banners y
+    "contactar". Derecha: tu ficha propia, con foto grande, mapa y botón de WhatsApp.
+  - 2-5s: texto en pantalla: "Misma propiedad. El contacto se va a la inmobiliaria."
+  - 5-9s: mostrás el panel propio cargando una propiedad en 15 segundos.
+  - 9-12s: el interesado toca el botón y el WhatsApp se abre con el dato ya escrito.
+  - Cierre: "Dejá de pagar por cada consulta. Web propia → joalopez.com.ar"
+  Música: tendencia en baja. Textos grandes, pocos por pantalla.
+-->
+<style>
+  :root {
+    --bg: #131314;
+    --text: #f5f5f5;
+    --green: #4aff41;
+    --magenta: #ce1ccb;
+    --muted: rgba(245,245,245,0.66);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #000; font-family: 'DM Sans', system-ui, sans-serif; padding: 24px; }
+  .ig-slide {
+    width: 1080px;
+    height: 1350px;
+    background: var(--bg);
+    color: var(--text);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 96px;
+    margin: 0 auto 32px;
+    overflow: hidden;
+  }
+  .ig-slide.hook { justify-content: space-between; padding-top: 160px; }
+  .ig-brand {
+    position: absolute;
+    top: 64px; left: 96px;
+    font-family: 'BBH Bartle', sans-serif;
+    color: var(--green);
+    font-size: 44px;
+    letter-spacing: 0.04em;
+  }
+  .ig-index {
+    position: absolute;
+    top: 64px; right: 96px;
+    color: var(--muted);
+    font-size: 40px;
+  }
+  .ig-kicker {
+    color: var(--green);
+    font-size: 40px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .ig-title {
+    font-family: 'BBH Bartle', sans-serif;
+    font-size: 108px;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+  .ig-title .hl { color: var(--green); }
+  .ig-title .hl-magenta { color: var(--magenta); }
+  .ig-text {
+    font-size: 52px;
+    line-height: 1.35;
+    color: var(--muted);
+    margin-top: 48px;
+    font-weight: 300;
+  }
+  .ig-list { display: flex; flex-direction: column; gap: 40px; }
+  .ig-list li { display: flex; gap: 28px; font-size: 52px; line-height: 1.3; font-weight: 300; }
+  .ig-list li::before { content: '✕'; color: var(--magenta); font-weight: 700; flex-shrink: 0; }
+  .ig-list.ok li::before { content: '✓'; color: var(--green); }
+  .ig-cta {
+    background: var(--green);
+    color: #06210a;
+    font-weight: 700;
+    font-size: 52px;
+    padding: 48px 64px;
+    border-radius: 40px;
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 72px;
+  }
+  .ig-foot {
+    position: absolute;
+    bottom: 64px; left: 96px; right: 96px;
+    display: flex; justify-content: space-between;
+    color: var(--muted);
+    font-size: 40px;
+  }
+  .ig-bar {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 20px;
+    background: linear-gradient(90deg, var(--green) 50%, var(--magenta) 50%);
+  }
+  .ig-table { width: 100%; font-size: 48px; margin-top: 48px; border-collapse: collapse; }
+  .ig-table th, .ig-table td { text-align: left; padding: 28px 24px; border-bottom: 1px solid rgba(245,245,245,0.14); }
+  .ig-table th { color: var(--text); font-size: 44px; }
+  .ig-table td:first-child { color: var(--muted); }
+  .ig-table .bad { color: var(--magenta); font-weight: 700; }
+  .ig-table .good { color: var(--green); font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <!-- SLIDE 1 · GANCHO -->
+  <section class="ig-slide hook">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">1/5</span>
+    <div>
+      <p class="ig-kicker">Inmobiliarias</p>
+      <h1 class="ig-title">Le pagás al portal por cada consulta. Y el contacto <span class="hl-magenta">igual no es tuyo</span>.</h1>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 2 · PROBLEMA -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">2/5</span>
+    <div>
+      <p class="ig-kicker">El problema</p>
+      <h2 class="ig-title" style="font-size: 84px;">Le alquilás la vidriera al portal</h2>
+      <ul class="ig-list" style="margin-top: 64px;">
+        <li>Pagás por publicar y por destacar</li>
+        <li>Tu marca queda escondida</li>
+        <li>Competís con toda tu ciudad en la misma pantalla</li>
+        <li>La consulta no llega a tu WhatsApp, llega al portal</li>
+      </ul>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 3 · CONTRASTE -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">3/5</span>
+    <div>
+      <p class="ig-kicker">La diferencia</p>
+      <h2 class="ig-title" style="font-size: 84px;">Portal vs tu web propia</h2>
+      <table class="ig-table">
+        <tr><th></th><th>Portal</th><th>Web propia</th></tr>
+        <tr><td>Marca</td><td class="bad">La del portal</td><td class="good">La tuya</td></tr>
+        <tr><td>Contacto</td><td class="bad">Se lo queda él</td><td class="good">Directo a tu WhatsApp</td></tr>
+        <tr><td>Stock</td><td class="bad">Apilado con 40 más</td><td class="good">Solo tuyo</td></tr>
+        <tr><td>Costo</td><td class="bad">Por cada aviso</td><td class="good">Se paga una vez</td></tr>
+      </table>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 4 · SOLUCIÓN -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">4/5</span>
+    <div>
+      <p class="ig-kicker">La solución</p>
+      <h2 class="ig-title" style="font-size: 84px;">Tu web con sistema de propiedades</h2>
+      <ul class="ig-list ok" style="margin-top: 64px;">
+        <li>Buscador y filtros por zona, precio y ambientes</li>
+        <li>Fichas con galería, mapa y botón de WhatsApp</li>
+        <li>Panel para cargar y editar propiedades vos mismo</li>
+        <li>SEO local y AEO: aparecés en Google y en la IA</li>
+      </ul>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 5 · CTA -->
+  <section class="ig-slide hook">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">5/5</span>
+    <div>
+      <p class="ig-kicker">Tu turno</p>
+      <h2 class="ig-title" style="font-size: 92px;">¿Dejás de pagar por <span class="hl">cada consulta</span>?</h2>
+      <p class="ig-text">Te armo una web con sistema de propiedades, con tu marca y tus contactos. Presupuesto fijo y sin cargo.</p>
+      <span class="ig-cta">WhatsApp en la bio →</span>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>joalopez.com.ar</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+</body>
+</html>
