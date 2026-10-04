@@ -1,8 +1,10 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Artwork from '../components/Artwork.astro';
 import { WHATSAPP_NUMBER, SITE_NAME } from '../consts';
 import type { ServicePage } from '../data/services';
 import { buildServiceJsonLd, buildBreadcrumbJsonLd } from '../data/services';
+import { serviceArt } from '../data/art';
 
 export interface Props {
   page: ServicePage;
@@ -19,21 +21,26 @@ const jsonLd = [...buildServiceJsonLd(page), buildBreadcrumbJsonLd(page)];
   description={page.description}
   jsonLd={jsonLd}
 >
-  <section class="section">
-    <div class="container">
-      <p class="post-card__meta"><a href="/#servicios">← Servicios</a></p>
-      <div style="max-width: 50rem; margin-top: 0.75rem;">
-        <span class="section__eyebrow">{page.eyebrow}</span>
-        <h1 class="hero__title" style="font-size: clamp(2rem, min(6vw, 10vh), 3.5rem);">
-          {page.title}
-        </h1>
-        <p class="hero__subtitle">{page.lead}</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href={wa} target="_blank" rel="noopener">
-            Pedir presupuesto sin cargo
-          </a>
-          <a class="btn btn--ghost" href="#faq-servicio">Ver preguntas frecuentes</a>
+  <section class="section service-hero">
+    <div class="container service-hero__inner">
+      <div>
+        <p class="post-card__meta"><a href="/#servicios">← Servicios</a></p>
+        <div style="max-width: 50rem; margin-top: 0.75rem;">
+          <span class="section__eyebrow">{page.eyebrow}</span>
+          <h1 class="hero__title" style="font-size: clamp(2rem, min(6vw, 10vh), 3.5rem);">
+            {page.title}
+          </h1>
+          <p class="hero__subtitle">{page.lead}</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href={wa} target="_blank" rel="noopener">
+              Pedir presupuesto sin cargo
+            </a>
+            <a class="btn btn--ghost" href="#faq-servicio">Ver preguntas frecuentes</a>
+          </div>
         </div>
+      </div>
+      <div class="service-hero__art" aria-hidden="true">
+        <Artwork variant={serviceArt(page.slug)} />
       </div>
     </div>
   </section>

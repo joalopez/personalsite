@@ -1,0 +1,296 @@
+---
+export interface Props {
+  variant?:
+    | 'hero'
+    | 'site'
+    | 'inmobiliaria'
+    | 'restaurante'
+    | 'profesionales'
+    | 'tiendas'
+    | 'ia'
+    | 'wordpress';
+  class?: string;
+}
+
+const { variant = 'site', class: className } = Astro.props;
+const uid = Math.random().toString(36).slice(2, 9);
+const isHero = variant === 'hero';
+const viewBox = isHero ? '0 0 1200 700' : '0 0 400 260';
+---
+
+<svg
+  class:list={['artwork', className]}
+  viewBox={viewBox}
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+  focusable="false"
+  role="presentation"
+>
+  <defs>
+    <radialGradient id={`glow-g-${uid}`} cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" class="stop-a1-soft" />
+      <stop offset="1" class="stop-clear" />
+    </radialGradient>
+    <radialGradient id={`glow-m-${uid}`} cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" class="stop-a2-soft" />
+      <stop offset="1" class="stop-clear" />
+    </radialGradient>
+    <pattern
+      id={`grid-${uid}`}
+      width={isHero ? 48 : 26}
+      height={isHero ? 48 : 26}
+      patternUnits="userSpaceOnUse"
+    >
+      <path
+        d={isHero ? 'M48 0H0V48' : 'M26 0H0V26'}
+        class="aw-grid-line"
+        fill="none"
+      />
+    </pattern>
+  </defs>
+
+  {
+    variant === 'hero' ? (
+      <>
+        <rect width="1200" height="700" fill={`url(#grid-${uid})`} class="aw-grid" />
+        <circle cx="150" cy="150" r="360" fill={`url(#glow-g-${uid})`} />
+        <circle cx="1040" cy="560" r="380" fill={`url(#glow-m-${uid})`} />
+        <circle cx="960" cy="170" r="190" class="aw-ring-s2" opacity=".18" />
+        <circle cx="960" cy="170" r="122" class="aw-ring-s1" opacity=".22" />
+        <circle cx="960" cy="170" r="58" class="aw-ring-s2" opacity=".3" />
+        <circle cx="210" cy="470" r="70" class="aw-ring-s1" opacity=".2" />
+        <circle cx="210" cy="470" r="120" class="aw-ring-soft" opacity=".5" />
+        <path
+          d="M0 560 Q150 520 300 560 T600 560 T900 560 T1200 560"
+          class="aw-stroke-a1"
+          opacity=".28"
+        />
+        <path
+          d="M0 610 Q170 570 340 610 T680 610 T1020 610 T1200 610"
+          class="aw-stroke-a2"
+          opacity=".2"
+        />
+        <g opacity=".5">
+          <circle cx="180" cy="150" r="6" class="aw-fill-a1" />
+          <circle cx="420" cy="90" r="8" class="aw-fill-a2" />
+          <circle cx="1080" cy="300" r="7" class="aw-fill-a1" />
+          <path d="M180 150 L420 90 L1080 300" class="aw-line" opacity=".5" />
+        </g>
+      </>
+    ) : (
+      <>
+        <rect width="400" height="260" class="aw-bg" />
+        <rect width="400" height="260" fill={`url(#grid-${uid})`} class="aw-grid" />
+      </>
+    )
+  }
+
+  {
+    variant === 'site' && (
+      <g>
+        <circle cx="108" cy="130" r="62" class="aw-ring-s1" />
+        <circle
+          cx="108"
+          cy="130"
+          r="62"
+          class="aw-ring-s2"
+          stroke-dasharray="150 260"
+          transform="rotate(-90 108 130)"
+        />
+        <circle cx="108" cy="130" r="40" class="aw-ring-soft" />
+        <rect x="206" y="70" width="26" height="120" rx="6" class="aw-fill-a1" opacity=".85" />
+        <rect x="244" y="102" width="26" height="88" rx="6" class="aw-fill-a2" opacity=".75" />
+        <rect x="282" y="46" width="26" height="144" rx="6" class="aw-fill-a1" opacity=".55" />
+        <rect x="320" y="122" width="26" height="68" rx="6" class="aw-fill-a2" opacity=".5" />
+        <line x1="206" y1="200" x2="346" y2="200" class="aw-line" />
+      </g>
+    )
+  }
+
+  {
+    variant === 'inmobiliaria' && (
+      <g>
+        <circle cx="318" cy="72" r="26" class="aw-ring-s2" />
+        <rect x="66" y="118" width="54" height="104" rx="6" class="aw-fill-a1" opacity=".7" />
+        <rect x="130" y="78" width="62" height="144" rx="6" class="aw-fill-a2" opacity=".5" />
+        <rect x="202" y="140" width="48" height="82" rx="6" class="aw-fill-a1" opacity=".48" />
+        <g class="aw-windows">
+          <rect x="82" y="134" width="10" height="10" rx="2" />
+          <rect x="100" y="134" width="10" height="10" rx="2" />
+          <rect x="82" y="156" width="10" height="10" rx="2" />
+          <rect x="100" y="156" width="10" height="10" rx="2" />
+          <rect x="146" y="96" width="10" height="10" rx="2" />
+          <rect x="164" y="96" width="10" height="10" rx="2" />
+          <rect x="146" y="118" width="10" height="10" rx="2" />
+          <rect x="164" y="118" width="10" height="10" rx="2" />
+        </g>
+        <line x1="50" y1="222" x2="350" y2="222" class="aw-line" />
+      </g>
+    )
+  }
+
+  {
+    variant === 'restaurante' && (
+      <g>
+        <circle cx="146" cy="128" r="66" class="aw-ring-s1" />
+        <circle cx="146" cy="128" r="46" class="aw-ring-s2" opacity=".65" />
+        <circle cx="146" cy="128" r="16" class="aw-fill-a1" opacity=".6" />
+        <path d="M250 72 q34 56 0 112" class="aw-stroke-a2" opacity=".8" />
+        <path d="M282 72 q34 56 0 112" class="aw-stroke-a1" opacity=".55" />
+        <path d="M322 72 q34 56 0 112" class="aw-stroke-a2" opacity=".35" />
+      </g>
+    )
+  }
+
+  {
+    variant === 'profesionales' && (
+      <g>
+        <rect x="66" y="58" width="122" height="144" rx="18" class="aw-stroke-a1" />
+        <circle cx="127" cy="108" r="26" class="aw-fill-a2" opacity=".5" />
+        <path d="M92 180 q35 -42 70 0" class="aw-stroke-a1" opacity=".8" />
+        <circle cx="286" cy="88" r="34" class="aw-ring-s2" />
+        <circle cx="286" cy="88" r="58" class="aw-ring-soft" opacity=".5" />
+        <circle cx="276" cy="178" r="20" class="aw-ring-s1" opacity=".6" />
+      </g>
+    )
+  }
+
+  {
+    variant === 'tiendas' && (
+      <g>
+        <path d="M112 108 h96 l10 94 h-116 z" class="aw-fill-a2" opacity=".32" />
+        <path d="M140 108 a22 22 0 0 1 44 0" class="aw-stroke-a1" />
+        <rect x="248" y="112" width="42" height="42" rx="9" class="aw-fill-a1" opacity=".6" />
+        <rect x="300" y="112" width="42" height="42" rx="9" class="aw-fill-a1" opacity=".38" />
+        <rect x="248" y="164" width="42" height="42" rx="9" class="aw-fill-a2" opacity=".5" />
+        <rect x="300" y="164" width="42" height="42" rx="9" class="aw-fill-a2" opacity=".3" />
+      </g>
+    )
+  }
+
+  {
+    variant === 'ia' && (
+      <g>
+        <path d="M78 182 L150 92 L222 158 L302 80" class="aw-stroke-a2" opacity=".7" />
+        <path d="M78 182 L222 158" class="aw-stroke-a1" opacity=".4" />
+        <circle cx="150" cy="92" r="22" class="aw-ring-s1" opacity=".4" />
+        <circle cx="302" cy="80" r="26" class="aw-ring-s2" opacity=".4" />
+        <circle cx="78" cy="182" r="8" class="aw-fill-a1" />
+        <circle cx="150" cy="92" r="10" class="aw-fill-a2" />
+        <circle cx="222" cy="158" r="7" class="aw-fill-a1" />
+        <circle cx="302" cy="80" r="9" class="aw-fill-a2" />
+      </g>
+    )
+  }
+
+  {
+    variant === 'wordpress' && (
+      <g>
+        <rect x="58" y="88" width="72" height="72" rx="12" class="aw-stroke-a2" opacity=".7" />
+        <path d="M78 108 L110 140 M110 108 L78 140" class="aw-stroke-a2" opacity=".7" />
+        <path d="M162 124 h58 m-20 -15 l20 15 -20 15" class="aw-stroke-a1" />
+        <rect x="252" y="76" width="94" height="94" rx="16" class="aw-fill-a1" opacity=".3" />
+        <path d="M274 124 l16 16 30 -36" class="aw-stroke-a1" />
+      </g>
+    )
+  }
+</svg>
+
+<style>
+  .artwork {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .aw-bg {
+    fill: var(--bg-elevated-2);
+  }
+
+  .aw-grid {
+    opacity: 0.55;
+  }
+
+  .aw-grid-line {
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+
+  .aw-line {
+    stroke: var(--border-strong);
+    stroke-width: 2;
+  }
+
+  .aw-windows rect {
+    fill: var(--bg-elevated);
+    opacity: 0.9;
+  }
+
+  .aw-ring-s1 {
+    fill: none;
+    stroke: var(--accent-1);
+    stroke-width: 3;
+    opacity: 0.8;
+  }
+
+  .aw-ring-s2 {
+    fill: none;
+    stroke: var(--accent-2);
+    stroke-width: 3;
+    opacity: 0.75;
+  }
+
+  .aw-ring-soft {
+    fill: none;
+    stroke: var(--border-strong);
+    stroke-width: 1.5;
+    opacity: 0.7;
+  }
+
+  .aw-fill-a1 {
+    fill: var(--accent-1);
+  }
+
+  .aw-fill-a2 {
+    fill: var(--accent-2);
+  }
+
+  .aw-stroke-a1 {
+    fill: none;
+    stroke: var(--accent-1);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .aw-stroke-a2 {
+    fill: none;
+    stroke: var(--accent-2);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .stop-a1 {
+    stop-color: var(--accent-1);
+  }
+
+  .stop-a2 {
+    stop-color: var(--accent-2);
+  }
+
+  .stop-a1-soft {
+    stop-color: var(--accent-1);
+    stop-opacity: 0.3;
+  }
+
+  .stop-a2-soft {
+    stop-color: var(--accent-2);
+    stop-opacity: 0.32;
+  }
+
+  .stop-clear {
+    stop-color: var(--accent-2);
+    stop-opacity: 0;
+  }
+</style>

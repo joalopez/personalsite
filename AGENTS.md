@@ -25,6 +25,7 @@ finishing. It depends on generated `.astro/types.d.ts`; if types are missing, ru
 - `src/pages/servicios/*.astro` — each defines a `ServicePage` object and renders `ServiceLayout`.
 - `src/content/blog/*.md` + `src/content.config.ts` — blog collection schema (title, description, pubDate required; `draft: true` hides from build, list, and RSS).
 - `src/layouts/BaseLayout.astro` — injects Person JSON-LD and page `jsonLd`; `src/components/Seo.astro` — canonical/OG/Twitter tags.
+- `src/components/Artwork.astro` — inline generative SVG "images" (no raster assets). Variants: `hero`, `site`, `inmobiliaria`, `restaurante`, `profesionales`, `tiendas`, `ia`, `wordpress`. Colors come from CSS vars so it adapts to both themes; ~0 extra requests. `src/data/art.ts` maps service slugs / blog post ids to a variant.
 - `src/styles/global.css` — one plain-CSS stylesheet (no Tailwind/CSS-in-JS), imported once in BaseLayout.
 - `public/robots.txt`, `public/llms.txt` — **static, hand-maintained, not generated**.
 
@@ -38,6 +39,7 @@ finishing. It depends on generated `.astro/types.d.ts`; if types are missing, ru
 - Contact form: empty `FORM_ACCESS_KEY` in `src/consts.ts` makes submit fall back to opening WhatsApp; setting it enables the Web3Forms AJAX flow.
 - Hosting is **Vercel**; security/cache headers live in `vercel.json`. Node 22 is pinned via `package.json` `engines`. There are no Netlify/Cloudflare config files anymore.
 - Theming: dark/light via `data-theme` on `<html>`. Color tokens live in `global.css` (`:root`/`[data-theme='dark']` and `[data-theme='light']`); never hardcode colors in components. Toggle in `src/components/Header.astro` persists to `localStorage` (`theme`), and an inline script in `BaseLayout.astro` sets the theme before paint (no FOUC). Default follows `prefers-color-scheme`.
+- Section rhythm: alternate backgrounds with the `.section--elevated` modifier (`background-color: var(--bg-section-alt)`, no separators/borders). Home order is zebra — Servicios, Proceso, Sobre mí and Contacto are elevated; the WP banner and Proyectos are plain. Keep the alternation when adding/reordering sections.
 
 ## Docs
 
