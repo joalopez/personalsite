@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plantilla Carrusel Instagram — 5 errores en webs @joalopez</title>
+<!--
+  CARRUSEL · SEMANA 4 · FOCO GENERAL ("5 errores en webs de negocios")
+  Artículo de la semana: /blog/errores-web-negocio
+
+  Cómo usar:
+  1. Abrí este archivo en el navegador.
+  2. Editá los textos de cada slide directo en el HTML.
+  3. Sacá una captura de cada slide (1080x1350) o usá "Imprimir > Guardar como PDF"
+     para exportar. Cada .ig-slide mide 1080x1350 px.
+  4. Subí los slides a Instagram como carrusel.
+  Paleta oficial: fondo #131314, verde #4aff41, magenta #ce1ccb.
+
+  REEL DE LA SEMANA · "3 mitos sobre las webs que te cuestan clientes"
+  Guion:
+  - 0-2s: texto grande: "3 mitos sobre las webs que te cuestan clientes." Voz en off o texto.
+  - 2-5s: MITO 1: "Con que se vea linda, alcanza." → REALIDAD: "Si tarda 6 segundos, ni la ven."
+  - 5-9s: MITO 2: "Con Instagram ya tengo mi web." → REALIDAD: "Instagram te presta el espacio;
+    tu web es tuya, y Google no te busca en un perfil."
+  - 9-13s: MITO 3: "La IA es para grandes empresas." → REALIDAD: "La IA ya recomienda negocios
+    de tu ciudad. Si no puede leer tu web, no te nombra."
+  - Cierre: "Dejá de perder clientes que ya te buscaban. Diagnóstico gratis → joalopez.com.ar"
+  Música: tendencia en baja. Textos grandes, uno por mito, pocos por pantalla.
+-->
+<style>
+  :root {
+    --bg: #131314;
+    --text: #f5f5f5;
+    --green: #4aff41;
+    --magenta: #ce1ccb;
+    --muted: rgba(245,245,245,0.66);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #000; font-family: 'DM Sans', system-ui, sans-serif; padding: 24px; }
+  .ig-slide {
+    width: 1080px;
+    height: 1350px;
+    background: var(--bg);
+    color: var(--text);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 96px;
+    margin: 0 auto 32px;
+    overflow: hidden;
+  }
+  .ig-slide.hook { justify-content: space-between; padding-top: 160px; }
+  .ig-brand {
+    position: absolute;
+    top: 64px; left: 96px;
+    font-family: 'BBH Bartle', sans-serif;
+    color: var(--green);
+    font-size: 44px;
+    letter-spacing: 0.04em;
+  }
+  .ig-index {
+    position: absolute;
+    top: 64px; right: 96px;
+    color: var(--muted);
+    font-size: 40px;
+  }
+  .ig-kicker {
+    color: var(--green);
+    font-size: 40px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .ig-title {
+    font-family: 'BBH Bartle', sans-serif;
+    font-size: 108px;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+  .ig-title .hl { color: var(--green); }
+  .ig-title .hl-magenta { color: var(--magenta); }
+  .ig-text {
+    font-size: 52px;
+    line-height: 1.35;
+    color: var(--muted);
+    margin-top: 48px;
+    font-weight: 300;
+  }
+  .ig-list { display: flex; flex-direction: column; gap: 40px; }
+  .ig-list li { display: flex; gap: 28px; font-size: 52px; line-height: 1.3; font-weight: 300; }
+  .ig-list li::before { content: '✕'; color: var(--magenta); font-weight: 700; flex-shrink: 0; }
+  .ig-list.ok li::before { content: '✓'; color: var(--green); }
+  .ig-cta {
+    background: var(--green);
+    color: #06210a;
+    font-weight: 700;
+    font-size: 52px;
+    padding: 48px 64px;
+    border-radius: 40px;
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 72px;
+  }
+  .ig-foot {
+    position: absolute;
+    bottom: 64px; left: 96px; right: 96px;
+    display: flex; justify-content: space-between;
+    color: var(--muted);
+    font-size: 40px;
+  }
+  .ig-bar {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 20px;
+    background: linear-gradient(90deg, var(--green) 50%, var(--magenta) 50%);
+  }
+  .ig-table { width: 100%; font-size: 48px; margin-top: 48px; border-collapse: collapse; }
+  .ig-table th, .ig-table td { text-align: left; padding: 28px 24px; border-bottom: 1px solid rgba(245,245,245,0.14); }
+  .ig-table th { color: var(--text); font-size: 44px; }
+  .ig-table td:first-child { color: var(--muted); }
+  .ig-table .bad { color: var(--magenta); font-weight: 700; }
+  .ig-table .good { color: var(--green); font-weight: 700; }
+  .ig-num { font-family: 'BBH Bartle', sans-serif; color: var(--magenta); font-size: 240px; line-height: 1; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+
+  <!-- SLIDE 1 · GANCHO -->
+  <section class="ig-slide hook">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">1/7</span>
+    <div>
+      <p class="ig-kicker">Webs de negocios</p>
+      <h1 class="ig-title">Tu web pierde clientes por <span class="hl-magenta">5 errores</span>. Y son todos evitables.</h1>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 2 · ERROR 1 -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">2/7</span>
+    <div>
+      <p class="ig-kicker">Error 01</p>
+      <div class="ig-num">1</div>
+      <h2 class="ig-title" style="font-size: 84px;">Tarda en cargar en el celular</h2>
+      <p class="ig-text">Si tarda 5 segundos, más de la mitad se va antes de ver nada. Y Google te castiga por lenta.</p>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 3 · ERROR 2 -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">3/7</span>
+    <div>
+      <p class="ig-kicker">Error 02</p>
+      <div class="ig-num">2</div>
+      <h2 class="ig-title" style="font-size: 84px;">No se entiende qué hacés</h2>
+      <p class="ig-text">Si en 5 segundos no queda claro tu rubro y tu ciudad, el visitante se va a adivinar a otro lado.</p>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 4 · ERROR 3 -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">4/7</span>
+    <div>
+      <p class="ig-kicker">Error 03</p>
+      <div class="ig-num">3</div>
+      <h2 class="ig-title" style="font-size: 84px;">El contacto está escondido</h2>
+      <p class="ig-text">El cliente se interesó y no encuentra cómo escribirte. Cada paso de más es un cliente menos.</p>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 5 · ERROR 4 -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">5/7</span>
+    <div>
+      <p class="ig-kicker">Error 04</p>
+      <div class="ig-num">4</div>
+      <h2 class="ig-title" style="font-size: 84px;">Da una imagen vieja</h2>
+      <p class="ig-text">Si parece hecha en 2014, el cliente duda: ¿sigue activo? ¿me va a responder? Tu web es tu local.</p>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 6 · ERROR 5 -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">6/7</span>
+    <div>
+      <p class="ig-kicker">Error 05</p>
+      <div class="ig-num">5</div>
+      <h2 class="ig-title" style="font-size: 84px;">No aparecés en Google ni en la IA</h2>
+      <p class="ig-text">Tener web no es existir. Si nadie te encuentra, es un local sin cartel. Hoy la IA también recomienda.</p>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 7 · CTA -->
+  <section class="ig-slide hook">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">7/7</span>
+    <div>
+      <p class="ig-kicker">Tu turno</p>
+      <h2 class="ig-title" style="font-size: 92px;">¿Cuál de los 5 <span class="hl">tiene tu web</span>?</h2>
+      <p class="ig-text">Escribime y te hago un diagnóstico gratis. Te digo qué arreglar y en qué orden.</p>
+      <span class="ig-cta">WhatsApp en la bio →</span>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>joalopez.com.ar</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+</body>
+</html>
