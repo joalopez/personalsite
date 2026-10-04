@@ -6,11 +6,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://joalopez.com.ar',
   trailingSlash: 'never',
-  integrations: [
-    sitemap({
-      filter: (page) => !page.includes('/gracias'),
-    }),
-  ],
+  integrations: [sitemap()],
   build: {
     inlineStylesheets: 'auto',
   },

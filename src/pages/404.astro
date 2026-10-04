@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { WHATSAPP_URL } from '../consts';
+
+const servicios = [
+  { slug: 'migracion-wordpress', label: 'Migración desde WordPress' },
+  { slug: 'optimizacion-ia', label: 'Optimización para IA (AEO)' },
+  { slug: 'webs-para-inmobiliarias', label: 'Webs para inmobiliarias' },
+  { slug: 'webs-para-restaurantes', label: 'Webs para restaurantes' },
+  { slug: 'webs-para-profesionales', label: 'Webs para profesionales' },
+  { slug: 'tiendas-online', label: 'Tiendas online' },
+];
+---
+
+<BaseLayout
+  title="Página no encontrada | Joaquín López"
+  description="La página que buscás no existe o cambió de dirección. Volvé al inicio o escribime por WhatsApp."
+  noindex
+>
+  <section class="section">
+    <div class="container" style="max-width: 46rem;">
+      <span class="section__eyebrow">Error 404</span>
+      <h1 class="section__title">Esta página no existe</h1>
+      <p class="section__lead">
+        Puede que el enlace esté roto o que la página haya cambiado de dirección. Probá desde el
+        inicio o escribime y te ayudo a encontrar lo que buscabas.
+      </p>
+
+      <div class="hero__actions" style="margin-top: 2rem;">
+        <a class="btn btn--primary" href="/">Volver al inicio</a>
+        <a class="btn btn--ghost" href={WHATSAPP_URL} target="_blank" rel="noopener">
+          Escribime por WhatsApp
+        </a>
+      </div>
+
+      <h2 class="section__title" style="font-size: 1.35rem; margin-top: 3.5rem;">
+        Servicios
+      </h2>
+      <ul class="wp__list">
+        {
+          servicios.map((servicio) => (
+            <li class="wp__item">
+              <a href={`/servicios/${servicio.slug}`}>{servicio.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

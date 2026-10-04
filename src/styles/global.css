@@ -809,6 +809,12 @@ h4 {
   color: var(--accent-1);
 }
 
+.site-footer__services {
+  width: 100%;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
 .site-footer__legal {
   color: var(--text-faint);
   font-size: 0.82rem;

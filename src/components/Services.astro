@@ -1,47 +1,42 @@
 ---
-import { WHATSAPP_NUMBER } from '../consts';
-
 const services = [
   {
     icon: '⚡',
+    slug: 'migracion-wordpress',
     title: 'Migración desde WordPress',
     text: 'Tu web tarda 6 segundos, se rompe con cada actualización y te cuesta $ en plugins. La paso a un sitio moderno: rápido, seguro y sin mantenimiento.',
-    message: 'Hola Joaquín, quiero migrar mi web de WordPress a un sitio moderno.',
   },
   {
     icon: '🤖',
+    slug: 'optimizacion-ia',
     title: 'Optimización para IA (AEO)',
     text: 'Que ChatGPT, Gemini y Google AI recomienden tu negocio cuando alguien pregunta. Optimizo tu sitio para los motores de respuesta.',
-    message: 'Hola Joaquín, quiero que mi web aparezca en ChatGPT y los motores de IA.',
   },
   {
     icon: '🏠',
+    slug: 'webs-para-inmobiliarias',
     title: 'Web + sistema para inmobiliarias',
     text: 'Catálogo de propiedades con buscador y filtros, fichas con WhatsApp directo y panel para cargar propiedades sin depender de los portales.',
-    message: 'Hola Joaquín, quiero una web con sistema de propiedades para mi inmobiliaria.',
   },
   {
     icon: '🍽️',
+    slug: 'webs-para-restaurantes',
     title: 'Webs para restaurantes',
     text: 'Menú digital siempre actualizado, reservas, ubicación con Google Maps y pedidos por WhatsApp. Sin comisiones de apps.',
-    message: 'Hola Joaquín, quiero una web para mi restaurante.',
   },
   {
     icon: '💼',
+    slug: 'webs-para-profesionales',
     title: 'Webs para profesionales',
     text: 'Abogados, dentistas, psicólogos, arquitectos: una presencia que genera confianza y convierte visitas en consultas.',
-    message: 'Hola Joaquín, quiero una web profesional para mi consulta/servicio.',
   },
   {
     icon: '🛒',
+    slug: 'tiendas-online',
     title: 'Tiendas online',
     text: 'Tu tienda propia con pagos y envíos, sin depender de Instagram ni de las comisiones de MercadoLibre.',
-    message: 'Hola Joaquín, quiero una tienda online para mi negocio.',
   },
 ];
-
-const wa = (msg: string) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 ---
 
 <section class="section" id="servicios" aria-labelledby="servicios-title">
@@ -64,12 +59,10 @@ const wa = (msg: string) =>
             <p class="card__text">{service.text}</p>
             <a
               class="card__link"
-              href={wa(service.message)}
-              target="_blank"
-              rel="noopener"
-              aria-label={`Consultar por ${service.title} por WhatsApp`}
+              href={`/servicios/${service.slug}`}
+              aria-label={`Ver el servicio de ${service.title}`}
             >
-              Consultar
+              Ver servicio
             </a>
           </article>
         ))

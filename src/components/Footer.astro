@@ -2,6 +2,15 @@
 import { EMAIL, LINKEDIN_URL, INSTAGRAM_URL, SITE_NAME } from '../consts';
 
 const year = new Date().getFullYear();
+
+const servicios = [
+  { slug: 'migracion-wordpress', label: 'Migración desde WordPress' },
+  { slug: 'optimizacion-ia', label: 'Optimización para IA (AEO)' },
+  { slug: 'webs-para-inmobiliarias', label: 'Webs para inmobiliarias' },
+  { slug: 'webs-para-restaurantes', label: 'Webs para restaurantes' },
+  { slug: 'webs-para-profesionales', label: 'Webs para profesionales' },
+  { slug: 'tiendas-online', label: 'Tiendas online' },
+];
 ---
 
 <footer class="site-footer">
@@ -13,6 +22,14 @@ const year = new Date().getFullYear();
       <a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>
       <a href={INSTAGRAM_URL} target="_blank" rel="noopener">Instagram</a>
       <a href="/blog">Blog</a>
+    </nav>
+
+    <nav class="site-footer__links site-footer__services" aria-label="Servicios">
+      {
+        servicios.map((servicio) => (
+          <a href={`/servicios/${servicio.slug}`}>{servicio.label}</a>
+        ))
+      }
     </nav>
 
     <p class="site-footer__legal">© {year} {SITE_NAME}. Todos los derechos reservados.</p>

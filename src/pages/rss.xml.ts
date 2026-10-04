@@ -12,11 +12,12 @@ export async function GET(context: APIContext) {
     description:
       'Artículos sobre webs para negocios, migración desde WordPress, SEO y optimización para motores de IA.',
     site: context.site ?? 'https://joalopez.com.ar',
+    trailingSlash: false,
     items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,
-      link: `/blog/${post.id}/`,
+      link: `/blog/${post.id}`,
       categories: post.data.tags,
     })),
     customData: '<language>es-ar</language>',
