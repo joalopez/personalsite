@@ -1,20 +1,26 @@
 ---
-// Analytics privacy-friendly (Umami). Configurá PUBLIC_UMAMI_SRC y PUBLIC_UMAMI_ID
-// en tu hosting (Cloudflare Pages / Netlify) o en un .env local.
-// Mientras no estén definidas, no se carga nada (0 impacto en performance).
-const src = import.meta.env.PUBLIC_UMAMI_SRC;
-const websiteId = import.meta.env.PUBLIC_UMAMI_ID;
-const enabled = Boolean(src && websiteId);
+// Analytics (GA4). Configurá PUBLIC_GA_ID en tu hosting (Cloudflare Pages / Netlify)
+// o en un .env local. Mientras no esté definida, no se carga nada (0 impacto en performance).
+const gaId = import.meta.env.PUBLIC_GA_ID;
 ---
 
 {
-  enabled && (
-    <script
-      is:inline
-      defer
-      src={src}
-      data-website-id={websiteId}
-      data-do-not-track="true"
-    />
+  gaId && (
+    <>
+      <script
+        is:inline
+        async
+        fetchpriority="low"
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+      />
+      <script define:vars={{ gaId }}>
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag('js', new Date());
+        window.gtag('config', gaId);
+      </script>
+    </>
   )
 }

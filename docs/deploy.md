@@ -1,7 +1,8 @@
 # Deploy — joalopez.com.ar
 
-El sitio es 100% estático (Astro). Se puede hostear gratis en Cloudflare Pages,
-Netlify o Vercel. Recomendado: **Cloudflare Pages** (rápido en Argentina, gratis, headers ya configurados).
+El sitio es 100% estático (Astro) y está deployado en **Vercel** (deploy automático
+desde el repo `joalopez/personalsite`). También se podría hostear en Cloudflare Pages
+o Netlify.
 
 ## Build
 
@@ -14,7 +15,20 @@ Salida: carpeta `dist/`.
 
 ---
 
-## Opción A: Cloudflare Pages (recomendado)
+## Vercel (hosting actual)
+
+1. https://vercel.com/new → importá el repo `joalopez/personalsite`.
+2. Framework: **Astro** (detectado automáticamente). Output: `dist`.
+3. **Settings → Domains** → `joalopez.com.ar` y `www.joalopez.com.ar`.
+4. **Settings → Environment Variables** → agregar `PUBLIC_GA_ID` con el Measurement
+   ID de GA4 (`G-...`). Aplicar a Production (y Preview si querés).
+5. Tras cambiar una variable de entorno, **Redeploy** para que tome efecto.
+
+Cada `git push` a la rama de producción publica automáticamente.
+
+---
+
+## Cloudflare Pages (alternativa)
 
 1. Entrá a https://dash.cloudflare.com → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
 2. Elegí el repo `joalopez/personalsite`.
@@ -25,25 +39,16 @@ Salida: carpeta `dist/`.
 4. **Save and Deploy**. En ~1 min tenés la URL `*.pages.dev`.
 5. Ir a **Custom domains** → agregar `joalopez.com.ar` y `www.joalopez.com.ar`.
    Como el dominio probablemente ya está en Cloudflare, se conecta con un clic.
-6. (Opcional) Analytics: Variables de entorno → `PUBLIC_UMAMI_SRC` y `PUBLIC_UMAMI_ID`.
-
-Cada `git push` a `master` publica automáticamente.
+6. Variables de entorno → `PUBLIC_GA_ID` (analytics).
 
 ---
 
-## Opción B: Netlify
+## Netlify (alternativa)
 
 1. https://app.netlify.com → **Add new site** → **Import an existing project**.
 2. Elegí el repo. Netlify lee `netlify.toml` (build y headers ya configurados).
 3. Deploy. Luego **Domain settings** → agregar `joalopez.com.ar`.
-
----
-
-## Opción C: Vercel
-
-1. https://vercel.com/new → importá el repo.
-2. Framework: **Astro** (detectado automáticamente).
-3. Deploy. Luego **Settings → Domains** → `joalopez.com.ar`.
+4. Variables de entorno → `PUBLIC_GA_ID` (analytics).
 
 ---
 
@@ -67,6 +72,8 @@ Para que también envíe un email sin salir del sitio:
 
 ## Analytics (opcional)
 
-1. Creá cuenta gratis en https://cloud.umami.is y agregá el sitio.
-2. Definí `PUBLIC_UMAMI_SRC` y `PUBLIC_UMAMI_ID` en el hosting (o `.env` local).
-3. Se trackean automáticamente: clics en WhatsApp, clics en email y envíos del formulario.
+1. Creá una propiedad GA4 en https://analytics.google.com y copiá tu **Measurement ID** (`G-XXXXXXXXXX`).
+2. Definí `PUBLIC_GA_ID` en las **Environment Variables** de Vercel (Settings → Environment
+   Variables) o en un `.env` local. En Vercel, redeployá después de agregarla.
+3. Se trackean automáticamente: clics en WhatsApp, clics en email y envíos del formulario
+   (eventos `whatsapp`, `email` y `contacto_form`).

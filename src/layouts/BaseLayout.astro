@@ -82,10 +82,10 @@ const mergedJsonLd = jsonLd
     <Analytics />
 
     <script>
-      // Eventos de conversión para analytics (Umami). No-op si no está instalado.
-      type UmamiWindow = Window & { umami?: { track: (event: string, data?: object) => void } };
+      // Eventos de conversión para analytics (GA4). No-op si no está configurado.
+      type GtagWindow = Window & { gtag?: (...args: unknown[]) => void };
       const trackConversion = (event: string, data?: object) => {
-        (window as UmamiWindow).umami?.track(event, data);
+        (window as GtagWindow).gtag?.('event', event, data);
       };
 
       document.addEventListener('click', (e) => {
