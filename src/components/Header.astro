@@ -140,4 +140,12 @@ const currentPath = Astro.url.pathname;
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setNavOpen(false);
   });
+
+  const header = document.querySelector('.site-header');
+  const setScrolled = () => {
+    header?.classList.toggle('site-header--scrolled', window.scrollY > 24);
+  };
+
+  setScrolled();
+  window.addEventListener('scroll', setScrolled, { passive: true });
 </script>

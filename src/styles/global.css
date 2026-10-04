@@ -39,6 +39,7 @@
   --border: rgba(245, 245, 245, 0.12);
   --border-strong: rgba(245, 245, 245, 0.22);
   --header-bg: rgba(19, 19, 20, 0.82);
+  --header-bg-scrolled: rgba(30, 30, 33, 0.92);
   --thumb-bg: #101011;
   --danger: #ff6b6b;
   --danger-rgb: 255, 107, 107;
@@ -46,6 +47,8 @@
   --shadow-glow: 0 0 1rem rgba(206, 28, 203, 0.35), 0 0 2.5rem rgba(206, 28, 203, 0.18);
   --shadow-glow-green: 0 0 1rem rgba(74, 255, 65, 0.35), 0 0 2.5rem rgba(74, 255, 65, 0.15);
   --shadow-card-hover: 0 1.5rem 3rem -2rem rgba(0, 0, 0, 0.8);
+  --shadow-island: 0 1rem 2.5rem -0.75rem rgba(0, 0, 0, 0.9),
+    0 0.35rem 1rem -0.5rem rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(245, 245, 245, 0.07);
 }
 
 /* ---------- Theme: light ---------- */
@@ -66,6 +69,7 @@
   --border: rgba(23, 23, 26, 0.14);
   --border-strong: rgba(23, 23, 26, 0.26);
   --header-bg: rgba(246, 246, 244, 0.82);
+  --header-bg-scrolled: rgba(255, 255, 255, 0.9);
   --thumb-bg: #e6e6e3;
   --danger: #d92d20;
   --danger-rgb: 217, 45, 32;
@@ -73,6 +77,8 @@
   --shadow-glow: 0 0 1rem rgba(176, 18, 173, 0.22), 0 0 2.5rem rgba(176, 18, 173, 0.12);
   --shadow-glow-green: 0 0 1rem rgba(26, 158, 46, 0.25), 0 0 2.5rem rgba(26, 158, 46, 0.12);
   --shadow-card-hover: 0 1.5rem 3rem -2rem rgba(23, 23, 26, 0.22);
+  --shadow-island: 0 1rem 2.5rem -0.75rem rgba(23, 23, 26, 0.18),
+    0 0.35rem 1rem -0.5rem rgba(23, 23, 26, 0.1), inset 0 0 0 1px rgba(23, 23, 26, 0.05);
 }
 
 /* ---------- Reset ---------- */
@@ -268,9 +274,10 @@ h4 {
   position: sticky;
   top: 0;
   z-index: 50;
+  padding-top: 0;
   background: var(--header-bg);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  transition: background var(--transition-medium), padding var(--transition-medium);
 }
 
 .site-header__inner {
@@ -279,6 +286,23 @@ h4 {
   justify-content: space-between;
   gap: 1rem;
   padding-block: 0.9rem;
+  border-radius: 0;
+  transition: background var(--transition-medium), box-shadow var(--transition-medium),
+    border-radius var(--transition-medium), padding var(--transition-medium);
+}
+
+.site-header--scrolled {
+  padding-top: 0.75rem;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.site-header--scrolled .site-header__inner {
+  padding-block: 0.55rem;
+  background: var(--header-bg-scrolled);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  box-shadow: var(--shadow-island);
 }
 
 .brand {
@@ -973,7 +997,6 @@ h4 {
 /* ---------- Footer ---------- */
 .site-footer {
   margin-top: auto;
-  border-top: 1px solid var(--border);
   padding-block: clamp(2rem, 5vw, 3rem);
 }
 
@@ -1004,7 +1027,6 @@ h4 {
 .site-footer__services {
   width: 100%;
   padding-top: 1rem;
-  border-top: 1px solid var(--border);
 }
 
 .site-footer__legal {
@@ -1301,12 +1323,18 @@ h4 {
     gap: 0;
     padding: 0.5rem var(--gutter) 1.25rem;
     background: var(--bg-primary);
-    border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-card-hover);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-0.5rem);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s,
+      border-radius var(--transition-medium), margin var(--transition-medium);
+  }
+
+  .site-header--scrolled .site-nav {
+    top: calc(100% + 0.5rem);
+    margin-inline: var(--gutter);
+    border-radius: var(--radius-lg);
   }
 
   .site-nav.is-open {
@@ -1319,7 +1347,6 @@ h4 {
   .site-nav__link {
     padding-block: 0.85rem;
     font-size: 1.05rem;
-    border-bottom: 1px solid var(--border);
   }
 
   .site-nav__cta {
@@ -1334,6 +1361,8 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header__inner,
   .site-nav,
   .site-nav.is-open,
   .nav-toggle__bars,
