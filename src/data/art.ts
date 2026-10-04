@@ -5,11 +5,13 @@ export type ArtVariant =
   | 'profesionales'
   | 'tiendas'
   | 'ia'
+  | 'intranet'
   | 'wordpress';
 
 const SERVICE_ART: Record<string, ArtVariant> = {
   'migracion-wordpress': 'wordpress',
   'optimizacion-ia': 'ia',
+  'intranet-para-empresas': 'intranet',
   'webs-para-inmobiliarias': 'inmobiliaria',
   'webs-para-restaurantes': 'restaurante',
   'webs-para-profesionales': 'profesionales',
@@ -21,6 +23,7 @@ const BLOG_ART: Record<string, ArtVariant> = {
   'web-para-inmobiliarias': 'inmobiliaria',
   'errores-web-negocio': 'site',
   'como-aparecer-en-chatgpt': 'ia',
+  'comprobar-velocidad-web': 'site',
 };
 
 export const serviceArt = (slug: string): ArtVariant => SERVICE_ART[slug] ?? 'site';

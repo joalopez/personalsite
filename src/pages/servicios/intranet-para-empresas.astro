@@ -1,0 +1,59 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import type { ServicePage } from '../../data/services';
+
+const page: ServicePage = {
+  slug: 'intranet-para-empresas',
+  eyebrow: 'Empresas',
+  title: 'La intranet que ordena la comunicación de tu empresa',
+  metaTitle: 'Intranet para empresas',
+  description:
+    'Intranet a medida para pymes: documentos, novedades internas, directorio y formularios en un solo lugar, con usuarios y permisos por área y acceso desde cualquier dispositivo.',
+  lead: 'La información de tu empresa está repartida entre WhatsApp, mails y planillas de Excel. Una intranet propia la ordena en un solo lugar, para que tu equipo deje de buscar y vuelva a trabajar.',
+  problems: [
+    'La información está dispersa en grupos de WhatsApp, mails y planillas sueltas.',
+    'Nadie encuentra los documentos o la versión que hay que usar.',
+    'Los empleados preguntan siempre lo mismo (licencias, procesos, contactos).',
+    'La comunicación interna se pierde entre mensajes y no queda registro.',
+    'Cada área maneja sus archivos a su manera, sin un criterio común.',
+  ],
+  includes: [
+    'Acceso con usuarios y permisos por área o rol.',
+    'Carga, búsqueda y versionado de documentos.',
+    'Novedades y comunicados internos.',
+    'Directorio de personal y contactos de áreas.',
+    'Formularios internos (licencias, pedidos, soporte).',
+    'Panel de administración simple, sin depender de IT.',
+    'Acceso seguro desde cualquier dispositivo.',
+    'Diseño alineado a la identidad de tu empresa.',
+  ],
+  priceNote:
+    'Presupuesto fijo según los módulos que necesites. Pensado para pymes que quieren ordenar su información interna sin complicaciones ni costos de servidores propios.',
+  faqs: [
+    {
+      pregunta: '¿Necesito contratar un servidor o tener IT propio?',
+      respuesta:
+        'No. Me encargo del hosting y del mantenimiento. Vos y tu equipo solo entran con usuario y contraseña desde el navegador, sin instalar nada.',
+    },
+    {
+      pregunta: '¿Mis empleados van a saber usarla?',
+      respuesta:
+        'Sí. Diseño la intranet simple y clara, y te dejo una guía básica. Si es necesario, capacito al equipo en una sesión para que arranquen sin fricción.',
+    },
+    {
+      pregunta: '¿Se puede acceder desde el celular?',
+      respuesta:
+        'Sí. La intranet funciona en computadora, tablet y celular, así tu equipo la usa desde cualquier lugar, incluso fuera de la oficina.',
+    },
+    {
+      pregunta: '¿Qué pasa con la seguridad y mis datos?',
+      respuesta:
+        'El acceso es con usuarios y permisos por rol, y la conexión va cifrada. Tus datos son tuyos: no se comparten con terceros y podés exportarlos cuando quieras.',
+    },
+  ],
+};
+
+const waMessage = 'Hola Joaquín, quiero una intranet para mi empresa.';
+---
+
+<ServiceLayout page={page} waMessage={waMessage} />
