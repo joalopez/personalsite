@@ -41,4 +41,4 @@ finishing. It depends on generated `.astro/types.d.ts`; if types are missing, ru
 ## Docs
 
 - `docs/deploy.md` — build, deploy steps, post-deploy SEO checklist, env vars.
-- `docs/instagram-plan.md`, `docs/carrusel-plantilla.html` — marketing content, not code.
+- `docs/instagram-plan.md`, `docs/carrusel-plantilla.html`, `docs/carrusel-*.html` — marketing content, not code.
