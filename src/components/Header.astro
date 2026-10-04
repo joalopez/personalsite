@@ -8,7 +8,7 @@ const currentPath = Astro.url.pathname;
   <div class="container site-header__inner">
     <a href="/" class="brand" aria-label="Joaquín López — inicio">Joaquin</a>
 
-    <nav class="site-nav" aria-label="Navegación principal">
+    <nav class="site-nav" id="site-menu" aria-label="Navegación principal">
       {
         NAV_LINKS.map((link) => {
           const isActive =
@@ -31,43 +31,50 @@ const currentPath = Astro.url.pathname;
         type="button"
         class="theme-toggle"
         id="theme-toggle"
-        aria-label="Cambiar tema"
-        aria-pressed="false"
+        role="switch"
+        aria-checked="false"
+        aria-label="Cambiar a tema claro"
       >
-        <svg
-          class="theme-toggle__icon theme-toggle__icon--moon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        <svg
-          class="theme-toggle__icon theme-toggle__icon--sun"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <circle cx="12" cy="12" r="4"></circle>
-          <path
-            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
-          ></path>
-        </svg>
+        <span class="theme-toggle__thumb" aria-hidden="true">
+          <svg
+            class="theme-toggle__icon theme-toggle__icon--moon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg
+            class="theme-toggle__icon theme-toggle__icon--sun"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="4"></circle>
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+            ></path>
+          </svg>
+        </span>
       </button>
     </nav>
 
-    <p class="availability" aria-live="polite">
-      <span class="availability__dot" aria-hidden="true"></span>
-      <span>Disponible</span>
-    </p>
+    <button
+      type="button"
+      class="nav-toggle"
+      id="nav-toggle"
+      aria-expanded="false"
+      aria-controls="site-menu"
+      aria-label="Abrir menú"
+    >
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+    </button>
   </div>
 </header>
 
@@ -77,7 +84,7 @@ const currentPath = Astro.url.pathname;
 
   const applyTheme = (theme: 'light' | 'dark') => {
     root.dataset.theme = theme;
-    toggle?.setAttribute('aria-pressed', String(theme === 'light'));
+    toggle?.setAttribute('aria-checked', String(theme === 'dark'));
     toggle?.setAttribute(
       'aria-label',
       theme === 'light' ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro'
@@ -104,5 +111,33 @@ const currentPath = Astro.url.pathname;
       /* almacenamiento no disponible */
     }
     applyTheme(e.matches ? 'light' : 'dark');
+  });
+
+  const navToggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-menu');
+
+  const setNavOpen = (open: boolean) => {
+    nav?.classList.toggle('is-open', open);
+    navToggle?.setAttribute('aria-expanded', String(open));
+    navToggle?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  };
+
+  navToggle?.addEventListener('click', () => {
+    setNavOpen(navToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  nav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setNavOpen(false));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (navToggle?.getAttribute('aria-expanded') !== 'true') return;
+    const target = e.target as Node;
+    if (nav?.contains(target) || navToggle?.contains(target)) return;
+    setNavOpen(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setNavOpen(false);
   });
 </script>
