@@ -37,6 +37,7 @@ finishing. It depends on generated `.astro/types.d.ts`; if types are missing, ru
 - Analytics is opt-in: `PUBLIC_GA_ID` (see `.env.example`, `.env` is gitignored) — empty means no script loads. Conversion events dispatched: `whatsapp`, `email`, `contacto_form`.
 - Contact form: empty `FORM_ACCESS_KEY` in `src/consts.ts` makes submit fall back to opening WhatsApp; setting it enables the Web3Forms AJAX flow.
 - Hosting is **Vercel**; security/cache headers live in `vercel.json`. Node 22 is pinned via `package.json` `engines`. There are no Netlify/Cloudflare config files anymore.
+- Theming: dark/light via `data-theme` on `<html>`. Color tokens live in `global.css` (`:root`/`[data-theme='dark']` and `[data-theme='light']`); never hardcode colors in components. Toggle in `src/components/Header.astro` persists to `localStorage` (`theme`), and an inline script in `BaseLayout.astro` sets the theme before paint (no FOUC). Default follows `prefers-color-scheme`.
 
 ## Docs
 
