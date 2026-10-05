@@ -3,6 +3,15 @@ title: 'WordPress en 2026: por qué ya no conviene para tu negocio (y qué usar 
 description: 'WordPress fue el estándar durante años, pero hoy es lentitud, mantenimiento y riesgo. Te explico por qué conviene migrar y qué tecnología usar en su lugar.'
 pubDate: 2026-10-03
 tags: ['WordPress', 'Migración', 'Performance', 'Seguridad']
+faqs:
+  - pregunta: '¿Pierdo mi contenido y mi posicionamiento al migrar?'
+    respuesta: 'No. Reconstruyo el sitio con la misma información y redirijo todas las URLs viejas para no perder lo que ya posiciona en Google.'
+  - pregunta: '¿Cuánto cuesta mantener WordPress por año?'
+    respuesta: 'Entre hosting, plugins premium, temas y soporte, una web típica gasta unos $310.000 al año. Un sitio moderno se paga una vez y el mantenimiento es casi cero.'
+  - pregunta: '¿Puedo editar textos y precios yo mismo?'
+    respuesta: 'Sí. El sitio mantiene un panel de contenido simple, sin la complejidad ni el riesgo de WordPress.'
+  - pregunta: '¿Qué pasa con mi dominio y mis correos?'
+    respuesta: 'Se conservan tal cual. Solo cambia la tecnología del sitio, no tu dominio ni tus casillas de correo.'
 ---
 
 **Respuesta corta:** WordPress ya no conviene para la mayoría de los negocios porque obliga a mantener plugins y temas, carga lento, es el objetivo preferido de los hackers y necesita hosting más caro. Un sitio moderno (como los que hago con Astro) carga al instante, no se rompe y no necesita mantenimiento.

@@ -4,6 +4,15 @@ description: 'Los portales te cobran por publicar y se quedan con los contactos.
 pubDate: 2026-10-17
 draft: true
 tags: ['Inmobiliarias', 'Portales', 'SEO local', 'AEO', 'Ventas']
+faqs:
+  - pregunta: '¿Tengo que dejar los portales de propiedades?'
+    respuesta: 'No. Podés seguir usándolos, pero conviene no depender solo de ellos: tu web es el único canal donde el stock, la vidriera y los contactos son tuyos.'
+  - pregunta: '¿Puedo cargar y editar las propiedades yo mismo?'
+    respuesta: 'Sí. El sistema incluye un panel para cargar, editar y dar de baja propiedades, con destacados, propiedades vendidas y novedades.'
+  - pregunta: '¿Puedo importar mi stock actual de los portales?'
+    respuesta: 'Sí. Se puede importar lo que ya tenés publicado para no cargar cada propiedad a mano.'
+  - pregunta: '¿Cuánto tarda tener la web lista?'
+    respuesta: 'Entre 3 y 5 semanas, según la cantidad de propiedades y las funciones que necesites.'
 ---
 
 **Respuesta corta:** publicar solo en Zonaprop, Argenprop o Mercado Libre es alquilar tu vidriera: pagás por estar y las consultas quedan en manos del portal. Una web propia con sistema de propiedades te deja cargar tu stock, mostrarlo mejor y recibir los contactos directo en tu WhatsApp, sin pagar por cada consulta.

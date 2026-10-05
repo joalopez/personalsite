@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plantilla Carrusel Instagram — Velocidad web @joalopez</title>
+<!--
+  CARRUSEL · SEMANA 5 · FOCO VELOCIDAD / TUTORIAL ("Medí la velocidad de tu web")
+  Artículo de la semana: /blog/comprobar-velocidad-web
+
+  Cómo usar:
+  1. Abrí este archivo en el navegador.
+  2. Editá los textos de cada slide directo en el HTML.
+  3. Sacá una captura de cada slide (1080x1350) o usá "Imprimir > Guardar como PDF"
+     para exportar. Cada .ig-slide mide 1080x1350 px.
+  4. Subí los slides a Instagram como carrusel.
+  Paleta oficial: fondo #131314, verde #4aff41, magenta #ce1ccb.
+
+  REEL DE LA SEMANA · "Mirá cómo mido la velocidad de una web en 30 segundos"
+  Guion (grabación de pantalla real sobre una web lenta):
+  - 0-2s: GANCHO. Texto grande: "Esta web tarda 8 segundos. Mirá cómo lo sé." (pantalla en blanco).
+  - 2-6s: PROCESO. Enterá a pagespeed.web.dev, pegá la dirección de una web y tocá "Analizar".
+    Acelerá el video x4 mientras carga.
+  - 6-12s: PUNTAJE. Aparece el puntaje Móvil en rojo (ej. 41). Texto: "Menos de 50 en móvil =
+    estás perdiendo clientes."
+  - 12-18s: SEMÁFORO. Texto: "Verde 90+, mejorable hasta 89, rojo por debajo de 50. Mirá siempre el móvil."
+  - CIERRE: "Medí la tuya hoy. Si da mal, escribime: diagnóstico gratis → joalopez.com.ar"
+  Producción: grabación de pantalla + textos grandes, uno por momento. Música en baja.
+-->
+<style>
+  :root {
+    --bg: #131314;
+    --text: #f5f5f5;
+    --green: #4aff41;
+    --magenta: #ce1ccb;
+    --muted: rgba(245,245,245,0.66);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #000; font-family: 'DM Sans', system-ui, sans-serif; padding: 24px; }
+  .ig-slide {
+    width: 1080px;
+    height: 1350px;
+    background: var(--bg);
+    color: var(--text);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 96px;
+    margin: 0 auto 32px;
+    overflow: hidden;
+  }
+  .ig-slide.hook { justify-content: space-between; padding-top: 160px; }
+  .ig-brand {
+    position: absolute;
+    top: 64px; left: 96px;
+    font-family: 'BBH Bartle', sans-serif;
+    color: var(--green);
+    font-size: 44px;
+    letter-spacing: 0.04em;
+  }
+  .ig-index {
+    position: absolute;
+    top: 64px; right: 96px;
+    color: var(--muted);
+    font-size: 40px;
+  }
+  .ig-kicker {
+    color: var(--green);
+    font-size: 40px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .ig-title {
+    font-family: 'BBH Bartle', sans-serif;
+    font-size: 108px;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+  .ig-title .hl { color: var(--green); }
+  .ig-title .hl-magenta { color: var(--magenta); }
+  .ig-text {
+    font-size: 52px;
+    line-height: 1.35;
+    color: var(--muted);
+    margin-top: 48px;
+    font-weight: 300;
+  }
+  .ig-list { display: flex; flex-direction: column; gap: 40px; }
+  .ig-list li { display: flex; gap: 28px; font-size: 52px; line-height: 1.3; font-weight: 300; }
+  .ig-list li::before { content: '✕'; color: var(--magenta); font-weight: 700; flex-shrink: 0; }
+  .ig-list.ok li::before { content: '✓'; color: var(--green); }
+  .ig-cta {
+    background: var(--green);
+    color: #06210a;
+    font-weight: 700;
+    font-size: 52px;
+    padding: 48px 64px;
+    border-radius: 40px;
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 72px;
+  }
+  .ig-foot {
+    position: absolute;
+    bottom: 64px; left: 96px; right: 96px;
+    display: flex; justify-content: space-between;
+    color: var(--muted);
+    font-size: 40px;
+  }
+  .ig-bar {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 20px;
+    background: linear-gradient(90deg, var(--green) 50%, var(--magenta) 50%);
+  }
+  .ig-table { width: 100%; font-size: 48px; margin-top: 48px; border-collapse: collapse; }
+  .ig-table th, .ig-table td { text-align: left; padding: 28px 24px; border-bottom: 1px solid rgba(245,245,245,0.14); }
+  .ig-table th { color: var(--text); font-size: 44px; }
+  .ig-table td:first-child { color: var(--muted); }
+  .ig-table .bad { color: var(--magenta); font-weight: 700; }
+  .ig-table .mid { color: #f5c542; font-weight: 700; }
+  .ig-table .good { color: var(--green); font-weight: 700; }
+  .ig-num { font-family: 'BBH Bartle', sans-serif; color: var(--magenta); font-size: 240px; line-height: 1; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+
+  <!-- SLIDE 1 · GANCHO -->
+  <section class="ig-slide hook">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">1/6</span>
+    <div>
+      <p class="ig-kicker">Velocidad</p>
+      <h1 class="ig-title">Tu web tarda 6 segundos <span class="hl-magenta">y no lo sabés</span>. Medila en 2 minutos.</h1>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 2 · TUTORIAL -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">2/6</span>
+    <div>
+      <p class="ig-kicker">Cómo medir</p>
+      <h2 class="ig-title" style="font-size: 84px;">Es gratis y sin instalar nada</h2>
+      <ul class="ig-list ok" style="margin-top: 64px;">
+        <li>Entrá a pagespeed.web.dev</li>
+        <li>Pegá la dirección de tu web</li>
+        <li>Tocá "Analizar" y esperá unos segundos</li>
+      </ul>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 3 · CONTRASTE -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">3/6</span>
+    <div>
+      <p class="ig-kicker">Cómo leerlo</p>
+      <h2 class="ig-title" style="font-size: 84px;">El semáforo del puntaje</h2>
+      <table class="ig-table">
+        <tr><th>Puntaje</th><th>Estado</th></tr>
+        <tr><td>90 a 100</td><td class="good">Verde · rápida</td></tr>
+        <tr><td>50 a 89</td><td class="mid">Amarillo · mejorable</td></tr>
+        <tr><td>0 a 49</td><td class="bad">Rojo · perdés clientes</td></tr>
+      </table>
+      <p class="ig-text">Mirá siempre primero el puntaje <strong style="color: var(--text);">Móvil</strong>: ahí entra la mayoría de tu gente.</p>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 4 · EDUCACIÓN -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">4/6</span>
+    <div>
+      <p class="ig-kicker">Las 3 métricas</p>
+      <h2 class="ig-title" style="font-size: 84px;">En criollo</h2>
+      <ul class="ig-list" style="margin-top: 56px;">
+        <li><strong style="color: var(--text);">LCP (carga):</strong>&nbsp;lo principal se ve tarde. +2,5s y perdés gente.</li>
+        <li><strong style="color: var(--text);">INP (respuesta):</strong>&nbsp;tocás un botón y la web no reacciona.</li>
+        <li><strong style="color: var(--text);">CLS (estabilidad):</strong>&nbsp;las cosas se mueven mientras carga.</li>
+      </ul>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 5 · PROBLEMA -->
+  <section class="ig-slide">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">5/6</span>
+    <div>
+      <p class="ig-kicker">Si da mal</p>
+      <h2 class="ig-title" style="font-size: 84px;">Casi siempre tiene arreglo</h2>
+      <ul class="ig-list" style="margin-top: 56px;">
+        <li>WordPress con demasiados plugins</li>
+        <li>Imágenes gigantes sin optimizar</li>
+        <li>Hosting lento o compartido</li>
+        <li>Scripts de terceros (chats, mapas, trackers)</li>
+      </ul>
+      <p class="ig-text">No hace falta rediseñar todo: casi siempre es pasar a un sitio moderno y estático.</p>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>Deslizá →</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+  <!-- SLIDE 6 · CTA -->
+  <section class="ig-slide hook">
+    <span class="ig-brand">Joaquin</span>
+    <span class="ig-index">6/6</span>
+    <div>
+      <p class="ig-kicker">Tu turno</p>
+      <h2 class="ig-title" style="font-size: 92px;">¿Mediste tu web y <span class="hl">dio mal</span>?</h2>
+      <p class="ig-text">Escribime y te hago un diagnóstico gratis: te digo por qué está lenta y qué haría falta para que cargue al instante.</p>
+      <span class="ig-cta">WhatsApp en la bio →</span>
+    </div>
+    <div class="ig-foot"><span>@joalopez</span><span>joalopez.com.ar</span></div>
+    <span class="ig-bar"></span>
+  </section>
+
+</body>
+</html>

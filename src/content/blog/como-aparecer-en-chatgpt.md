@@ -3,6 +3,15 @@ title: 'Cómo hacer que ChatGPT y Gemini recomienden tu negocio (guía AEO 2026)
 description: 'Cada vez más gente le pregunta a la IA en vez de buscar en Google. Te explico qué mira ChatGPT para recomendarte un negocio y cómo optimizar tu web para aparecer en esas respuestas.'
 pubDate: 2026-10-10
 tags: ['AEO', 'IA', 'ChatGPT', 'SEO']
+faqs:
+  - pregunta: '¿Aparecer en la IA se paga?'
+    respuesta: 'No se paga por aparecer. Se optimiza tu web (datos estructurados, contenido en formato respuesta, FAQ y llms.txt) para que los motores de IA puedan entenderla y citarla.'
+  - pregunta: '¿El AEO reemplaza al SEO?'
+    respuesta: 'No, lo complementa. El SEO te deja en la lista de resultados de Google; el AEO busca que la IA te nombre dentro de su respuesta.'
+  - pregunta: '¿Cuánto tarda en verse el efecto?'
+    respuesta: 'Los datos estructurados se leen rápido, pero las citas dependen de cada motor. Hago seguimiento de menciones para medir qué mejora y qué no.'
+  - pregunta: '¿Sirve si ya tengo una web?'
+    respuesta: 'Sí. Se puede optimizar tu web actual o incluir el AEO desde cero en un sitio nuevo. Si es un WordPress lento, conviene combinarlo con una migración.'
 draft: true
 ---
 

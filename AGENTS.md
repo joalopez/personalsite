@@ -23,7 +23,8 @@ finishing. It depends on generated `.astro/types.d.ts`; if types are missing, ru
 - `src/consts.ts` — site meta, NAV_LINKS, contact/WhatsApp, `FORM_ACCESS_KEY`.
 - `src/data/services.ts` — `ServicePage` type + JSON-LD builders. `src/data/faq.ts` — home FAQ data.
 - `src/pages/servicios/*.astro` — each defines a `ServicePage` object and renders `ServiceLayout`.
-- `src/content/blog/*.md` + `src/content.config.ts` — blog collection schema (title, description, pubDate required; `draft: true` hides from build, list, and RSS).
+- `src/content/blog/*.md` + `src/content.config.ts` — blog collection schema (title, description, pubDate required; optional `faqs: [{ pregunta, respuesta }]`; `draft: true` hides from build, list, and RSS).
+- `src/pages/blog/[slug].astro` — post page: visible breadcrumb + `BlogPosting`/`BreadcrumbList`/`FAQPage` JSON-LD, reading time, FAQ block (from frontmatter `faqs`) and 2 related posts by shared tags.
 - `src/layouts/BaseLayout.astro` — injects Person JSON-LD and page `jsonLd`; `src/components/Seo.astro` — canonical/OG/Twitter tags.
 - `src/components/Artwork.astro` — inline generative SVG "images" (no raster assets). Variants: `hero`, `site`, `inmobiliaria`, `restaurante`, `profesionales`, `tiendas`, `ia`, `wordpress`. Colors come from CSS vars so it adapts to both themes; ~0 extra requests. `src/data/art.ts` maps service slugs / blog post ids to a variant.
 - `src/styles/global.css` — one plain-CSS stylesheet (no Tailwind/CSS-in-JS), imported once in BaseLayout.

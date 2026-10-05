@@ -1509,6 +1509,28 @@ h4 {
   font-size: 0.96rem;
 }
 
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-faint);
+}
+
+.breadcrumb a {
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent-1);
+}
+
+.breadcrumb [aria-current='page'] {
+  color: var(--text-primary);
+}
+
 /* ---------- Prose (blog article) ---------- */
 .prose {
   max-width: 46rem;

@@ -12,6 +12,9 @@ const blog = defineCollection({
     author: z.string().default('Joaquín López'),
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),
+    faqs: z
+      .array(z.object({ pregunta: z.string(), respuesta: z.string() }))
+      .default([]),
     draft: z.boolean().default(false),
   }),
 });

@@ -64,7 +64,7 @@ Sistema de contenido para convertir seguidores en clientes. La regla de oro:
 - Publicar en horarios de mayor actividad (probar y medir).
 - Un post de blog por semana → 1 carrusel + 1 reel + stories.
 
-## Calendario base (4 semanas)
+## Calendario base (8 semanas)
 
 | Semana | Carrusel | Reel | Foco |
 | --- | --- | --- | --- |
@@ -72,3 +72,10 @@ Sistema de contenido para convertir seguidores en clientes. La regla de oro:
 | 2 | "Cómo aparecer en ChatGPT" | Le pregunto a la IA por un rubro | AEO |
 | 3 | "Web para inmobiliarias" | Antes/después de ficha de propiedad | Inmobiliarias |
 | 4 | "5 errores en webs de negocios" | Mitos | General |
+| 5 | "Medí la velocidad de tu web" | Grabación de pantalla en PageSpeed | Velocidad / tutorial |
+| 6 | "Cuánto te cuesta tu WordPress por año" | La cuenta que nadie hace (pizarra/texto) | Anti-WordPress / costos |
+| 7 | "5 señales de que tu web necesita jubilarse" | Checklist hablando a cámara | General |
+| 8 | "Instagram no es tu web" | Pantalla dividida: perfil vs web propia | Web + redes |
+
+Cada semana sale de un artículo del blog (regla de oro). Las semanas 6-8 usan las
+ideas #2, #4 y #7 del banco; sus artículos se escriben cuando llegue cada semana.

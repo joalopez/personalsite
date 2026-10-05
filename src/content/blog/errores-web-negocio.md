@@ -4,6 +4,15 @@ description: 'La mayoría de las webs de negocios pierden consultas por los mism
 pubDate: 2026-10-24
 draft: true
 tags: ['Errores', 'Negocios', 'Diseño web', 'Conversión', 'SEO']
+faqs:
+  - pregunta: '¿Cómo sé si mi web tiene estos errores?'
+    respuesta: 'Abrila en el celular con datos móviles, mostrale el primer pantallazo a alguien ajeno al negocio y contá en cuántos toques llegás a escribirte. Si algo te traba, ahí está el error.'
+  - pregunta: '¿Hay que rehacer toda la web?'
+    respuesta: 'No siempre. Muchos se arreglan optimizando imágenes, ordenando el contenido y sumando un WhatsApp visible. Otros casos justifican un rediseño.'
+  - pregunta: '¿El diagnóstico es gratis?'
+    respuesta: 'Sí. Escribime y te digo cuál de los cinco errores tiene tu web y en qué orden conviene arreglarlos.'
+  - pregunta: '¿Cuál es el error más urgente?'
+    respuesta: 'La velocidad. Si la web tarda 5 segundos o más, la mayoría se va antes de ver algo y Google también te castiga en el ranking.'
 ---
 
 **Respuesta corta:** las webs de negocios pierden clientes por cinco errores repetidos: cargar lento en el celular, no explicar qué hacés en los primeros segundos, esconder el botón de contacto, dar una imagen vieja o desconfiable, y no aparecer en Google ni en la IA. Los cinco tienen arreglo y ninguno es un problema de "suerte".

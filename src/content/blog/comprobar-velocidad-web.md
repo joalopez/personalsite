@@ -4,6 +4,15 @@ description: 'Aprendé a medir la velocidad de tu página en dos minutos con Pag
 pubDate: 2026-10-31
 draft: true
 tags: ['Velocidad', 'Tutorial', 'SEO', 'Rendimiento']
+faqs:
+  - pregunta: '¿Qué puntaje de PageSpeed es bueno?'
+    respuesta: 'Verde (90 a 100) es una web rápida; amarillo (50 a 89) hay cosas para mejorar; rojo (0 a 49) está lenta y estás perdiendo clientes. Mirá siempre primero el puntaje Móvil.'
+  - pregunta: '¿Por qué el puntaje cambia entre pruebas?'
+    respuesta: 'El resultado varía un poco en cada medición. Medí dos o tres veces y quedate con el comportamiento general, no con un número exacto.'
+  - pregunta: '¿Qué hago si da en rojo?'
+    respuesta: 'Casi siempre tiene arreglo: revisar los plugins de WordPress, optimizar las imágenes, mejorar el hosting y sacar scripts de terceros que bloquean la carga.'
+  - pregunta: '¿PageSpeed y Lighthouse dan lo mismo?'
+    respuesta: 'Lighthouse es el motor que usa PageSpeed y sirve para medir un sitio que todavía no publicaste. Los informes son muy parecidos.'
 ---
 
 **Respuesta corta:** entrá a `pagespeed.web.dev`, pegá la dirección de tu página y tocá "Analizar". En menos de un minuto tenés un puntaje de 0 a 100 y las métricas que importan. Si da menos de 90 en la solapa **Móvil**, tu web está perdiendo visitantes y clientes. Más abajo te explico cómo leerlo y qué hacer.
