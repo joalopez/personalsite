@@ -898,6 +898,43 @@ h4 {
   margin-left: 0.25rem;
 }
 
+/* ---------- Card clickeable (stretched link) ---------- */
+.card--clickable {
+  position: relative;
+}
+
+.card--clickable .card__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.card--clickable:focus-within {
+  border-color: var(--accent-1);
+}
+
+.card--clickable .card__icon {
+  transition: color var(--transition-medium), background-color var(--transition-medium),
+    border-color var(--transition-medium), transform var(--transition-medium);
+}
+
+.card--clickable:hover .card__icon {
+  color: var(--on-accent);
+  background: var(--accent-1);
+  border-color: var(--accent-1);
+  transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card--clickable .card__icon {
+    transition: none;
+  }
+
+  .card--clickable:hover .card__icon {
+    transform: none;
+  }
+}
+
 /* ---------- WordPress highlight ---------- */
 .wp {
   border: 1px solid rgba(var(--accent-2-rgb), 0.4);
@@ -1132,6 +1169,15 @@ h4 {
   display: grid;
   gap: 0.75rem;
   max-width: 52rem;
+}
+
+#faq .section__head {
+  text-align: center;
+  margin-inline: auto;
+}
+
+#faq .faq {
+  margin-inline: auto;
 }
 
 .faq details {
