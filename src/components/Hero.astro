@@ -1,28 +1,351 @@
 ---
 import { WHATSAPP_URL } from '../consts';
-
-const tags = ['Frontend', 'UX/UI', 'Performance', 'SEO', 'AEO', 'WordPress → moderno'];
 ---
 
 <section class="hero">
-  <div class="container">
-    <h1 class="hero__title">
-      Webs rápidas que aparecen en <em>Google</em> y en la <em>IA</em>
-    </h1>
-    <p class="hero__subtitle">
-      Diseño y desarrollo sitios que cargan en un parpadeo, se posicionan en buscadores y son
-      citados por ChatGPT, Gemini y Google AI. ¿Tu WordPress quedó lento? Te lo migro.
-    </p>
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <h1 class="hero__title">
+        Webs rápidas que aparecen en <em>Google</em> y en la <em>IA</em>
+      </h1>
+      <p class="hero__subtitle">
+        Diseño y desarrollo sitios que cargan en un parpadeo, se posicionan en buscadores y son
+        citados por ChatGPT, Gemini y Google AI. ¿Tu WordPress quedó lento? Te lo migro.
+      </p>
 
-    <div class="hero__actions">
-      <a class="btn btn--primary" href={WHATSAPP_URL} target="_blank" rel="noopener">
-        Pedir presupuesto sin cargo
-      </a>
-      <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href={WHATSAPP_URL} target="_blank" rel="noopener">
+          Pedir presupuesto sin cargo
+        </a>
+        <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
+      </div>
+
+      <!-- En una sola línea a propósito: compressHTML de Astro se come los espacios entre texto y links -->
+      <p class="hero__rubros">Webs para <a class="hero__sync" style="--d:0s" href="/servicios/webs-para-inmobiliarias">inmobiliarias</a>, <a class="hero__sync" style="--d:4s" href="/servicios/webs-para-restaurantes">restaurantes</a>, <a class="hero__sync" style="--d:8s" href="/servicios/tiendas-online">tiendas online</a> y <a class="hero__sync" style="--d:12s" href="/servicios/webs-para-profesionales">profesionales</a>. También <a href="/servicios/migracion-wordpress">migro tu WordPress</a> y <a href="/servicios/optimizacion-ia">optimizo tu sitio para la IA</a>.</p>
     </div>
 
-    <ul class="hero__tags" aria-label="Especialidades">
-      {tags.map((tag) => <li class="tag">{tag}</li>)}
-    </ul>
+    <div class="hero__art">
+      <svg class="hero__viz" viewBox="0 0 580 490" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="hero-page">
+            <rect x="20" y="63" width="420" height="287"/>
+          </clipPath>
+        </defs>
+        <rect class="frame" x="20" y="20" width="420" height="330" rx="16"/>
+        <circle class="b2f" cx="42" cy="42" r="4.5"/>
+        <circle class="b2f" cx="58" cy="42" r="4.5"/>
+        <circle class="b2f" cx="74" cy="42" r="4.5"/>
+        <rect class="b1" x="96" y="31" width="250" height="22" rx="11"/>
+        <path class="lock" d="M104 41v-2a3 3 0 0 1 6 0v2M102.5 41h9v6.5h-9z"/>
+        <path class="rule" d="M20 62.5h420"/>
+
+        <g class="scene s0" style="--d:0s">
+          <text class="url" x="117" y="46">tuinmobiliaria.com.ar</text>
+          <rect class="load" x="20" y="61" width="420" height="2"/>
+          <g clip-path="url(#hero-page)">
+            <g class="r" style="--i:0">
+              <rect class="b3" x="40" y="80" width="62" height="9" rx="3"/>
+              <rect class="b2" x="286" y="82" width="30" height="6" rx="3"/>
+              <rect class="b2" x="324" y="82" width="30" height="6" rx="3"/>
+              <rect class="acc" x="364" y="77" width="56" height="16" rx="8"/>
+            </g>
+            <g class="r" style="--i:1">
+              <rect class="b4" x="40" y="106" width="214" height="15" rx="3"/>
+              <rect class="b2" x="40" y="128" width="150" height="8" rx="3"/>
+            </g>
+            <g class="r" style="--i:2">
+              <rect class="hfield" x="40" y="146" width="380" height="34" rx="10"/>
+              <circle class="glyph" cx="59" cy="163" r="6"/>
+              <path class="glyph" d="M63.5 167.5l4 4"/>
+              <rect class="b2" x="76" y="160" width="120" height="6" rx="3"/>
+              <rect class="b1" x="296" y="154" width="54" height="18" rx="9"/>
+              <rect class="acc" x="356" y="154" width="56" height="18" rx="9"/>
+            </g>
+            <g class="r" style="--i:3">
+              <rect class="hcard" x="40" y="192" width="120" height="130" rx="10"/>
+              <rect class="b1" x="46" y="198" width="108" height="60" rx="6"/>
+              <path class="glyph" d="M85 227L100 214L115 227M90 223V240H110V223M97 240V232H103V240"/>
+              <rect class="b3" x="50" y="268" width="74" height="7" rx="3"/>
+              <rect class="b2" x="50" y="281" width="52" height="6" rx="3"/>
+              <rect class="acc" x="50" y="298" width="46" height="11" rx="3"/>
+              <circle class="wa" cx="142" cy="303" r="7"/>
+            </g>
+            <g class="r" style="--i:4">
+              <rect class="hcard" x="170" y="192" width="120" height="130" rx="10"/>
+              <rect class="b1" x="176" y="198" width="108" height="60" rx="6"/>
+              <path class="glyph" d="M215 227L230 214L245 227M220 223V240H240V223M227 240V232H233V240"/>
+              <rect class="b3" x="180" y="268" width="74" height="7" rx="3"/>
+              <rect class="b2" x="180" y="281" width="52" height="6" rx="3"/>
+              <rect class="acc" x="180" y="298" width="46" height="11" rx="3"/>
+              <circle class="wa" cx="272" cy="303" r="7"/>
+            </g>
+            <g class="r" style="--i:5">
+              <rect class="hcard" x="300" y="192" width="120" height="130" rx="10"/>
+              <rect class="b1" x="306" y="198" width="108" height="60" rx="6"/>
+              <path class="glyph" d="M345 227L360 214L375 227M350 223V240H370V223M357 240V232H363V240"/>
+              <rect class="b3" x="310" y="268" width="74" height="7" rx="3"/>
+              <rect class="b2" x="310" y="281" width="52" height="6" rx="3"/>
+              <rect class="acc" x="310" y="298" width="46" height="11" rx="3"/>
+              <circle class="wa" cx="402" cy="303" r="7"/>
+            </g>
+          </g>
+          <g class="late serp">
+            <rect class="raised" x="300" y="262" width="262" height="90" rx="12"/>
+            <circle class="b2f" cx="320" cy="282" r="7"/>
+            <text class="tiny" x="334" y="286">tuinmobiliaria.com.ar</text>
+            <text class="link" x="314" y="310">Tu Inmobiliaria | Alquileres</text>
+            <rect class="b2" x="314" y="322" width="214" height="6" rx="3"/>
+            <rect class="b2" x="314" y="334" width="150" height="6" rx="3"/>
+          </g>
+          <g class="later ai">
+            <path class="raised" d="M56 376h372a14 14 0 0 1 14 14v68a14 14 0 0 1-14 14H40V392a16 16 0 0 1 16-16z"/>
+            <path class="accf" d="M66 392l2.6 6.4L75 401l-6.4 2.6L66 410l-2.6-6.4L57 401l6.4-2.6z"/>
+            <text class="q" x="84" y="406">¿Qué inmobiliaria me recomendás?</text>
+            <text class="ans" x="60" y="436">Te recomiendo <tspan class="nm">Tu Inmobiliaria</tspan>: tiene buscador</text>
+            <text class="ans" x="60" y="458">por zona y responde por WhatsApp.</text>
+          </g>
+        </g>
+
+        <g class="scene" style="--d:4s">
+          <text class="url" x="117" y="46">turestaurante.com.ar</text>
+          <rect class="load" x="20" y="61" width="420" height="2"/>
+          <g clip-path="url(#hero-page)">
+            <g class="r" style="--i:0">
+              <rect class="b3" x="40" y="80" width="62" height="9" rx="3"/>
+              <rect class="b2" x="286" y="82" width="30" height="6" rx="3"/>
+              <rect class="b2" x="324" y="82" width="30" height="6" rx="3"/>
+              <rect class="acc" x="364" y="77" width="56" height="16" rx="8"/>
+            </g>
+            <g class="r" style="--i:1">
+              <rect class="b1" x="40" y="104" width="380" height="92" rx="10"/>
+              <circle class="glyph" cx="230" cy="150" r="28"/>
+              <circle class="glyph soft" cx="230" cy="150" r="17"/>
+              <path class="glyph" d="M184 128v44M180 128v12a4 4 0 0 0 8 0v-12M276 128c6 4 6 18 0 22v22"/>
+            </g>
+            <g class="r" style="--i:2">
+              <rect class="b4" x="40" y="210" width="150" height="13" rx="3"/>
+            </g>
+            <g class="r" style="--i:3">
+              <rect class="b3" x="40" y="236" width="96" height="7" rx="3"/>
+              <path class="dots" d="M150 240H360"/>
+              <rect class="b4" x="370" y="236" width="50" height="8" rx="3"/>
+            </g>
+            <g class="r" style="--i:4">
+              <rect class="b3" x="40" y="256" width="130" height="7" rx="3"/>
+              <path class="dots" d="M184 260H360"/>
+              <rect class="b4" x="370" y="256" width="50" height="8" rx="3"/>
+            </g>
+            <g class="r" style="--i:5">
+              <rect class="b3" x="40" y="276" width="96" height="7" rx="3"/>
+              <path class="dots" d="M150 280H360"/>
+              <rect class="b4" x="370" y="276" width="50" height="8" rx="3"/>
+            </g>
+            <g class="r" style="--i:6">
+              <rect class="b3" x="40" y="296" width="130" height="7" rx="3"/>
+              <path class="dots" d="M184 300H360"/>
+              <rect class="b4" x="370" y="296" width="50" height="8" rx="3"/>
+            </g>
+            <g class="r" style="--i:7">
+              <rect class="acc" x="40" y="318" width="112" height="20" rx="10"/>
+              <rect class="hfield" x="160" y="318" width="138" height="20" rx="10"/>
+              <circle class="wa" cx="174" cy="328" r="5"/>
+              <rect class="b2" x="184" y="325" width="100" height="6" rx="3"/>
+            </g>
+          </g>
+          <g class="late serp">
+            <rect class="raised" x="300" y="262" width="262" height="90" rx="12"/>
+            <circle class="b2f" cx="320" cy="282" r="7"/>
+            <text class="tiny" x="334" y="286">turestaurante.com.ar</text>
+            <text class="link" x="314" y="310">Tu Restaurante | Reservas</text>
+            <rect class="b2" x="314" y="322" width="214" height="6" rx="3"/>
+            <rect class="b2" x="314" y="334" width="150" height="6" rx="3"/>
+          </g>
+          <g class="later ai">
+            <path class="raised" d="M56 376h372a14 14 0 0 1 14 14v68a14 14 0 0 1-14 14H40V392a16 16 0 0 1 16-16z"/>
+            <path class="accf" d="M66 392l2.6 6.4L75 401l-6.4 2.6L66 410l-2.6-6.4L57 401l6.4-2.6z"/>
+            <text class="q" x="84" y="406">¿Dónde puedo cenar esta noche?</text>
+            <text class="ans" x="60" y="436"><tspan class="nm">Tu Restaurante</tspan> tiene el menú online y</text>
+            <text class="ans" x="60" y="458">podés reservar en un toque.</text>
+          </g>
+        </g>
+
+        <g class="scene" style="--d:8s">
+          <text class="url" x="117" y="46">tutienda.com.ar</text>
+          <rect class="load" x="20" y="61" width="420" height="2"/>
+          <g clip-path="url(#hero-page)">
+            <g class="r" style="--i:0">
+              <rect class="b3" x="40" y="80" width="62" height="9" rx="3"/>
+              <rect class="b2" x="286" y="82" width="30" height="6" rx="3"/>
+              <rect class="b2" x="324" y="82" width="30" height="6" rx="3"/>
+              <path class="glyph" d="M372 78h5l4 14h22l3-10h-27"/>
+              <circle class="glyph" cx="384" cy="97" r="2"/>
+              <circle class="glyph" cx="400" cy="97" r="2"/>
+              <circle class="accf" cx="411" cy="78" r="6"/>
+            </g>
+            <g class="r" style="--i:1">
+              <rect class="b4" x="40" y="104" width="170" height="13" rx="3"/>
+              <rect class="acc" x="40" y="125" width="48" height="16" rx="8"/>
+              <rect class="b1" x="94" y="125" width="58" height="16" rx="8"/>
+              <rect class="b1" x="158" y="125" width="52" height="16" rx="8"/>
+            </g>
+            <g class="r" style="--i:2">
+              <rect class="hcard" x="40" y="150" width="120" height="84" rx="10"/>
+              <rect class="b1" x="46" y="156" width="50" height="72" rx="6"/>
+              <circle class="glyph" cx="71" cy="190" r="12"/>
+              <rect class="b3" x="104" y="164" width="46" height="7" rx="3"/>
+              <rect class="b2" x="104" y="177" width="32" height="6" rx="3"/>
+              <rect class="acc" x="104" y="200" width="40" height="10" rx="3"/>
+              <circle class="glyph" cx="143" cy="218" r="7"/>
+              <path class="glyph" d="M140 218h6M143 215v6"/>
+            </g>
+            <g class="r" style="--i:3">
+              <rect class="hcard" x="170" y="150" width="120" height="84" rx="10"/>
+              <rect class="b1" x="176" y="156" width="50" height="72" rx="6"/>
+              <circle class="glyph" cx="201" cy="190" r="12"/>
+              <rect class="b3" x="234" y="164" width="46" height="7" rx="3"/>
+              <rect class="b2" x="234" y="177" width="32" height="6" rx="3"/>
+              <rect class="acc" x="234" y="200" width="40" height="10" rx="3"/>
+              <circle class="glyph" cx="273" cy="218" r="7"/>
+              <path class="glyph" d="M270 218h6M273 215v6"/>
+            </g>
+            <g class="r" style="--i:4">
+              <rect class="hcard" x="300" y="150" width="120" height="84" rx="10"/>
+              <rect class="b1" x="306" y="156" width="50" height="72" rx="6"/>
+              <circle class="glyph" cx="331" cy="190" r="12"/>
+              <rect class="b3" x="364" y="164" width="46" height="7" rx="3"/>
+              <rect class="b2" x="364" y="177" width="32" height="6" rx="3"/>
+              <rect class="acc" x="364" y="200" width="40" height="10" rx="3"/>
+              <circle class="glyph" cx="403" cy="218" r="7"/>
+              <path class="glyph" d="M400 218h6M403 215v6"/>
+            </g>
+            <g class="r" style="--i:5">
+              <rect class="hcard" x="40" y="242" width="120" height="84" rx="10"/>
+              <rect class="b1" x="46" y="248" width="50" height="72" rx="6"/>
+              <circle class="glyph" cx="71" cy="282" r="12"/>
+              <rect class="b3" x="104" y="256" width="46" height="7" rx="3"/>
+              <rect class="b2" x="104" y="269" width="32" height="6" rx="3"/>
+              <rect class="acc" x="104" y="292" width="40" height="10" rx="3"/>
+              <circle class="glyph" cx="143" cy="310" r="7"/>
+              <path class="glyph" d="M140 310h6M143 307v6"/>
+            </g>
+            <g class="r" style="--i:6">
+              <rect class="hcard" x="170" y="242" width="120" height="84" rx="10"/>
+              <rect class="b1" x="176" y="248" width="50" height="72" rx="6"/>
+              <circle class="glyph" cx="201" cy="282" r="12"/>
+              <rect class="b3" x="234" y="256" width="46" height="7" rx="3"/>
+              <rect class="b2" x="234" y="269" width="32" height="6" rx="3"/>
+              <rect class="acc" x="234" y="292" width="40" height="10" rx="3"/>
+              <circle class="glyph" cx="273" cy="310" r="7"/>
+              <path class="glyph" d="M270 310h6M273 307v6"/>
+            </g>
+            <g class="r" style="--i:7">
+              <rect class="hcard" x="300" y="242" width="120" height="84" rx="10"/>
+              <rect class="b1" x="306" y="248" width="50" height="72" rx="6"/>
+              <circle class="glyph" cx="331" cy="282" r="12"/>
+              <rect class="b3" x="364" y="256" width="46" height="7" rx="3"/>
+              <rect class="b2" x="364" y="269" width="32" height="6" rx="3"/>
+              <rect class="acc" x="364" y="292" width="40" height="10" rx="3"/>
+              <circle class="glyph" cx="403" cy="310" r="7"/>
+              <path class="glyph" d="M400 310h6M403 307v6"/>
+            </g>
+          </g>
+          <g class="late serp">
+            <rect class="raised" x="300" y="262" width="262" height="90" rx="12"/>
+            <circle class="b2f" cx="320" cy="282" r="7"/>
+            <text class="tiny" x="334" y="286">tutienda.com.ar</text>
+            <text class="link" x="314" y="310">Tu Tienda | Envíos al país</text>
+            <rect class="b2" x="314" y="322" width="214" height="6" rx="3"/>
+            <rect class="b2" x="314" y="334" width="150" height="6" rx="3"/>
+          </g>
+          <g class="later ai">
+            <path class="raised" d="M56 376h372a14 14 0 0 1 14 14v68a14 14 0 0 1-14 14H40V392a16 16 0 0 1 16-16z"/>
+            <path class="accf" d="M66 392l2.6 6.4L75 401l-6.4 2.6L66 410l-2.6-6.4L57 401l6.4-2.6z"/>
+            <text class="q" x="84" y="406">¿Dónde compro yerba orgánica online?</text>
+            <text class="ans" x="60" y="436"><tspan class="nm">Tu Tienda</tspan> hace envíos a todo el país</text>
+            <text class="ans" x="60" y="458">y acepta pago en cuotas.</text>
+          </g>
+        </g>
+
+        <g class="scene" style="--d:12s">
+          <text class="url" x="117" y="46">tuconsultorio.com.ar</text>
+          <rect class="load" x="20" y="61" width="420" height="2"/>
+          <g clip-path="url(#hero-page)">
+            <g class="r" style="--i:0">
+              <rect class="b3" x="40" y="80" width="62" height="9" rx="3"/>
+              <rect class="b2" x="286" y="82" width="30" height="6" rx="3"/>
+              <rect class="b2" x="324" y="82" width="30" height="6" rx="3"/>
+              <rect class="acc" x="364" y="77" width="56" height="16" rx="8"/>
+            </g>
+            <g class="r" style="--i:1">
+              <circle class="b1f" cx="104" cy="160" r="52"/>
+              <circle class="b2f" cx="104" cy="146" r="17"/>
+              <path class="b2f" d="M72 196c4-20 18-28 32-28s28 8 32 28a52 52 0 0 1-64 0z"/>
+            </g>
+            <g class="r" style="--i:2">
+              <rect class="b4" x="180" y="116" width="220" height="15" rx="3"/>
+              <rect class="b4" x="180" y="138" width="180" height="15" rx="3"/>
+              <rect class="b2" x="180" y="164" width="160" height="8" rx="3"/>
+              <rect class="b2" x="180" y="178" width="120" height="8" rx="3"/>
+            </g>
+            <g class="r" style="--i:3">
+              <rect class="acc" x="180" y="198" width="112" height="24" rx="12"/>
+              <rect class="hfield" x="300" y="198" width="100" height="24" rx="12"/>
+              <rect class="b2" x="316" y="207" width="68" height="6" rx="3"/>
+            </g>
+            <g class="r" style="--i:4">
+              <rect class="hcard" x="40" y="240" width="120" height="82" rx="10"/>
+              <circle class="b1f" cx="62" cy="262" r="11"/>
+              <rect class="b3" x="52" y="284" width="82" height="7" rx="3"/>
+              <rect class="b2" x="52" y="298" width="62" height="6" rx="3"/>
+            </g>
+            <g class="r" style="--i:5">
+              <rect class="hcard" x="170" y="240" width="120" height="82" rx="10"/>
+              <circle class="b1f" cx="192" cy="262" r="11"/>
+              <rect class="b3" x="182" y="284" width="82" height="7" rx="3"/>
+              <rect class="b2" x="182" y="298" width="62" height="6" rx="3"/>
+            </g>
+            <g class="r" style="--i:6">
+              <rect class="hcard" x="300" y="240" width="120" height="82" rx="10"/>
+              <circle class="b1f" cx="322" cy="262" r="11"/>
+              <rect class="b3" x="312" y="284" width="82" height="7" rx="3"/>
+              <rect class="b2" x="312" y="298" width="62" height="6" rx="3"/>
+            </g>
+          </g>
+          <g class="late serp">
+            <rect class="raised" x="300" y="262" width="262" height="90" rx="12"/>
+            <circle class="b2f" cx="320" cy="282" r="7"/>
+            <text class="tiny" x="334" y="286">tuconsultorio.com.ar</text>
+            <text class="link" x="314" y="310">Tu Consultorio | Turnos online</text>
+            <rect class="b2" x="314" y="322" width="214" height="6" rx="3"/>
+            <rect class="b2" x="314" y="334" width="150" height="6" rx="3"/>
+          </g>
+          <g class="later ai">
+            <path class="raised" d="M56 376h372a14 14 0 0 1 14 14v68a14 14 0 0 1-14 14H40V392a16 16 0 0 1 16-16z"/>
+            <path class="accf" d="M66 392l2.6 6.4L75 401l-6.4 2.6L66 410l-2.6-6.4L57 401l6.4-2.6z"/>
+            <text class="q" x="84" y="406">¿Me recomendás un dentista?</text>
+            <text class="ans" x="60" y="436"><tspan class="nm">Tu Consultorio</tspan> tiene turnos online y</text>
+            <text class="ans" x="60" y="458">muy buenas reseñas.</text>
+          </g>
+        </g>
+
+        <g class="gauge">
+          <circle class="raised" cx="520" cy="72" r="46"/>
+          <circle class="track" cx="520" cy="72" r="34"/>
+          <circle class="ring" cx="520" cy="72" r="34" pathLength="100" transform="rotate(-90 520 72)"/>
+          <text class="score" x="520" y="79">100</text>
+          <text class="tiny mid" x="520" y="136">Performance</text>
+        </g>
+      </svg>
+    </div>
   </div>
 </section>
+
+<script>
+  // Pausa las animaciones cuando el hero no está en pantalla
+  const hero = document.querySelector<HTMLElement>('.hero');
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      hero.classList.toggle('is-paused', !entry.isIntersecting);
+    }).observe(hero);
+  }
+</script>

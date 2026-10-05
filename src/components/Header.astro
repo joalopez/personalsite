@@ -13,10 +13,11 @@ const currentPath = Astro.url.pathname;
         NAV_LINKS.map((link) => {
           const isActive =
             link.href === currentPath || (link.href !== '/' && currentPath.startsWith(link.href));
+          const isContacto = link.href === '/#contacto';
           return (
             <a
               href={link.href}
-              class="site-nav__link"
+              class:list={['site-nav__link', isContacto && 'site-nav__link--contacto']}
               aria-current={isActive ? 'page' : undefined}
             >
               {link.label}
@@ -27,6 +28,11 @@ const currentPath = Astro.url.pathname;
       <a class="btn btn--primary site-nav__cta" href={WHATSAPP_URL} target="_blank" rel="noopener">
         WhatsApp
       </a>
+    </nav>
+
+    <div class="site-header__side">
+      <a class="btn btn--primary site-header__cta" href="/#contacto">Contacto</a>
+
       <button
         type="button"
         class="theme-toggle"
@@ -63,18 +69,18 @@ const currentPath = Astro.url.pathname;
           </svg>
         </span>
       </button>
-    </nav>
 
-    <button
-      type="button"
-      class="nav-toggle"
-      id="nav-toggle"
-      aria-expanded="false"
-      aria-controls="site-menu"
-      aria-label="Abrir menú"
-    >
-      <span class="nav-toggle__bars" aria-hidden="true"></span>
-    </button>
+      <button
+        type="button"
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-expanded="false"
+        aria-controls="site-menu"
+        aria-label="Abrir menú"
+      >
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+      </button>
+    </div>
   </div>
 </header>
 

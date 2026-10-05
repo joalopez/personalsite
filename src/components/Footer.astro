@@ -1,5 +1,5 @@
 ---
-import { EMAIL, LINKEDIN_URL, INSTAGRAM_URL, SITE_NAME } from '../consts';
+import { EMAIL, LINKEDIN_URL, INSTAGRAM_URL, NAV_LINKS, SITE_NAME } from '../consts';
 
 const year = new Date().getFullYear();
 
@@ -12,26 +12,69 @@ const servicios = [
   { slug: 'tiendas-online', label: 'Tiendas online' },
   { slug: 'intranet-para-empresas', label: 'Intranet para empresas' },
 ];
+
+const contacto = [
+  { href: `mailto:${EMAIL}`, label: 'Email' },
+  { href: LINKEDIN_URL, label: 'LinkedIn', external: true },
+  { href: INSTAGRAM_URL, label: 'Instagram', external: true },
+];
 ---
 
 <footer class="site-footer">
-  <div class="container site-footer__inner">
-    <a href="/" class="brand" aria-label={`${SITE_NAME} — inicio`}>Joaquin</a>
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__col site-footer__col--brand">
+        <a href="/" class="brand" aria-label={`${SITE_NAME} — inicio`}>Joaquin</a>
+        <p class="site-footer__tagline">
+          Webs rápidas, optimizadas para aparecer en Google y en los motores de IA.
+        </p>
+      </div>
 
-    <nav class="site-footer__links" aria-label="Enlaces de contacto">
-      <a href={`mailto:${EMAIL}`}>Email</a>
-      <a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>
-      <a href={INSTAGRAM_URL} target="_blank" rel="noopener">Instagram</a>
-      <a href="/blog">Blog</a>
-    </nav>
+      <nav class="site-footer__col" aria-label="Navegación">
+        <h2 class="site-footer__heading">Navegación</h2>
+        <ul class="site-footer__list">
+          {
+            NAV_LINKS.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
 
-    <nav class="site-footer__links site-footer__services" aria-label="Servicios">
-      {
-        servicios.map((servicio) => (
-          <a href={`/servicios/${servicio.slug}`}>{servicio.label}</a>
-        ))
-      }
-    </nav>
+      <nav class="site-footer__col" aria-label="Servicios">
+        <h2 class="site-footer__heading">Servicios</h2>
+        <ul class="site-footer__list">
+          {
+            servicios.map((servicio) => (
+              <li>
+                <a href={`/servicios/${servicio.slug}`}>{servicio.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav class="site-footer__col" aria-label="Contacto">
+        <h2 class="site-footer__heading">Contacto</h2>
+        <ul class="site-footer__list">
+          {
+            contacto.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener' : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
 
     <p class="site-footer__legal">© {year} {SITE_NAME}. Todos los derechos reservados.</p>
   </div>
