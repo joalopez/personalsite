@@ -32,9 +32,9 @@
   --text-muted: rgba(245, 245, 245, 0.66);
   --text-faint: rgba(245, 245, 245, 0.45);
   --accent-1: #4aff41;
-  --accent-2: #ce1ccb;
+  --accent-2: #cba328;
   --accent-1-rgb: 74, 255, 65;
-  --accent-2-rgb: 206, 28, 203;
+  --accent-2-rgb: 203, 163, 40;
   --on-accent: #06210a;
   --border: rgba(245, 245, 245, 0.12);
   --border-strong: rgba(245, 245, 245, 0.22);
@@ -44,7 +44,7 @@
   --danger: #ff6b6b;
   --danger-rgb: 255, 107, 107;
 
-  --shadow-glow: 0 0 1rem rgba(206, 28, 203, 0.35), 0 0 2.5rem rgba(206, 28, 203, 0.18);
+  --shadow-glow: 0 0 1rem rgba(203, 163, 40, 0.35), 0 0 2.5rem rgba(203, 163, 40, 0.18);
   --shadow-glow-green: 0 0 1rem rgba(74, 255, 65, 0.35), 0 0 2.5rem rgba(74, 255, 65, 0.15);
   --shadow-card-hover: 0 1.5rem 3rem -2rem rgba(0, 0, 0, 0.8);
   --shadow-island: 0 1rem 2.5rem -0.75rem rgba(0, 0, 0, 0.9),
@@ -61,10 +61,10 @@
   --text-primary: #17171a;
   --text-muted: rgba(23, 23, 26, 0.72);
   --text-faint: rgba(23, 23, 26, 0.52);
-  --accent-1: #1a9e2e;
-  --accent-2: #b012ad;
-  --accent-1-rgb: 26, 158, 46;
-  --accent-2-rgb: 176, 18, 173;
+  --accent-1: #28965a;
+  --accent-2: #cba328;
+  --accent-1-rgb: 40, 150, 90;
+  --accent-2-rgb: 203, 163, 40;
   --on-accent: #ffffff;
   --border: rgba(23, 23, 26, 0.14);
   --border-strong: rgba(23, 23, 26, 0.26);
@@ -74,8 +74,8 @@
   --danger: #d92d20;
   --danger-rgb: 217, 45, 32;
 
-  --shadow-glow: 0 0 1rem rgba(176, 18, 173, 0.22), 0 0 2.5rem rgba(176, 18, 173, 0.12);
-  --shadow-glow-green: 0 0 1rem rgba(26, 158, 46, 0.25), 0 0 2.5rem rgba(26, 158, 46, 0.12);
+  --shadow-glow: 0 0 1rem rgba(203, 163, 40, 0.22), 0 0 2.5rem rgba(203, 163, 40, 0.12);
+  --shadow-glow-green: 0 0 1rem rgba(40, 150, 90, 0.25), 0 0 2.5rem rgba(40, 150, 90, 0.12);
   --shadow-card-hover: 0 1.5rem 3rem -2rem rgba(23, 23, 26, 0.22);
   --shadow-island: 0 1rem 2.5rem -0.75rem rgba(23, 23, 26, 0.18),
     0 0.35rem 1rem -0.5rem rgba(23, 23, 26, 0.1), inset 0 0 0 1px rgba(23, 23, 26, 0.05);
@@ -1432,20 +1432,20 @@ h4 {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  background: #25d366;
-  color: #06210a;
+  background: var(--accent-1);
+  color: var(--on-accent);
   font-weight: 700;
   font-size: 0.95rem;
   padding: 0.85rem 1.15rem;
   border-radius: 999px;
-  box-shadow: 0 0.75rem 2rem -0.5rem rgba(37, 211, 102, 0.6);
+  box-shadow: none;
   transition: transform var(--transition-medium), box-shadow var(--transition-medium);
 }
 
 .whatsapp-fab:hover,
 .whatsapp-fab:focus-visible {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 1rem 2.5rem -0.4rem rgba(37, 211, 102, 0.75);
+  box-shadow: 0 1rem 2.5rem -0.4rem rgba(var(--accent-1-rgb), 0.55);
 }
 
 .whatsapp-fab__label {
