@@ -301,7 +301,6 @@ h4 {
 .site-header--scrolled .site-header__inner {
   padding-block: 0.55rem;
   background: var(--header-bg-scrolled);
-  backdrop-filter: blur(12px);
   border-radius: 999px;
   box-shadow: var(--shadow-island);
 }
@@ -1495,7 +1494,8 @@ h4 {
   padding: 0.85rem 1.15rem;
   border-radius: 999px;
   box-shadow: none;
-  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium),
+    opacity var(--transition-medium);
 }
 
 .whatsapp-fab:hover,
@@ -1815,7 +1815,7 @@ h4 {
     padding: 1rem 1.25rem 1.25rem;
     background: var(--bg-elevated);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-island), 0 0 0 100vmax rgb(0 0 0 / 0.5);
+    box-shadow: var(--shadow-island);
     opacity: 0;
     visibility: hidden;
     transform: translateX(1rem);
@@ -1831,6 +1831,31 @@ h4 {
 
   body.menu-open {
     overflow: hidden;
+  }
+
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgb(0 0 0 / 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+  }
+
+  body.menu-open .nav-backdrop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.2s ease, visibility 0s linear 0s;
+  }
+
+  body.menu-open .whatsapp-fab {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .site-nav__link {
@@ -1874,7 +1899,8 @@ h4 {
   .site-nav.is-open,
   .nav-toggle__bars,
   .nav-toggle__bars::before,
-  .nav-toggle__bars::after {
+  .nav-toggle__bars::after,
+  .nav-backdrop {
     transition: none;
   }
 }
