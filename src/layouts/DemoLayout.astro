@@ -1,0 +1,233 @@
+---
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import Analytics from '../components/Analytics.astro';
+import {
+  DEMO_BASE,
+  DEMO_BRAND,
+  demoWhatsapp,
+} from '../data/demo-inmobiliaria';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = `${DEMO_BRAND.nombre} | Demo de web para inmobiliarias`,
+  description = 'Demo interactiva de una web para inmobiliarias: buscador de propiedades con filtros por zona, precio y tipo, fichas con contacto directo y panel para cargar inmuebles.',
+  jsonLd,
+} = Astro.props;
+
+const waUrl = demoWhatsapp();
+const currentPath = Astro.url.pathname;
+
+const nav = [
+  { href: DEMO_BASE, label: 'Inicio' },
+  { href: `${DEMO_BASE}/propiedades`, label: 'Propiedades' },
+  { href: `${DEMO_BASE}/panel`, label: 'Panel' },
+];
+
+const isActive = (href: string) =>
+  currentPath === href || (href !== DEMO_BASE && currentPath.startsWith(href));
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem('theme');
+        const theme =
+          stored === 'light' || stored === 'dark'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark';
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    <meta name="theme-color" content="#131314" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f6f4" media="(prefers-color-scheme: light)" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <Seo title={title} description={description} noindex jsonLd={jsonLd} />
+  </head>
+  <body class="di-scope">
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <div class="di-ribbon">
+      <div class="container di-ribbon__inner">
+        <p class="di-ribbon__text">
+          <strong>Demo</strong> creada por Joaquín López. Esta inmobiliaria no es real.
+        </p>
+        <a class="di-ribbon__cta" href={waUrl} target="_blank" rel="noopener">
+          Quiero una web así <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+    <header class="di-header">
+      <div class="container di-header__inner">
+        <a class="di-brand" href={DEMO_BASE} aria-label={`${DEMO_BRAND.nombre} — inicio`}>
+          <span class="di-brand__mark" aria-hidden="true">CN</span>
+          <span class="di-brand__name">Casa Norte<small>Propiedades</small></span>
+        </a>
+
+        <nav class="di-nav" aria-label="Navegación de la demo">
+          {
+            nav.map((link) => (
+              <a
+                href={link.href}
+                class="di-nav__link"
+                aria-current={isActive(link.href) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        <div class="di-header__side">
+          <a class="di-header__back" href="/servicios/webs-para-inmobiliarias">
+            Hecho por Joaquín López
+          </a>
+          <button
+            type="button"
+            class="theme-toggle"
+            id="di-theme-toggle"
+            role="switch"
+            aria-checked="false"
+            aria-label="Cambiar tema"
+          >
+            <span class="theme-toggle__thumb" aria-hidden="true">
+              <svg
+                class="theme-toggle__icon theme-toggle__icon--moon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <svg
+                class="theme-toggle__icon theme-toggle__icon--sun"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                  d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+                ></path>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <slot />
+    </main>
+
+    <footer class="di-footer">
+      <div class="container">
+        <div class="di-footer__grid">
+          <div class="di-footer__col">
+            <span class="di-brand__mark" aria-hidden="true">CN</span>
+            <p class="di-footer__brand">{DEMO_BRAND.nombre}</p>
+            <p class="di-footer__tagline">{DEMO_BRAND.claim}</p>
+          </div>
+          <nav class="di-footer__col" aria-label="Secciones de la demo">
+            <h2 class="di-footer__heading">Secciones</h2>
+            <ul class="di-footer__list">
+              {nav.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+            </ul>
+          </nav>
+          <div class="di-footer__col">
+            <h2 class="di-footer__heading">Contacto</h2>
+            <ul class="di-footer__list">
+              <li><a href={waUrl} target="_blank" rel="noopener">Consultar por WhatsApp</a></li>
+              <li><span>{DEMO_BRAND.ciudad}</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="di-footer__legal">
+          Sitio de demostración creado por
+          <a href="/servicios/webs-para-inmobiliarias">Joaquín López</a>. {DEMO_BRAND.nombre} es una
+          marca ficticia y las propiedades son de ejemplo. ¿Querés una web así para tu inmobiliaria?
+          <a href={waUrl} target="_blank" rel="noopener">Hablemos</a>.
+        </p>
+      </div>
+    </footer>
+
+    <Analytics />
+
+    <script>
+      const root = document.documentElement;
+      const toggle = document.getElementById('di-theme-toggle');
+
+      const applyTheme = (theme: 'light' | 'dark') => {
+        root.dataset.theme = theme;
+        toggle?.setAttribute('aria-checked', String(theme === 'dark'));
+        toggle?.setAttribute(
+          'aria-label',
+          theme === 'light' ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro'
+        );
+      };
+
+      applyTheme((root.dataset.theme as 'light' | 'dark') ?? 'dark');
+
+      toggle?.addEventListener('click', () => {
+        const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+        applyTheme(next);
+        try {
+          localStorage.setItem('theme', next);
+        } catch {
+          /* almacenamiento no disponible */
+        }
+      });
+
+      const media = window.matchMedia('(prefers-color-scheme: light)');
+      media.addEventListener('change', (event) => {
+        try {
+          if (localStorage.getItem('theme')) return;
+        } catch {
+          /* almacenamiento no disponible */
+        }
+        applyTheme(event.matches ? 'light' : 'dark');
+      });
+
+      type GtagWindow = Window & { gtag?: (...args: unknown[]) => void };
+      document.addEventListener('click', (event) => {
+        const target = (event.target as HTMLElement).closest('a');
+        if (!target) return;
+        const href = target.getAttribute('href') ?? '';
+        if (href.includes('wa.me')) {
+          (window as GtagWindow).gtag?.('event', 'whatsapp', { location: 'demo-inmobiliaria' });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,351 @@
+---
+import DemoLayout from '../../../layouts/DemoLayout.astro';
+import { panelRowHtml } from '../../../scripts/demo-render';
+import {
+  DEMO_BASE,
+  DEMO_ZONAS,
+  OPERACIONES,
+  OPERACION_LABEL,
+  TIPOS,
+  TIPO_LABEL,
+  allProperties,
+} from '../../../data/demo-inmobiliaria';
+
+const baseline = allProperties.map((p) => panelRowHtml(p)).join('');
+---
+
+<DemoLayout
+  title="Panel de administración | Demo de web para inmobiliarias"
+  description="Panel de ejemplo para cargar, editar y dar de baja propiedades. En esta demo los cambios se guardan en tu navegador."
+>
+  <section class="di-panel">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__eyebrow">Panel de administración</span>
+        <h1 class="section__title">Tus propiedades</h1>
+        <p class="section__lead">
+          Así cargarías tu stock sin depender de nadie: alta, edición, baja, destacados y vendidas.
+        </p>
+      </div>
+
+      <p class="di-notice" role="note">
+        <strong>Demo:</strong> los cambios se guardan en tu navegador (localStorage), no en un
+        servidor. En tu web real quedan en una base de datos y los ves desde cualquier dispositivo.
+      </p>
+
+      <div class="di-panel__bar" style="margin-top: 1.25rem;">
+        <button type="button" class="btn btn--primary" id="di-new">+ Nueva propiedad</button>
+        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+          <a class="btn btn--ghost" href={`${DEMO_BASE}/propiedades`}>Ver catálogo</a>
+          <button type="button" class="btn btn--ghost" id="di-reset">Restablecer demo</button>
+        </div>
+      </div>
+
+      <p class="form__status" id="di-panel-status" role="status" aria-live="polite"></p>
+
+      <ul class="di-panel__list" id="di-panel-list" set:html={baseline}></ul>
+
+      <p class="di-empty" id="di-panel-empty" hidden>
+        No hay propiedades cargadas. Creá la primera con “Nueva propiedad”.
+      </p>
+
+      <noscript>
+        <p class="di-notice" style="margin-top: 1.5rem;">
+          <strong>Nota:</strong> el panel necesita JavaScript para funcionar.
+        </p>
+      </noscript>
+    </div>
+  </section>
+
+  <dialog class="di-dialog" id="di-form-dialog" closedby="any" aria-labelledby="di-form-title">
+    <div class="di-dialog__inner">
+      <div class="di-dialog__head">
+        <h2 class="di-dialog__title" id="di-form-title">Nueva propiedad</h2>
+        <button type="button" class="di-btn-sm" data-close>Cerrar</button>
+      </div>
+
+      <form class="di-form" id="di-form">
+        <input type="hidden" name="id" />
+        <div class="di-form__grid">
+          <div class="field di-field--full">
+            <label for="pf-titulo">Título</label>
+            <input type="text" id="pf-titulo" name="titulo" required />
+          </div>
+          <div class="field">
+            <label for="pf-operacion">Operación</label>
+            <select id="pf-operacion" name="operacion">
+              {OPERACIONES.map((op) => <option value={op}>{OPERACION_LABEL[op]}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="pf-tipo">Tipo</label>
+            <select id="pf-tipo" name="tipo">
+              {TIPOS.map((tipo) => <option value={tipo}>{TIPO_LABEL[tipo]}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="pf-zona">Zona</label>
+            <select id="pf-zona" name="zona">
+              {DEMO_ZONAS.map((zona) => <option value={zona}>{zona}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="pf-direccion">Dirección</label>
+            <input type="text" id="pf-direccion" name="direccion" required />
+          </div>
+          <div class="field">
+            <label for="pf-precio">Precio</label>
+            <input type="number" id="pf-precio" name="precio" min="0" required />
+          </div>
+          <div class="field">
+            <label for="pf-moneda">Moneda</label>
+            <select id="pf-moneda" name="moneda">
+              <option value="USD">US$ dólares</option>
+              <option value="ARS">$ pesos</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pf-ambientes">Ambientes</label>
+            <input type="number" id="pf-ambientes" name="ambientes" min="0" />
+          </div>
+          <div class="field">
+            <label for="pf-dormitorios">Dormitorios</label>
+            <input type="number" id="pf-dormitorios" name="dormitorios" min="0" />
+          </div>
+          <div class="field">
+            <label for="pf-banios">Baños</label>
+            <input type="number" id="pf-banios" name="banios" min="0" />
+          </div>
+          <div class="field">
+            <label for="pf-metros">M² cubiertos</label>
+            <input type="number" id="pf-metros" name="metros" min="0" />
+          </div>
+          <div class="field">
+            <label for="pf-metrosTerreno">M² terreno</label>
+            <input type="number" id="pf-metrosTerreno" name="metrosTerreno" min="0" />
+          </div>
+          <div class="field di-field--full">
+            <label for="pf-descripcion">Descripción</label>
+            <textarea id="pf-descripcion" name="descripcion"></textarea>
+          </div>
+          <div class="di-field--full" style="display: flex; gap: 1.25rem; flex-wrap: wrap;">
+            <label class="di-checkbox"><input type="checkbox" name="cochera" /> Cochera</label>
+            <label class="di-checkbox"><input type="checkbox" name="destacada" /> Destacada</label>
+            <label class="di-checkbox"><input type="checkbox" name="vendida" /> Vendida</label>
+          </div>
+        </div>
+        <div class="di-form__actions">
+          <button type="button" class="btn btn--ghost" data-close>Cancelar</button>
+          <button type="submit" class="btn btn--primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="di-dialog" id="di-preview-dialog" closedby="any" aria-labelledby="di-preview-title">
+    <div class="di-dialog__inner">
+      <div class="di-dialog__head">
+        <h2 class="di-dialog__title" id="di-preview-title">Vista previa</h2>
+        <button type="button" class="di-btn-sm" data-close>Cerrar</button>
+      </div>
+      <div id="di-preview-body"></div>
+    </div>
+  </dialog>
+
+  <script>
+    import {
+      getMergedById,
+      getMergedProperties,
+      newId,
+      removeProperty,
+      resetDemo,
+      toggleFlag,
+      upsertProperty,
+    } from '../../../scripts/demo-store';
+    import { panelRowHtml, fichaHtml } from '../../../scripts/demo-render';
+    import type { Operacion, Property, TipoPropiedad } from '../../../data/demo-inmobiliaria';
+
+    const listEl = document.getElementById('di-panel-list');
+    const emptyEl = document.getElementById('di-panel-empty');
+    const statusEl = document.getElementById('di-panel-status');
+    const newBtn = document.getElementById('di-new');
+    const resetBtn = document.getElementById('di-reset');
+    const formDialog = document.getElementById('di-form-dialog') as HTMLDialogElement | null;
+    const form = document.getElementById('di-form') as HTMLFormElement | null;
+    const formTitle = document.getElementById('di-form-title');
+    const previewDialog = document.getElementById('di-preview-dialog') as HTMLDialogElement | null;
+    const previewTitle = document.getElementById('di-preview-title');
+    const previewBody = document.getElementById('di-preview-body');
+
+    const announce = (message: string) => {
+      if (statusEl) statusEl.textContent = message;
+    };
+
+    const renderList = () => {
+      const items = getMergedProperties();
+      if (listEl) listEl.innerHTML = items.map((p) => panelRowHtml(p)).join('');
+      emptyEl?.toggleAttribute('hidden', items.length > 0);
+    };
+
+    const field = (name: string): HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null =>
+      (form?.elements.namedItem(name) ?? null) as
+        | HTMLInputElement
+        | HTMLSelectElement
+        | HTMLTextAreaElement
+        | null;
+
+    const setValue = (name: string, value: string) => {
+      const el = field(name);
+      if (el) el.value = value;
+    };
+
+    const setChecked = (name: string, checked: boolean) => {
+      const el = field(name);
+      if (el instanceof HTMLInputElement) el.checked = checked;
+    };
+
+    const openForm = (property?: Property) => {
+      if (!form) return;
+      form.reset();
+      if (property) {
+        setValue('id', property.id);
+        setValue('titulo', property.titulo);
+        setValue('operacion', property.operacion);
+        setValue('tipo', property.tipo);
+        setValue('zona', property.zona);
+        setValue('direccion', property.direccion);
+        setValue('precio', String(property.precio));
+        setValue('moneda', property.moneda);
+        setValue('ambientes', String(property.ambientes));
+        setValue('dormitorios', String(property.dormitorios));
+        setValue('banios', String(property.banios));
+        setValue('metros', String(property.metros));
+        setValue('metrosTerreno', property.metrosTerreno ? String(property.metrosTerreno) : '');
+        setValue('descripcion', property.descripcion);
+        setChecked('cochera', property.cochera);
+        setChecked('destacada', property.destacada);
+        setChecked('vendida', property.vendida);
+        if (formTitle) formTitle.textContent = 'Editar propiedad';
+      } else {
+        setValue('id', newId());
+        setValue('operacion', 'venta');
+        setValue('tipo', 'casa');
+        setValue('zona', 'Centro');
+        setValue('moneda', 'USD');
+        setValue('ambientes', '3');
+        setValue('dormitorios', '2');
+        setValue('banios', '1');
+        if (formTitle) formTitle.textContent = 'Nueva propiedad';
+      }
+      formDialog?.showModal();
+      field('titulo')?.focus();
+    };
+
+    const readForm = (): Property | null => {
+      if (!form) return null;
+      const value = (name: string) => String(field(name)?.value ?? '').trim();
+      const number = (name: string) => {
+        const parsed = Number(value(name));
+        return Number.isFinite(parsed) ? parsed : 0;
+      };
+      const isChecked = (name: string) => {
+        const el = field(name);
+        return el instanceof HTMLInputElement ? el.checked : false;
+      };
+      const terreno = value('metrosTerreno');
+      return {
+        id: value('id') || newId(),
+        titulo: value('titulo'),
+        tipo: value('tipo') as TipoPropiedad,
+        operacion: value('operacion') as Operacion,
+        zona: value('zona'),
+        direccion: value('direccion'),
+        precio: number('precio'),
+        moneda: value('moneda') === 'ARS' ? 'ARS' : 'USD',
+        ambientes: number('ambientes'),
+        dormitorios: number('dormitorios'),
+        banios: number('banios'),
+        metros: number('metros'),
+        metrosTerreno: terreno ? number('metrosTerreno') : undefined,
+        cochera: isChecked('cochera'),
+        descripcion: value('descripcion'),
+        destacada: isChecked('destacada'),
+        vendida: isChecked('vendida'),
+      };
+    };
+
+    newBtn?.addEventListener('click', () => openForm());
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const property = readForm();
+      if (!property) return;
+      upsertProperty(property);
+      formDialog?.close();
+      renderList();
+      announce(`“${property.titulo}” se guardó en esta demo.`);
+    });
+
+    listEl?.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest('button[data-action]');
+      if (!button) return;
+      const id = button.getAttribute('data-id');
+      if (!id) return;
+      const property = getMergedById(id);
+      if (!property) return;
+      const action = button.getAttribute('data-action');
+
+      if (action === 'edit') {
+        openForm(property);
+      } else if (action === 'preview') {
+        if (previewTitle) previewTitle.textContent = property.titulo;
+        if (previewBody) previewBody.innerHTML = fichaHtml(property);
+        previewDialog?.showModal();
+      } else if (action === 'destacar') {
+        toggleFlag(id, 'destacada');
+        renderList();
+      } else if (action === 'vender') {
+        toggleFlag(id, 'vendida');
+        renderList();
+      } else if (action === 'delete') {
+        if (window.confirm(`¿Eliminar “${property.titulo}” de la demo?`)) {
+          removeProperty(id);
+          renderList();
+          announce(`“${property.titulo}” se eliminó de esta demo.`);
+        }
+      }
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      if (window.confirm('¿Restablecer las propiedades de la demo a su estado original?')) {
+        resetDemo();
+        renderList();
+        announce('Datos de la demo restablecidos.');
+      }
+    });
+
+    document.querySelectorAll('[data-close]').forEach((button) => {
+      button.addEventListener('click', () => {
+        button.closest('dialog')?.close();
+      });
+    });
+
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      document.querySelectorAll('dialog').forEach((dialog) => {
+        dialog.addEventListener('click', (event) => {
+          if (event.target !== dialog) return;
+          const rect = dialog.getBoundingClientRect();
+          const inside =
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width;
+          if (!inside) dialog.close();
+        });
+      });
+    }
+
+    renderList();
+  </script>
+</DemoLayout>

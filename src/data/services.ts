@@ -11,6 +11,7 @@ export interface ServicePage {
   includes: string[];
   priceNote: string;
   faqs: { pregunta: string; respuesta: string }[];
+  demoHref?: string;
 }
 
 export const whatsappFor = (message: string) =>

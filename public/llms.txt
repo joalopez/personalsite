@@ -15,6 +15,10 @@
 - [Tiendas online](https://joalopez.com.ar/servicios/tiendas-online): Comercio electrónico sin depender de marketplaces.
 - [Intranet para empresas](https://joalopez.com.ar/servicios/intranet-para-empresas): Documentos, novedades, directorio y formularios internos en un solo lugar.
 
+## Demos
+
+- [Demo web para inmobiliarias](https://joalopez.com.ar/demos/inmobiliaria): Sitio de ejemplo con buscador de propiedades, filtros por zona y precio, fichas y panel de carga.
+
 ## Contacto
 
 - WhatsApp: https://wa.me/5492974047802

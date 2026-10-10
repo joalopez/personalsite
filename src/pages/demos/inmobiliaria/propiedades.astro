@@ -1,0 +1,257 @@
+---
+import DemoLayout from '../../../layouts/DemoLayout.astro';
+import { cardHtml } from '../../../scripts/demo-render';
+import {
+  DEMO_BASE,
+  DEMO_ZONAS,
+  OPERACIONES,
+  OPERACION_LABEL,
+  TIPOS,
+  TIPO_LABEL,
+  allProperties,
+} from '../../../data/demo-inmobiliaria';
+
+const total = allProperties.filter((p) => !p.vendida).length;
+---
+
+<DemoLayout
+  title={`Propiedades | Demo de web para inmobiliarias`}
+  description="Catálogo de propiedades de ejemplo con filtros por zona, operación, tipo, dormitorios y precio. Demostración de una web para inmobiliarias."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__eyebrow">Catálogo</span>
+        <h1 class="section__title">Propiedades en venta y alquiler</h1>
+        <p class="section__lead">
+          Filtrá por zona, operación, tipo, dormitorios y precio. Todo se actualiza al instante y la
+          dirección del navegador guarda los filtros para que puedas compartir la búsqueda.
+        </p>
+      </div>
+
+      <search>
+        <form class="di-filters" id="di-filters" method="get">
+          <div class="field di-filters__wide">
+            <label for="f-q">Buscar</label>
+            <input type="search" id="f-q" name="q" placeholder="Barrio, dirección o palabra clave" />
+          </div>
+          <div class="field">
+            <label for="f-operacion">Operación</label>
+            <select id="f-operacion" name="operacion">
+              <option value="">Todas</option>
+              {OPERACIONES.map((op) => <option value={op}>{OPERACION_LABEL[op]}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-tipo">Tipo</label>
+            <select id="f-tipo" name="tipo">
+              <option value="">Todos</option>
+              {TIPOS.map((tipo) => <option value={tipo}>{TIPO_LABEL[tipo]}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-zona">Zona</label>
+            <select id="f-zona" name="zona">
+              <option value="">Todas</option>
+              {DEMO_ZONAS.map((zona) => <option value={zona}>{zona}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-dormitorios">Dormitorios</label>
+            <select id="f-dormitorios" name="dormitorios">
+              <option value="">Todos</option>
+              <option value="1">1 o más</option>
+              <option value="2">2 o más</option>
+              <option value="3">3 o más</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-precioMax">Precio hasta</label>
+            <input type="number" id="f-precioMax" name="precioMax" min="0" inputmode="numeric" placeholder="Ej. 100000" />
+          </div>
+          <div class="field">
+            <label for="f-orden">Ordenar por</label>
+            <select id="f-orden" name="orden">
+              <option value="relevancia">Destacadas primero</option>
+              <option value="precio-asc">Menor precio</option>
+              <option value="precio-desc">Mayor precio</option>
+            </select>
+          </div>
+        </form>
+      </search>
+
+      <div class="di-results-bar">
+        <p class="di-results-count" id="di-count" role="status" aria-live="polite">
+          {total} propiedades
+        </p>
+        <button type="button" class="di-reset" id="di-reset">Limpiar filtros</button>
+      </div>
+
+      <div class="di-grid" id="di-grid">
+        {allProperties.map((p) => <Fragment set:html={cardHtml(p)} />)}
+      </div>
+
+      <p class="di-empty" id="di-empty" hidden>
+        No encontramos propiedades con esos filtros. Probá quitando alguno.
+      </p>
+
+      <noscript>
+        <p class="di-notice" style="margin-top: 1.5rem;">
+          <strong>Nota:</strong> activá JavaScript para filtrar el catálogo al instante. Sin JS se
+          muestran todas las propiedades y el formulario recarga la página.
+        </p>
+      </noscript>
+    </div>
+  </section>
+
+  <section class="section section--elevated">
+    <div class="container">
+      <p class="section__lead">
+        ¿Querés un catálogo así, con tus propiedades y tu marca?
+        <a class="di-reset" href={`${DEMO_BASE}/panel`}>Mirá el panel de carga</a> o
+        <a class="di-reset" href="/servicios/webs-para-inmobiliarias">conocé el servicio</a>.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    import { getMergedProperties } from '../../../scripts/demo-store';
+    import { cardHtml } from '../../../scripts/demo-render';
+    import type { Property } from '../../../data/demo-inmobiliaria';
+
+    const form = document.getElementById('di-filters') as HTMLFormElement | null;
+    const grid = document.getElementById('di-grid');
+    const countEl = document.getElementById('di-count');
+    const emptyEl = document.getElementById('di-empty');
+    const resetBtn = document.getElementById('di-reset');
+
+    const normalize = (value: string) =>
+      value
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '')
+        .trim();
+
+    const getParams = () => new URLSearchParams(window.location.search);
+
+    const readFilters = () => {
+      const params = getParams();
+      return {
+        q: params.get('q') ?? '',
+        operacion: params.get('operacion') ?? '',
+        tipo: params.get('tipo') ?? '',
+        zona: params.get('zona') ?? '',
+        dormitorios: params.get('dormitorios') ?? '',
+        precioMax: params.get('precioMax') ?? '',
+        orden: params.get('orden') ?? 'relevancia',
+      };
+    };
+
+    type Filters = ReturnType<typeof readFilters>;
+
+    const applyFiltersToForm = (filters: Filters) => {
+      if (!form) return;
+      (['q', 'operacion', 'tipo', 'zona', 'dormitorios', 'precioMax', 'orden'] as const).forEach(
+        (name) => {
+          const field = form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement | null;
+          if (field) field.value = filters[name];
+        }
+      );
+    };
+
+    const filter = (items: Property[], f: Filters): Property[] => {
+      const query = normalize(f.q);
+      const dorm = f.dormitorios ? Number(f.dormitorios) : 0;
+      const max = f.precioMax ? Number(f.precioMax) : 0;
+
+      const result = items.filter((p) => {
+        if (f.operacion && p.operacion !== f.operacion) return false;
+        if (f.tipo && p.tipo !== f.tipo) return false;
+        if (f.zona && p.zona !== f.zona) return false;
+        if (dorm && p.dormitorios < dorm) return false;
+        if (max && p.precio > max) return false;
+        if (query) {
+          const haystack = normalize(
+            `${p.titulo} ${p.zona} ${p.direccion} ${p.descripcion} ${p.tipo}`
+          );
+          if (!haystack.includes(query)) return false;
+        }
+        return true;
+      });
+
+      if (f.orden === 'precio-asc') result.sort((a, b) => a.precio - b.precio);
+      else if (f.orden === 'precio-desc') result.sort((a, b) => b.precio - a.precio);
+      else result.sort((a, b) => Number(b.destacada) - Number(a.destacada));
+
+      return result;
+    };
+
+    const render = (filters: Filters = readFilters()) => {
+      const results = filter(getMergedProperties(), filters);
+
+      if (grid) {
+        grid.innerHTML = results.map((p) => cardHtml(p)).join('');
+      }
+      if (countEl) {
+        countEl.textContent =
+          results.length === 1 ? '1 propiedad' : `${results.length} propiedades`;
+      }
+      emptyEl?.toggleAttribute('hidden', results.length > 0);
+    };
+
+    const filterFromForm = (): Filters => {
+      const value = (name: string) =>
+        (form?.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement | null)?.value ??
+        '';
+      return {
+        q: value('q'),
+        operacion: value('operacion'),
+        tipo: value('tipo'),
+        zona: value('zona'),
+        dormitorios: value('dormitorios'),
+        precioMax: value('precioMax'),
+        orden: value('orden') || 'relevancia',
+      };
+    };
+
+    const syncUrl = (filters: Filters) => {
+      const params = new URLSearchParams();
+      (['q', 'operacion', 'tipo', 'zona', 'dormitorios', 'precioMax'] as const).forEach((key) => {
+        const value = filters[key];
+        if (value) params.set(key, value);
+      });
+      if (filters.orden && filters.orden !== 'relevancia') params.set('orden', filters.orden);
+      const query = params.toString();
+      const url = `${window.location.pathname}${query ? `?${query}` : ''}`;
+      window.history.replaceState(null, '', url);
+    };
+
+    let debounce: number | undefined;
+    const onFilterChange = (immediate = false) => {
+      window.clearTimeout(debounce);
+      const run = () => {
+        const filters = filterFromForm();
+        syncUrl(filters);
+        render(filters);
+      };
+      if (immediate) run();
+      else debounce = window.setTimeout(run, 180);
+    };
+
+    form?.addEventListener('input', () => onFilterChange());
+    form?.addEventListener('change', () => onFilterChange(true));
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      onFilterChange(true);
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      form?.reset();
+      window.history.replaceState(null, '', window.location.pathname);
+      render();
+    });
+
+    applyFiltersToForm(readFilters());
+    render();
+  </script>
+</DemoLayout>

@@ -1,0 +1,129 @@
+---
+import DemoLayout from '../../../../layouts/DemoLayout.astro';
+import { galleryHtml, specsOf } from '../../../../scripts/demo-render';
+import {
+  DEMO_BASE,
+  DEMO_BRAND,
+  OPERACION_LABEL,
+  TIPO_LABEL,
+  allProperties,
+  demoWhatsapp,
+  formatPrice,
+  propertyWhatsappMessage,
+  type Property,
+} from '../../../../data/demo-inmobiliaria';
+
+export function getStaticPaths() {
+  return allProperties.map((property) => ({ params: { id: property.id }, props: { property } }));
+}
+
+interface Props {
+  property: Property;
+}
+
+const { property: p } = Astro.props;
+
+const waUrl = demoWhatsapp(propertyWhatsappMessage(p));
+const specs = specsOf(p);
+
+const related = allProperties
+  .filter(
+    (other) =>
+      other.id !== p.id &&
+      !other.vendida &&
+      (other.zona === p.zona || other.tipo === p.tipo)
+  )
+  .slice(0, 3);
+---
+
+<DemoLayout
+  title={`${p.titulo} | ${DEMO_BRAND.nombre}`}
+  description={`${TIPO_LABEL[p.tipo]} en ${OPERACION_LABEL[p.operacion].toLowerCase()} en ${p.zona}, ${DEMO_BRAND.ciudad}. ${p.descripcion}`}
+>
+  <section class="di-ficha">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href={DEMO_BASE}>Inicio</a> / <a href={`${DEMO_BASE}/propiedades`}>Propiedades</a> /
+        <span aria-current="page">{p.titulo}</span>
+      </nav>
+
+      <div class="di-ficha__gallery" set:html={galleryHtml(p)} style="margin-top: 1.25rem;" />
+
+      <div class="di-ficha__grid">
+        <div>
+          <div class="di-card__tags">
+            <span class:list={['di-tag', `di-tag--${p.operacion}`]}>
+              {OPERACION_LABEL[p.operacion]}
+            </span>
+            <span class="di-tag">{TIPO_LABEL[p.tipo]}</span>
+            {p.destacada && !p.vendida && <span class="di-tag di-tag--destacada">Destacada</span>}
+            {p.vendida && <span class="di-tag di-tag--vendida">Vendida</span>}
+          </div>
+
+          <p class="di-ficha__price">{formatPrice(p)}</p>
+          <h1 class="section__title">{p.titulo}</h1>
+          <p class="di-ficha__loc">{p.zona} · {p.direccion}</p>
+
+          <dl class="di-specs">
+            {
+              specs.map((spec) => (
+                <div class="di-spec">
+                  <dt>{spec.label}</dt>
+                  <dd>{spec.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+
+          <h2 class="card__title" style="margin-bottom: 0.5rem;">Descripción</h2>
+          <p class="di-ficha__desc">{p.descripcion}</p>
+        </div>
+
+        <aside class="di-aside">
+          <p class="di-ficha__price" style="font-size: 1.35rem; margin: 0;">{formatPrice(p)}</p>
+          <p class="di-ficha__loc" style="margin: 0;">{p.zona} · {p.direccion}</p>
+          <a class="btn btn--primary" href={waUrl} target="_blank" rel="noopener">
+            Consultar esta propiedad
+          </a>
+          <p class="di-notice">
+            <strong>Esto es una demo.</strong> El botón te contacta con Joaquín López para hacerte una
+            web así, no con una inmobiliaria real.
+          </p>
+          <a class="btn btn--ghost" href={`${DEMO_BASE}/propiedades`}>← Volver al catálogo</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  {
+    related.length > 0 && (
+      <section class="section section--elevated" aria-labelledby="relacionadas-title">
+        <div class="container">
+          <div class="section__head">
+            <span class="section__eyebrow">Seguí mirando</span>
+            <h2 class="section__title" id="relacionadas-title">Propiedades similares</h2>
+          </div>
+          <div class="di-grid">
+            {related.map((r) => (
+              <article class="di-card">
+                <a class="di-card__link" href={`${DEMO_BASE}/propiedad/${r.id}`}>
+                  <span class="di-card__body">
+                    <span class="di-card__tags">
+                      <span class:list={['di-tag', `di-tag--${r.operacion}`]}>
+                        {OPERACION_LABEL[r.operacion]}
+                      </span>
+                      <span class="di-tag">{TIPO_LABEL[r.tipo]}</span>
+                    </span>
+                    <span class="di-card__price">{formatPrice(r)}</span>
+                    <span class="di-card__title">{r.titulo}</span>
+                    <span class="di-card__loc">{r.zona} · {r.direccion}</span>
+                  </span>
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</DemoLayout>

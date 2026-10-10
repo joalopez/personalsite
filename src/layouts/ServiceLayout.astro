@@ -35,6 +35,9 @@ const jsonLd = [...buildServiceJsonLd(page), buildBreadcrumbJsonLd(page)];
             <a class="btn btn--primary" href={wa} target="_blank" rel="noopener">
               Pedir presupuesto sin cargo
             </a>
+            {page.demoHref && (
+              <a class="btn btn--ghost" href={page.demoHref}>Ver la demo en vivo</a>
+            )}
             <a class="btn btn--ghost" href="#faq-servicio">Ver preguntas frecuentes</a>
           </div>
         </div>

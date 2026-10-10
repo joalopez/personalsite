@@ -1,0 +1,208 @@
+---
+import DemoLayout from '../../../layouts/DemoLayout.astro';
+import { cardHtml } from '../../../scripts/demo-render';
+import {
+  DEMO_BASE,
+  DEMO_BRAND,
+  DEMO_ZONAS,
+  OPERACIONES,
+  OPERACION_LABEL,
+  TIPOS,
+  TIPO_LABEL,
+  allProperties,
+  demoWhatsapp,
+} from '../../../data/demo-inmobiliaria';
+
+const waUrl = demoWhatsapp();
+
+const destacadas = allProperties.filter((p) => p.destacada && !p.vendida).slice(0, 3);
+const disponibles = allProperties.filter((p) => !p.vendida).length;
+
+const stats = [
+  { num: String(disponibles), label: 'propiedades disponibles' },
+  { num: String(DEMO_ZONAS.length), label: 'zonas para elegir' },
+  { num: '100%', label: 'contacto directo por WhatsApp' },
+];
+---
+
+<DemoLayout
+  title={`${DEMO_BRAND.nombre} | Demo de web para inmobiliarias`}
+  description="Demo interactiva de una web para inmobiliarias: buscador de propiedades con filtros, fichas con contacto directo por WhatsApp y panel para cargar inmuebles."
+>
+  <section class="di-hero">
+    <div class="container">
+      <p class="section__eyebrow">Demo · Web + sistema de propiedades</p>
+      <h1 class="di-hero__title">
+        Encontrá tu próxima propiedad en {DEMO_BRAND.ciudad}
+      </h1>
+      <p class="di-hero__lead">
+        {DEMO_BRAND.claim}. Buscá por zona, precio y tipo, mirá las fichas completas y consultá
+        directo por WhatsApp, sin intermediarios ni comisiones por consulta.
+      </p>
+
+      <search class="di-search">
+        <form class="di-search__grid" action={`${DEMO_BASE}/propiedades`} method="get">
+          <div class="field">
+            <label for="hero-q">Buscar</label>
+            <input
+              type="search"
+              id="hero-q"
+              name="q"
+              placeholder="Barrio, dirección o palabra clave"
+            />
+          </div>
+          <div class="field">
+            <label for="hero-operacion">Operación</label>
+            <select id="hero-operacion" name="operacion">
+              <option value="">Todas</option>
+              {OPERACIONES.map((op) => <option value={op}>{OPERACION_LABEL[op]}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="hero-tipo">Tipo</label>
+            <select id="hero-tipo" name="tipo">
+              <option value="">Todos</option>
+              {TIPOS.map((tipo) => <option value={tipo}>{TIPO_LABEL[tipo]}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="hero-zona">Zona</label>
+            <select id="hero-zona" name="zona">
+              <option value="">Todas</option>
+              {DEMO_ZONAS.map((zona) => <option value={zona}>{zona}</option>)}
+            </select>
+          </div>
+          <button class="btn btn--primary di-search__submit" type="submit">Buscar</button>
+        </form>
+      </search>
+
+      <div class="di-hero__stats" style="margin-top: 2rem;">
+        {
+          stats.map((stat) => (
+            <div>
+              <span class="di-stat__num">{stat.num}</span>
+              <span class="di-stat__label">{stat.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="destacadas-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__eyebrow">Destacadas</span>
+        <h2 class="section__title" id="destacadas-title">Propiedades seleccionadas</h2>
+        <p class="section__lead">Una muestra de lo que vas a encontrar en el catálogo completo.</p>
+      </div>
+
+      <div class="di-grid">
+        {destacadas.map((p) => <Fragment set:html={cardHtml(p)} />)}
+      </div>
+
+      <p style="margin-top: 1.75rem;">
+        <a class="btn btn--ghost" href={`${DEMO_BASE}/propiedades`}>
+          Ver todas las propiedades
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--elevated" aria-labelledby="zonas-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__eyebrow">Explorar</span>
+        <h2 class="section__title" id="zonas-title">Buscar por zona</h2>
+      </div>
+      <ul class="di-zone-list">
+        {
+          DEMO_ZONAS.map((zona) => (
+            <li>
+              <a
+                class="di-zone-chip"
+                href={`${DEMO_BASE}/propiedades?zona=${encodeURIComponent(zona)}`}
+              >
+                {zona}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="tasacion-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__eyebrow">Tasaciones</span>
+        <h2 class="section__title" id="tasacion-title">¿Querés saber cuánto vale tu propiedad?</h2>
+        <p class="section__lead">
+          Contanos qué tenés y te contactamos para coordinar una tasación sin cargo.
+        </p>
+      </div>
+
+      <form class="form" id="di-tasacion" style="max-width: 40rem;">
+        <div class="di-form__grid">
+          <div class="field">
+            <label for="tas-nombre">Tu nombre</label>
+            <input type="text" id="tas-nombre" name="nombre" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="tas-tipo">Tipo de propiedad</label>
+            <select id="tas-tipo" name="tipo">
+              {TIPOS.map((tipo) => <option value={TIPO_LABEL[tipo]}>{TIPO_LABEL[tipo]}</option>)}
+            </select>
+          </div>
+          <div class="field di-field--full">
+            <label for="tas-zona">Zona</label>
+            <select id="tas-zona" name="zona">
+              {DEMO_ZONAS.map((zona) => <option value={zona}>{zona}</option>)}
+            </select>
+          </div>
+        </div>
+        <button class="btn btn--primary" type="submit">Pedir tasación por WhatsApp</button>
+        <p class="form__status" id="di-tasacion-status" role="status" aria-live="polite">
+          Es una demo: el formulario abre WhatsApp con los datos cargados.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section section--elevated">
+    <div class="container">
+      <div class="value-banner">
+        <div>
+          <h2 class="value-banner__title">Esta web podés ser tuya</h2>
+          <p class="value-banner__text">
+            {DEMO_BRAND.nombre} es una demo creada por Joaquín López. Si te gustó el buscador, las
+            fichas o el panel para cargar propiedades, lo adapto a tu inmobiliaria.
+          </p>
+        </div>
+        <a class="btn btn--primary" href={waUrl} target="_blank" rel="noopener">
+          Quiero una web así
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import { DEMO_CONVERSION_MESSAGE, demoWhatsapp } from '../../../data/demo-inmobiliaria';
+
+    const form = document.getElementById('di-tasacion') as HTMLFormElement | null;
+    const status = document.getElementById('di-tasacion-status');
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      const nombre = String(data.get('nombre') ?? '').trim();
+      const tipo = String(data.get('tipo') ?? '');
+      const zona = String(data.get('zona') ?? '');
+      const message = `${DEMO_CONVERSION_MESSAGE} Quiero tasar ${tipo.toLowerCase()} en ${zona}${nombre ? ` (soy ${nombre})` : ''}.`;
+      status?.setAttribute('data-state', 'success');
+      if (status) status.textContent = 'Abriendo WhatsApp…';
+      window.open(demoWhatsapp(message), '_blank', 'noopener');
+    });
+  </script>
+</DemoLayout>
