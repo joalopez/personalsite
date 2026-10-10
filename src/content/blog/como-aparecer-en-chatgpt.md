@@ -12,7 +12,6 @@ faqs:
     respuesta: 'Los datos estructurados se leen rápido, pero las citas dependen de cada motor. Hago seguimiento de menciones para medir qué mejora y qué no.'
   - pregunta: '¿Sirve si ya tengo una web?'
     respuesta: 'Sí. Se puede optimizar tu web actual o incluir el AEO desde cero en un sitio nuevo. Si es un WordPress lento, conviene combinarlo con una migración.'
-draft: true
 ---
 
 **Respuesta corta:** para que la IA recomiende tu negocio, tu web tiene que ser fácil de leer por una máquina: datos estructurados (schema), contenido escrito en formato de respuesta directa, un archivo `llms.txt` y una presencia coherente online. Si la IA no puede entender qué hacés y dónde, no te va a nombrar.

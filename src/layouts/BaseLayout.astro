@@ -1,5 +1,10 @@
 ---
 import '../styles/global.css';
+import '@fontsource-variable/dm-sans';
+import '@fontsource-variable/sora';
+import '@fontsource/bbh-bartle';
+import dmSansLatin from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
+import soraLatin from '@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url';
 import Seo from '../components/Seo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -75,12 +80,8 @@ const mergedJsonLd = jsonLd
     <meta name="theme-color" content="#131314" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f6f6f4" media="(prefers-color-scheme: light)" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&family=Sora:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" as="font" type="font/woff2" href={soraLatin} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={dmSansLatin} crossorigin />
 
     <Seo {...seoProps} jsonLd={mergedJsonLd} />
   </head>

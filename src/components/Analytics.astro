@@ -1,26 +1,35 @@
 ---
 // Analytics (GA4). Configurá PUBLIC_GA_ID en las Environment Variables de Vercel
 // o en un .env local. Mientras no esté definida, no se carga nada (0 impacto en performance).
+// El script de GTM se inyecta recién en la primera interacción del usuario (o a los 5 s
+// como fallback), para sacarlo del camino crítico de carga sin perder los eventos.
 const gaId = import.meta.env.PUBLIC_GA_ID;
 ---
 
 {
   gaId && (
-    <>
-      <script
-        is:inline
-        async
-        fetchpriority="low"
-        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-      />
-      <script define:vars={{ gaId }}>
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function () {
-          window.dataLayer.push(arguments);
-        };
-        window.gtag('js', new Date());
-        window.gtag('config', gaId);
-      </script>
-    </>
+    <script is:inline define:vars={{ gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag('js', new Date());
+      window.gtag('config', gaId);
+
+      let loaded = false;
+      const loadGtag = () => {
+        if (loaded) return;
+        loaded = true;
+        const s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+        document.head.appendChild(s);
+      };
+
+      ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach((evt) =>
+        window.addEventListener(evt, loadGtag, { once: true, passive: true })
+      );
+      window.setTimeout(loadGtag, 5000);
+    </script>
   )
 }

@@ -16,6 +16,9 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/sora": "^5.3.0",
+    "@fontsource/bbh-bartle": "^5.3.0",
     "@lucide/astro": "^1.51.0",
     "astro": "^7.3.5"
   },

@@ -5,9 +5,9 @@
 
 /* ---------- Variables ---------- */
 :root {
-  --font-heading: 'Sora', 'DM Sans', sans-serif;
-  --font-brand: 'BBH Bartle', 'DM Sans', sans-serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-heading: 'Sora Variable', 'DM Sans Variable', sans-serif;
+  --font-brand: 'BBH Bartle', 'DM Sans Variable', sans-serif;
+  --font-body: 'DM Sans Variable', system-ui, sans-serif;
 
   --radius-sm: 0.375rem;
   --radius-md: 0.75rem;
@@ -60,10 +60,10 @@
   --bg-elevated-2: #ececea;
   --text-primary: #17171a;
   --text-muted: rgba(23, 23, 26, 0.72);
-  --text-faint: rgba(23, 23, 26, 0.52);
-  --accent-1: #28965a;
+  --text-faint: rgba(23, 23, 26, 0.66);
+  --accent-1: #1f7a4d;
   --accent-2: #cba328;
-  --accent-1-rgb: 40, 150, 90;
+  --accent-1-rgb: 31, 122, 77;
   --accent-2-rgb: 203, 163, 40;
   --on-accent: #ffffff;
   --border: rgba(23, 23, 26, 0.14);
@@ -114,7 +114,7 @@ body {
   font-weight: 300;
   font-size-adjust: from-font;
   line-height: 1.65;
-  transition: background-color var(--transition-medium), color var(--transition-medium);
+  transition: background-color var(--transition-medium);
 }
 
 a {
@@ -1215,15 +1215,25 @@ h4 {
   display: grid;
   gap: 0.75rem;
   max-width: 52rem;
+  margin-inline: auto;
 }
 
-#faq .section__head {
+/* Encabezado y bloque de FAQ centrados en home y páginas de servicio.
+   Las preguntas dentro de cada desplegable quedan alineadas a la izquierda. */
+#faq .section__head,
+#faq-servicio .section__head {
   text-align: center;
   margin-inline: auto;
 }
 
-#faq .faq {
-  margin-inline: auto;
+/* El FAQ de los posts usa su propio encabezado (sin .section__head). */
+.post-faq .section__eyebrow {
+  display: block;
+  text-align: center;
+}
+
+.post-faq .section__title {
+  text-align: center;
 }
 
 .faq details {

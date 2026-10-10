@@ -193,8 +193,12 @@ const currentPath = Astro.url.pathname;
   });
 
   const header = document.querySelector('.site-header');
+  let isScrolled = false;
   const setScrolled = () => {
-    header?.classList.toggle('site-header--scrolled', window.scrollY > 24);
+    const next = window.scrollY > 24;
+    if (next === isScrolled) return;
+    isScrolled = next;
+    header?.classList.toggle('site-header--scrolled', next);
   };
 
   setScrolled();
