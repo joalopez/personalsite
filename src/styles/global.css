@@ -520,23 +520,50 @@ h4 {
   color: var(--text-primary);
 }
 
-/* El rubro que está en pantalla se resalta en el texto, sincronizado con el SVG.
+/* El rubro que está en pantalla se resalta con una línea que se dibuja, sincronizada con el SVG.
    Delay negativo: todos arrancan ya en fase, así ninguno aparece resaltado antes de tiempo. */
 .hero__rubros .hero__sync {
+  display: inline-block;
+  position: relative;
+}
+
+.hero__rubros .hero__sync::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.1em;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent-1);
+  transform: scaleX(0);
+  transform-origin: left;
   animation: hero-leg 16s linear infinite both;
   animation-delay: calc(var(--d) - 16s);
 }
 
 @keyframes hero-leg {
-  0%,
-  23% {
-    color: var(--text-primary);
-    text-decoration-color: var(--accent-1);
+  /* Dibujo progresivo con ease-out, sincronizado con el armado de la ilustración */
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+    animation-timing-function: ease-out;
   }
-  25%,
+  11% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  /* Se mantiene completa mientras la escena SVG está visible */
+  23% {
+    transform: scaleX(1);
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  /* Sale con fade, sin retroceder */
+  29%,
   100% {
-    color: var(--text-muted);
-    text-decoration-color: var(--border);
+    transform: scaleX(1);
+    opacity: 0;
   }
 }
 
@@ -768,7 +795,7 @@ h4 {
   .hero__viz .scene,
   .hero__viz .scene *,
   .hero__viz .ring,
-  .hero__rubros .hero__sync {
+  .hero__rubros .hero__sync::after {
     animation: none !important;
   }
 
@@ -784,9 +811,8 @@ h4 {
     opacity: 0;
   }
 
-  .hero__rubros .hero__sync:first-of-type {
-    color: var(--text-primary);
-    text-decoration-color: var(--accent-1);
+  .hero__rubros .hero__sync:first-of-type::after {
+    transform: scaleX(1);
   }
 }
 
