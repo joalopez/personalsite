@@ -757,8 +757,13 @@ h4 {
     transform: translateY(10px);
   }
   3%,
-  100% {
+  23% {
     opacity: 1;
+    transform: none;
+  }
+  25%,
+  100% {
+    opacity: 0;
     transform: none;
   }
 }
