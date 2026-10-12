@@ -1,8 +1,10 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Artwork from '../../components/Artwork.astro';
 import { blogArt } from '../../data/art';
+import { blogImage } from '../../data/blog-images';
 import { SITE_URL, WHATSAPP_URL, SITE_NAME } from '../../consts';
 
 export async function getStaticPaths() {
@@ -12,6 +14,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const cover = blogImage(post.id);
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -81,7 +85,7 @@ const jsonLd = [articleJsonLd, breadcrumbJsonLd, ...(faqJsonLd ? [faqJsonLd] : [
   title={`${post.data.title} | ${SITE_NAME}`}
   description={post.data.description}
   type="article"
-  image={post.data.image}
+  image={cover?.src ?? post.data.image}
   publishedTime={post.data.pubDate.toISOString()}
   modifiedTime={(post.data.updatedDate ?? post.data.pubDate).toISOString()}
   jsonLd={jsonLd}
@@ -105,7 +109,19 @@ const jsonLd = [articleJsonLd, breadcrumbJsonLd, ...(faqJsonLd ? [faqJsonLd] : [
       </header>
 
       <div class="post-cover">
-        <Artwork variant={blogArt(post.id)} />
+        {
+          cover ? (
+            <Image
+              src={cover}
+              alt=""
+              widths={[480, 800, 1200, 1600]}
+              sizes="(max-width: 900px) 100vw, 760px"
+              loading="eager"
+            />
+          ) : (
+            <Artwork variant={blogArt(post.id)} />
+          )
+        }
       </div>
 
       <div class="prose">
@@ -162,7 +178,19 @@ const jsonLd = [articleJsonLd, breadcrumbJsonLd, ...(faqJsonLd ? [faqJsonLd] : [
               {relatedPosts.map((related) => (
                 <article class="post-card">
                   <div class="post-card__cover">
-                    <Artwork variant={blogArt(related.id)} />
+                    {
+                      blogImage(related.id) ? (
+                        <Image
+                          src={blogImage(related.id)!}
+                          alt=""
+                          widths={[320, 480, 640]}
+                          sizes="(max-width: 640px) 100vw, 360px"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <Artwork variant={blogArt(related.id)} />
+                      )
+                    }
                   </div>
                   <div class="post-card__body">
                     <p class="post-card__meta">{formatDate(related.data.pubDate)}</p>
