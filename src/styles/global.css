@@ -1715,6 +1715,15 @@ h4 {
   font-size: 0.9em;
 }
 
+/* ---------- Blog post page ---------- */
+.post .container {
+  max-width: calc(46rem + 2 * var(--gutter));
+}
+
+[data-theme='light'] .post {
+  background-color: #fbfbfa;
+}
+
 /* ---------- Responsive header nav ---------- */
 @media (max-width: 760px) {
   .site-header {
