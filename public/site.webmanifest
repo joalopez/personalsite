@@ -1,0 +1,14 @@
+{
+  "name": "Joaquín López — Desarrollo web y AEO",
+  "short_name": "Joaquín López",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#131314",
+  "theme_color": "#131314",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
