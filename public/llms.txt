@@ -7,17 +7,17 @@
 
 ## Servicios
 
-- [Migración desde WordPress](https://joalopez.com.ar/servicios/migracion-wordpress): Paso sitios WordPress lentos y con mantenimiento a sitios modernos, rápidos y seguros.
-- [Optimización para IA (AEO)](https://joalopez.com.ar/servicios/optimizacion-ia): Hago que negocios aparezcan en las respuestas de ChatGPT, Gemini y Google AI.
-- [Webs para inmobiliarias](https://joalopez.com.ar/servicios/webs-para-inmobiliarias): Web con sistema de propiedades, buscador y panel de gestión.
-- [Webs para restaurantes](https://joalopez.com.ar/servicios/webs-para-restaurantes): Menú digital, pedidos por WhatsApp y reservas.
-- [Webs para profesionales](https://joalopez.com.ar/servicios/webs-para-profesionales): Sitios de confianza para abogados, dentistas, psicólogos y más.
-- [Tiendas online](https://joalopez.com.ar/servicios/tiendas-online): Comercio electrónico sin depender de marketplaces.
-- [Intranet para empresas](https://joalopez.com.ar/servicios/intranet-para-empresas): Documentos, novedades, directorio y formularios internos en un solo lugar.
+- [Migración desde WordPress](https://www.joalopez.com.ar/servicios/migracion-wordpress): Paso sitios WordPress lentos y con mantenimiento a sitios modernos, rápidos y seguros.
+- [Optimización para IA (AEO)](https://www.joalopez.com.ar/servicios/optimizacion-ia): Hago que negocios aparezcan en las respuestas de ChatGPT, Gemini y Google AI.
+- [Webs para inmobiliarias](https://www.joalopez.com.ar/servicios/webs-para-inmobiliarias): Web con sistema de propiedades, buscador y panel de gestión.
+- [Webs para restaurantes](https://www.joalopez.com.ar/servicios/webs-para-restaurantes): Menú digital, pedidos por WhatsApp y reservas.
+- [Webs para profesionales](https://www.joalopez.com.ar/servicios/webs-para-profesionales): Sitios de confianza para abogados, dentistas, psicólogos y más.
+- [Tiendas online](https://www.joalopez.com.ar/servicios/tiendas-online): Comercio electrónico sin depender de marketplaces.
+- [Intranet para empresas](https://www.joalopez.com.ar/servicios/intranet-para-empresas): Documentos, novedades, directorio y formularios internos en un solo lugar.
 
 ## Demos
 
-- [Demo web para inmobiliarias](https://joalopez.com.ar/demos/inmobiliaria): Sitio de ejemplo con buscador de propiedades, filtros por zona y precio, fichas y panel de carga.
+- [Demo web para inmobiliarias](https://www.joalopez.com.ar/demos/inmobiliaria): Sitio de ejemplo con buscador de propiedades, filtros por zona y precio, fichas y panel de carga.
 
 ## Contacto
 
@@ -28,4 +28,4 @@
 
 ## Blog
 
-- [Artículos sobre webs, WordPress, SEO y AEO](https://joalopez.com.ar/blog)
+- [Artículos sobre webs, WordPress, SEO y AEO](https://www.joalopez.com.ar/blog)

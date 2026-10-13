@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://joalopez.com.ar';
+export const SITE_URL = 'https://www.joalopez.com.ar';
 export const SITE_NAME = 'Joaquín López';
 export const SITE_TITLE = 'Joaquín López | Webs que aparecen en Google y en la IA';
 export const SITE_DESCRIPTION =

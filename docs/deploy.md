@@ -19,7 +19,10 @@ Salida: carpeta `dist/`.
 
 1. https://vercel.com/new → importá el repo `joalopez/personalsite`.
 2. Framework: **Astro** (detectado automáticamente). Output: `dist`.
-3. **Settings → Domains** → `joalopez.com.ar` y `www.joalopez.com.ar`.
+3. **Settings → Domains** → `joalopez.com.ar` y `www.joalopez.com.ar`. El dominio
+   primario (canónico) es **`www.joalopez.com.ar`**; `joalopez.com.ar` redirige a www.
+   Tiene que coincidir con `site` en `astro.config.mjs`, `SITE_URL` en `src/consts.ts`
+   y la línea `Sitemap:` de `public/robots.txt`.
 4. **Settings → Environment Variables** → agregar `PUBLIC_GA_ID` con el Measurement
    ID de GA4 (`G-...`). Aplicar a Production (y Preview si querés).
 5. Tras cambiar una variable de entorno, **Redeploy** para que tome efecto.
@@ -30,7 +33,7 @@ Cada `git push` a la rama de producción publica automáticamente.
 
 ## Después del deploy (checklist SEO)
 
-- [ ] **Google Search Console**: https://search.google.com/search-console → agregar la propiedad `joalopez.com.ar` (verificación DNS) → enviar `sitemap-index.xml`.
+- [ ] **Google Search Console**: https://search.google.com/search-console → agregar la propiedad `https://www.joalopez.com.ar` (verificación DNS) → enviar `sitemap-index.xml`. El sitemap debe vivir en el mismo host que la propiedad (www).
 - [ ] **Bing Webmaster Tools**: enviar el mismo sitemap.
 - [ ] **Google Business Profile**: crear/verificar el perfil local (aparecer en Maps y SEO local).
 - [ ] Actualizar el DNS del dominio para apuntar a Vercel.

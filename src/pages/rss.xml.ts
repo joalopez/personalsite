@@ -11,7 +11,7 @@ export async function GET(context: APIContext) {
     title: 'Joaquín López — Webs, SEO y AEO',
     description:
       'Artículos sobre webs para negocios, migración desde WordPress, SEO y optimización para motores de IA.',
-    site: context.site ?? 'https://joalopez.com.ar',
+    site: context.site ?? 'https://www.joalopez.com.ar',
     trailingSlash: false,
     items: posts.map((post) => ({
       title: post.data.title,
